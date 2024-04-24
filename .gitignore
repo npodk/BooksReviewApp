@@ -4,6 +4,9 @@
 # Visual Studio Code auto-generated files
 *.vscode/
 
+# Ignore Visual Studio user-specific files
+*.csproj.user
+
 # Build results
 [Oo]bj/
 [Bb]in/

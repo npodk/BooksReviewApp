@@ -1,0 +1,9 @@
+# Visual Studio temporary files
+.vs/
+
+# Visual Studio Code auto-generated files
+*.vscode/
+
+# Build results
+[Oo]bj/
+[Bb]in/

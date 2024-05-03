@@ -11,7 +11,7 @@ namespace BooksReviewApp.Database.Configurations
         {
             builder.ToTable("Reviews", "dbo", t =>
             {
-                t.HasCheckConstraint("CK_Reviews_Rating", "[Rating] BETWEEN 1 AND 5");
+                t.HasCheckConstraint("CK_Reviews_Rating", "\"Rating\" BETWEEN 1 AND 5");
             });
 
             builder.HasKey(r => r.Id);

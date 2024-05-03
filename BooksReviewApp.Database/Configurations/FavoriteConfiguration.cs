@@ -31,7 +31,7 @@ namespace BooksReviewApp.Database.Configurations
                 .Select(i => new Favorite
                 {
                     Id = i + 1,
-                    DateAdded = DateTime.Now,
+                    DateAdded = DateTime.UtcNow,
                     BookId = i + 1,
                     UserId = i + 1
                 }));

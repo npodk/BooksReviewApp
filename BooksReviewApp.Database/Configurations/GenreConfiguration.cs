@@ -14,7 +14,8 @@ namespace BooksReviewApp.Database.Configurations
             builder.HasKey(g => g.Id);
 
             builder.Property(g => g.Name)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnType("varchar(100)");
 
             builder.Property(g => g.Description)
                 .HasMaxLength(500);

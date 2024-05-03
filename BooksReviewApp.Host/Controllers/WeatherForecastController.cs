@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace BooksReviewApp.WebApi.Controllers
+namespace BooksReviewApp.Host.Controllers
 {
     [ApiController]
     [Route("[controller]")]

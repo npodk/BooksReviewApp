@@ -1,23 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BooksReviewApp.Domain.Core.Entities
+﻿namespace BooksReviewApp.Domain.Core.Entities
 {
     public class Book
     {
         public int Id { get; set; }
-
-        [Required]
         public string Title { get; set; }
-
-        [Required]
         public string Publisher { get; set; }
-
-        [Required]
-        public int Year { get; set; }
-
-        [Required]
+        public int PublishingYear { get; set; }
+        public int WritingYear { get; set; }
         public string ISBN { get; set; }
-
         public string? Description { get; set; }
 
         // many-to-one relationship
@@ -31,5 +21,8 @@ namespace BooksReviewApp.Domain.Core.Entities
 
         // many-to-many relationship
         public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+
+        // navigation property for the join table
+        public ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
     }
 }

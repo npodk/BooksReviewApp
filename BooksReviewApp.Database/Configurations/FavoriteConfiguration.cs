@@ -16,16 +16,6 @@ namespace BooksReviewApp.Database.Configurations
             builder.Property(f => f.DateAdded)
                 .IsRequired();
 
-            builder.HasOne(f => f.User)
-                .WithMany(u => u.Favorites)
-                .HasForeignKey(f => f.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(f => f.Book)
-                .WithMany(b => b.Favorites)
-                .HasForeignKey(f => f.BookId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.HasData(
             Enumerable.Range(0, BookConstants.ExamplesNumber)
                 .Select(i => new Favorite

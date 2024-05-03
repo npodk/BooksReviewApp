@@ -34,18 +34,15 @@ namespace BooksReviewApp.Database.Configurations
             builder.Property(b => b.Description)
                 .HasMaxLength(500);
 
-            builder.HasOne(b => b.Author)
-                .WithMany(a => a.Books)
-                .HasForeignKey(b => b.AuthorId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.HasMany(b => b.Reviews)
                 .WithOne(a => a.Book)
-                .HasForeignKey(a => a.BookId);
+                .HasForeignKey(a => a.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(b => b.Favorites)
                 .WithOne(a => a.Book)
-                .HasForeignKey(a => a.BookId);
+                .HasForeignKey(a => a.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(b => b.Genres)
                 .WithMany(g => g.Books)

@@ -29,11 +29,13 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.HasMany(u => u.Favorites)
                 .WithOne(f => f.User)
-                .HasForeignKey(f => f.UserId);
+                .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(u => u.Reviews)
                 .WithOne(r => r.User)
-                .HasForeignKey(r => r.UserId);
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasData(
             Enumerable.Range(0, UserConstants.ExamplesNumber)

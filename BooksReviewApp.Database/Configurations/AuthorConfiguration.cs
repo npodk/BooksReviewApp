@@ -26,7 +26,8 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.HasMany(b => b.Books)
                 .WithOne(a => a.Author)
-                .HasForeignKey(a => a.AuthorId);
+                .HasForeignKey(a => a.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasData(
             Enumerable.Range(0, AuthorConstants.ExamplesNumber)

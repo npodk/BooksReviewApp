@@ -1,4 +1,4 @@
-namespace BooksReviewApp.WebApi
+namespace BooksReviewApp.Host
 {
     public class WeatherForecast
     {

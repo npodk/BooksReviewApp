@@ -1,15 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BooksReviewApp.Domain.Core.Entities
+﻿namespace BooksReviewApp.Domain.Core.Entities
 {
     public class Review
     {
         public int Id { get; set; }
-
-        [Required]
         public string Text { get; set; }
-
-        [Required]
         public int Rating { get; set; }
 
         // many-to-one relationship

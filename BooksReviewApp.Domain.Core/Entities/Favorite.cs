@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BooksReviewApp.Domain.Core.Entities
+﻿namespace BooksReviewApp.Domain.Core.Entities
 {
     public class Favorite
     {
         public int Id { get; set; }
-
-        [Column(TypeName = "Date")]
         public DateTime DateAdded { get; set; }
 
 

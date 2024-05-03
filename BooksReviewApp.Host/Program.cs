@@ -1,14 +1,13 @@
 using BooksReviewApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
+using BooksReviewApp.Database.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-builder.Services.AddDbContext<LibraryDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCustomDbContext(builder.Configuration);
 
 var app = builder.Build();
 

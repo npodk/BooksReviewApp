@@ -1,7 +1,7 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -16,23 +16,15 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.HasKey(r => r.Id);
 
+            builder.Property(r => r.Id)
+                .HasColumnType("uuid");
+
             builder.Property(r => r.Text)
                 .IsRequired()
                 .HasMaxLength(1000);
 
             builder.Property(r => r.Rating)
                 .IsRequired();
-
-            builder.HasData(
-            Enumerable.Range(0, ReviewConstants.ExamplesNumber)
-                .Select(i => new Review
-                {
-                    Id = i + 1,
-                    Text = ReviewConstants.DefaultTexts[i],
-                    Rating = ReviewConstants.DefaultRatings[i],
-                    BookId = i + 1,
-                    UserId = i + 1,
-                }));
         }
     }
 }

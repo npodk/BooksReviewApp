@@ -2,7 +2,7 @@
 {
     public class Book
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Publisher { get; set; }
         public int PublishingYear { get; set; }
@@ -11,7 +11,7 @@
         public string? Description { get; set; }
 
         // many-to-one relationship
-        public int AuthorId { get; set; }
+        public Guid AuthorId { get; set; }
         public Author? Author { get; set; }
 
         // one-to-many relationship

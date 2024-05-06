@@ -2,15 +2,15 @@
 {
     public class Favorite
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime DateAdded { get; set; }
 
 
         // many-to-one relationship
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
-        public int BookId { get; set; }
+        public Guid BookId { get; set; }
         public Book Book { get; set; }
     }
 }

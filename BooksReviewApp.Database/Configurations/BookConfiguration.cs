@@ -1,7 +1,7 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -12,6 +12,9 @@ namespace BooksReviewApp.Database.Configurations
             builder.ToTable("Books", "dbo");
 
             builder.HasKey(b => b.Id);
+
+            builder.Property(b => b.Id)
+                .HasColumnType("uuid");
 
             builder.Property(b => b.Title)
                 .IsRequired()
@@ -37,12 +40,12 @@ namespace BooksReviewApp.Database.Configurations
             builder.HasMany(b => b.Reviews)
                 .WithOne(a => a.Book)
                 .HasForeignKey(a => a.BookId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(b => b.Favorites)
                 .WithOne(a => a.Book)
                 .HasForeignKey(a => a.BookId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(b => b.Genres)
                 .WithMany(g => g.Books)
@@ -53,20 +56,6 @@ namespace BooksReviewApp.Database.Configurations
                 {
                     j.HasKey(bg => new { bg.BookId, bg.GenreId });
                 });
-
-        builder.HasData(
-            Enumerable.Range(0, BookConstants.ExamplesNumber)
-                .Select(i => new Book
-                {
-                    Id = i + 1,
-                    Title = BookConstants.DefaultTitles[i],
-                    Publisher = BookConstants.DefaultPublishers[i],
-                    WritingYear = BookConstants.DefaultWritingYears[i],
-                    PublishingYear = BookConstants.DefaultPublishingYears[i],
-                    ISBN = BookConstants.DefaultISBNs[i],
-                    Description = BookConstants.DefaultDescriptions[i],
-                    AuthorId = i + 1,
-                }));
         }
     }
 }

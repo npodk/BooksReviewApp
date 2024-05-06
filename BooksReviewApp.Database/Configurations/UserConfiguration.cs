@@ -2,6 +2,7 @@
 using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -12,6 +13,9 @@ namespace BooksReviewApp.Database.Configurations
             builder.ToTable("Users", "dbo");
 
             builder.HasKey(u => u.Id);
+
+            builder.Property(u => u.Id)
+                .HasColumnType("uuid");
 
             builder.HasIndex(u => u.Email).IsUnique();
 
@@ -30,22 +34,14 @@ namespace BooksReviewApp.Database.Configurations
             builder.HasMany(u => u.Favorites)
                 .WithOne(f => f.User)
                 .HasForeignKey(f => f.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(u => u.Reviews)
                 .WithOne(r => r.User)
                 .HasForeignKey(r => r.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(
-            Enumerable.Range(0, UserConstants.ExamplesNumber)
-                .Select(i => new User
-                {
-                    Id = i + 1,
-                    Username = UserConstants.DefaultUsernames[i],
-                    Email = UserConstants.DefaultEmails[i],
-                    Password = UserConstants.DefaultPasswords[i],
-                }));
+            builder.HasData(Constants.UserEntity.DefaultUser);
         }
     }
 }

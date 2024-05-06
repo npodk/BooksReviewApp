@@ -1,5 +1,4 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,14 +19,6 @@ namespace BooksReviewApp.Database.Configurations
             builder.HasOne(bg => bg.Genre)
                 .WithMany(g => g.BookGenres)
                 .HasForeignKey(bg => bg.GenreId);
-
-            builder.HasData(
-            Enumerable.Range(0, GenreConstants.ExamplesNumber)
-                .Select(i => new BookGenre
-                {
-                    BookId = i + 1,
-                    GenreId = i + 1
-                }));
         }
     }
 }

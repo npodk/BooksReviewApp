@@ -1,7 +1,7 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -12,6 +12,9 @@ namespace BooksReviewApp.Database.Configurations
             builder.ToTable("Authors", "dbo");
 
             builder.HasKey(a => a.Id);
+
+            builder.Property(a => a.Id)
+                .HasColumnType("uuid");
 
             builder.Property(a => a.Name)
                 .IsRequired()
@@ -27,17 +30,7 @@ namespace BooksReviewApp.Database.Configurations
             builder.HasMany(b => b.Books)
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasData(
-            Enumerable.Range(0, AuthorConstants.ExamplesNumber)
-                .Select(i => new Author
-                {
-                    Id = i + 1,
-                    Name = AuthorConstants.DefaultNames[i],
-                    Surname = AuthorConstants.DefaultSurnames[i],
-                    Biography = AuthorConstants.DefaultBiographies[i]
-                }));
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

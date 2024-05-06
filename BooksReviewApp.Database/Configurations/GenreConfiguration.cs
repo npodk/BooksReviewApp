@@ -1,7 +1,7 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -12,6 +12,9 @@ namespace BooksReviewApp.Database.Configurations
             builder.ToTable("Genres", "dbo");
 
             builder.HasKey(g => g.Id);
+
+            builder.Property(g => g.Id)
+                .HasColumnType("uuid");
 
             builder.Property(g => g.Name)
                 .IsRequired()
@@ -29,15 +32,6 @@ namespace BooksReviewApp.Database.Configurations
                 {
                     j.HasKey(bg => new { bg.BookId, bg.GenreId });
                 });
-
-            builder.HasData(
-            Enumerable.Range(0, GenreConstants.ExamplesNumber)
-                .Select(i => new Genre
-                {
-                    Id = i + 1,
-                    Name = GenreConstants.DefaultNames[i],
-                    Description = GenreConstants.DefaultDescriptions[i],
-                }));
         }
     }
 }

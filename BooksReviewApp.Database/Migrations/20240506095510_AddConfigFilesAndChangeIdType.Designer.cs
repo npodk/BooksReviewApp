@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BooksReviewApp.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20240503101823_AddDefaultValue")]
-    partial class AddDefaultValue
+    [Migration("20240506095510_AddConfigFilesAndChangeIdType")]
+    partial class AddConfigFilesAndChangeIdType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Author", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Biography")
                         .IsRequired()
@@ -51,41 +49,16 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors", "dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Biography = "American novelist, essayist, and short story writer",
-                            Name = "F. Scott",
-                            Surname = "Fitzgerald"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Biography = "American journalist, novelist, and short-story writer",
-                            Name = "Ernest",
-                            Surname = "Hemingway"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Biography = "English writer, considered one of the most important modernist 20th-century authors",
-                            Name = "Virginia",
-                            Surname = "Woolf"
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -117,91 +90,37 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("Books", "dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 1,
-                            Description = "It tells the story of Jay Gatsby, a self-made millionaire, and his pursuit of Daisy Buchanan, a wealthy young woman whom he loved in his youth.",
-                            ISBN = "9781536216769",
-                            Publisher = "Candlewick Press",
-                            PublishingYear = 2021,
-                            Title = "The Great Gatsby",
-                            WritingYear = 1925
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = 2,
-                            Description = "A dystopian social science fiction novel and cautionary tale.",
-                            ISBN = "9780451524935",
-                            Publisher = "Penguin Classics",
-                            PublishingYear = 2020,
-                            Title = "1984",
-                            WritingYear = 1949
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = 3,
-                            Description = "The story of the young and innocent Scout Finch, her brother Jem, and their widowed father, Atticus.",
-                            ISBN = "9780060935467",
-                            Publisher = "HarperCollins",
-                            PublishingYear = 2019,
-                            Title = "To Kill a Mockingbird",
-                            WritingYear = 1960
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.BookGenre", b =>
                 {
-                    b.Property<int>("BookId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("GenreId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("GenreId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("BookId", "GenreId");
 
                     b.HasIndex("GenreId");
 
                     b.ToTable("BookGenres", "dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            BookId = 1,
-                            GenreId = 1
-                        },
-                        new
-                        {
-                            BookId = 2,
-                            GenreId = 2
-                        },
-                        new
-                        {
-                            BookId = 3,
-                            GenreId = 3
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Favorite", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -210,38 +129,13 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Favorites", "dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BookId = 1,
-                            DateAdded = new DateTime(2024, 5, 3, 10, 18, 22, 537, DateTimeKind.Utc).AddTicks(8222),
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BookId = 2,
-                            DateAdded = new DateTime(2024, 5, 3, 10, 18, 22, 537, DateTimeKind.Utc).AddTicks(8233),
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BookId = 3,
-                            DateAdded = new DateTime(2024, 5, 3, 10, 18, 22, 537, DateTimeKind.Utc).AddTicks(8236),
-                            UserId = 3
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -254,38 +148,16 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres", "dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Timeless literature",
-                            Name = "Classic"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Complex storytelling",
-                            Name = "Novel"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Bleak future",
-                            Name = "Dystopian"
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Review", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
@@ -295,8 +167,8 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -308,41 +180,13 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                         {
                             t.HasCheckConstraint("CK_Reviews_Rating", "\"Rating\" BETWEEN 1 AND 5");
                         });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BookId = 1,
-                            Rating = 4,
-                            Text = "This book is a timeless masterpiece, capturing the essence of the Roaring Twenties",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BookId = 2,
-                            Rating = 5,
-                            Text = "This book offers a prophetic and unsettling vision of a dystopian future",
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BookId = 3,
-                            Rating = 4,
-                            Text = "This book is a profound narrative on racial injustice and moral integrity",
-                            UserId = 3
-                        });
                 });
 
             modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -369,24 +213,10 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Email = "readerjane@example.com",
-                            Password = "Pass1234!",
-                            Username = "JaneReader"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "bookwormtom@example.com",
-                            Password = "Secure*9876",
-                            Username = "BookwormTom"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "litloveralex@example.com",
-                            Password = "BookLover$2024",
-                            Username = "LitLoverAlex"
+                            Id = new Guid("c948e2a5-ebd5-48e5-8661-4704fe363ad2"),
+                            Email = "admin@test.com",
+                            Password = "Pass123",
+                            Username = "admin"
                         });
                 });
 
@@ -395,7 +225,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasOne("BooksReviewApp.Domain.Core.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Author");
@@ -425,13 +255,13 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasOne("BooksReviewApp.Domain.Core.Entities.Book", "Book")
                         .WithMany("Favorites")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BooksReviewApp.Domain.Core.Entities.User", "User")
                         .WithMany("Favorites")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Book");
@@ -444,13 +274,13 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasOne("BooksReviewApp.Domain.Core.Entities.Book", "Book")
                         .WithMany("Reviews")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BooksReviewApp.Domain.Core.Entities.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Book");

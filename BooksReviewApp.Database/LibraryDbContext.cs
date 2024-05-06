@@ -1,6 +1,8 @@
 ﻿using BooksReviewApp.Database.Configurations;
 using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BooksReviewApp.Infrastructure.Persistance
 {

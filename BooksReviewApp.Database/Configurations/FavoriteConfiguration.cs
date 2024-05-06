@@ -1,5 +1,4 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
-using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,18 +12,11 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.HasKey(f => f.Id);
 
+            builder.Property(f => f.Id)
+                .HasColumnType("uuid");
+
             builder.Property(f => f.DateAdded)
                 .IsRequired();
-
-            builder.HasData(
-            Enumerable.Range(0, BookConstants.ExamplesNumber)
-                .Select(i => new Favorite
-                {
-                    Id = i + 1,
-                    DateAdded = DateTime.UtcNow,
-                    BookId = i + 1,
-                    UserId = i + 1
-                }));
         }
     }
 }

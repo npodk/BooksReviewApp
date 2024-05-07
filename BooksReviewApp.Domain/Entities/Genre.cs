@@ -1,9 +1,10 @@
-﻿using BooksReviewApp.Domain.Core.Enums;
+﻿using BooksReviewApp.Core.Domain.Interfaces;
+using BooksReviewApp.Domain.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace BooksReviewApp.Domain.Core.Entities
 {
-    public class Genre
+    public class Genre : IModel
     {
         public Guid Id { get; set; }
 

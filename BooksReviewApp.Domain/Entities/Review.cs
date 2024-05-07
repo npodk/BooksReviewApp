@@ -1,6 +1,8 @@
-﻿namespace BooksReviewApp.Domain.Core.Entities
+﻿using BooksReviewApp.Core.Domain.Interfaces;
+
+namespace BooksReviewApp.Domain.Core.Entities
 {
-    public class Review
+    public class Review : IModel
     {
         public Guid Id { get; set; }
         public string Text { get; set; }

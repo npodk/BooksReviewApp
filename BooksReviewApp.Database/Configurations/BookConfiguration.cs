@@ -1,7 +1,6 @@
 ﻿using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BooksReviewApp.Database.Configurations
 {

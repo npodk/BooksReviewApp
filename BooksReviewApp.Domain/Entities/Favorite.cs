@@ -1,6 +1,8 @@
-﻿namespace BooksReviewApp.Domain.Core.Entities
+﻿using BooksReviewApp.Core.Domain.Interfaces;
+
+namespace BooksReviewApp.Domain.Core.Entities
 {
-    public class Favorite
+    public class Favorite : IModel
     {
         public Guid Id { get; set; }
         public DateTime DateAdded { get; set; }

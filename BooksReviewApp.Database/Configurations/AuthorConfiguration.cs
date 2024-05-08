@@ -1,6 +1,8 @@
-﻿using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static BooksReviewApp.Domain.Core.Constants.Constants;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -8,12 +10,9 @@ namespace BooksReviewApp.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.ToTable("Authors", "dbo");
+            builder.ToTable(TableNames.Author, SchemaTypes.Dbo);
 
-            builder.HasKey(a => a.Id);
-
-            builder.Property(a => a.Id)
-                .HasColumnType("uuid");
+            builder.HasIdKey();
 
             builder.Property(a => a.Name)
                 .IsRequired()

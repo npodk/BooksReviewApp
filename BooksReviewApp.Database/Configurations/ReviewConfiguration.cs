@@ -1,6 +1,8 @@
-﻿using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static BooksReviewApp.Domain.Core.Constants.Constants;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -8,15 +10,12 @@ namespace BooksReviewApp.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Review> builder)
         {
-            builder.ToTable("Reviews", "dbo", t =>
+            builder.ToTable(TableNames.Review, SchemaTypes.Dbo, t =>
             {
                 t.HasCheckConstraint("CK_Reviews_Rating", "\"Rating\" BETWEEN 1 AND 5");
             });
 
-            builder.HasKey(r => r.Id);
-
-            builder.Property(r => r.Id)
-                .HasColumnType("uuid");
+            builder.HasIdKey();
 
             builder.Property(r => r.Text)
                 .IsRequired()

@@ -1,7 +1,9 @@
-﻿using BooksReviewApp.Domain.Core.Constants;
+﻿using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.Domain.Core.Constants;
 using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static BooksReviewApp.Domain.Core.Constants.Constants;
 
 namespace BooksReviewApp.Database.Configurations
 {
@@ -9,12 +11,9 @@ namespace BooksReviewApp.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Users", "dbo");
+            builder.ToTable(TableNames.User, SchemaTypes.Dbo);
 
-            builder.HasKey(u => u.Id);
-
-            builder.Property(u => u.Id)
-                .HasColumnType("uuid");
+            builder.HasIdKey();
 
             builder.HasIndex(u => u.Email).IsUnique();
 
@@ -40,7 +39,7 @@ namespace BooksReviewApp.Database.Configurations
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(Constants.UserEntity.DefaultUser);
+            builder.HasData(UserEntity.DefaultUser);
         }
     }
 }

@@ -3,12 +3,10 @@
     public class AuditModel
     {
         public Guid Id { get; set; }
-        public string TableName { get; set; }
-        public string UserId { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string Action { get; set; }
-        public string KeyValues { get; set; }
-        public string OldValues { get; set; }
-        public string NewValues { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
+        public Guid? LastModifiedBy { get; set; }
+        public string LastModifiedByName { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -12,28 +12,70 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
+            var booksAuthorsConstraint = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'public' AND TABLE_NAME = 'Books' AND CONSTRAINT_NAME = 'FK_Books_Authors_AuthorId'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (booksAuthorsConstraint)
+            {
+                migrationBuilder.DropForeignKey(
                 name: "FK_Books_Authors_AuthorId",
                 table: "Books");
+            }
 
-            migrationBuilder.DropForeignKey(
+            var favoritesBooksConstraint = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'public' AND TABLE_NAME = 'Favorites' AND CONSTRAINT_NAME = 'FK_Favorites_Books_BookId'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (favoritesBooksConstraint)
+            {
+                migrationBuilder.DropForeignKey(
                 name: "FK_Favorites_Books_BookId",
                 table: "Favorites");
+            }
 
-            migrationBuilder.DropForeignKey(
+            var favoritesUsersConstraint = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'public' AND TABLE_NAME = 'Favorites' AND CONSTRAINT_NAME = 'FK_Favorites_Users_UserId'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (favoritesUsersConstraint)
+            {
+                migrationBuilder.DropForeignKey(
                 name: "FK_Favorites_Users_UserId",
                 table: "Favorites");
+            }
 
-            migrationBuilder.DropForeignKey(
+            var reviewsBooksConstraint = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'public' AND TABLE_NAME = 'Reviews' AND CONSTRAINT_NAME = 'FK_Reviews_Books_BookId'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (reviewsBooksConstraint)
+            {
+                migrationBuilder.DropForeignKey(
                 name: "FK_Reviews_Books_BookId",
                 table: "Reviews");
+            }
 
-            migrationBuilder.DropForeignKey(
+            var reviewsUsersConstraint = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'public' AND TABLE_NAME = 'Reviews' AND CONSTRAINT_NAME = 'FK_Reviews_Users_UserId'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (reviewsUsersConstraint)
+            {
+                migrationBuilder.DropForeignKey(
                 name: "FK_Reviews_Users_UserId",
                 table: "Reviews");
+            }
 
-            migrationBuilder.DropTable(
+            var bookGenreTableExists = migrationBuilder.Sql(
+                "SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'public' AND TABLE_NAME = 'BookGenre'",
+                suppressTransaction: true).ToString() == "1";
+
+            if (bookGenreTableExists)
+            {
+                migrationBuilder.DropTable(
                 name: "BookGenre");
+            }
 
             migrationBuilder.EnsureSchema(
                 name: "dbo");

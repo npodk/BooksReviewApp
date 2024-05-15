@@ -23,7 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Database", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Domain", "BooksReviewApp.Domain\BooksReviewApp.Domain.csproj", "{E479B23A-50C2-4A44-9118-9F026A8318E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Core.Domain", "BooksReviewApp.Core.Domain\BooksReviewApp.Core.Domain.csproj", "{6152A76A-9660-44DC-AC91-0A22F0034F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Core.Domain", "BooksReviewApp.Core.Domain\BooksReviewApp.Core.Domain.csproj", "{6152A76A-9660-44DC-AC91-0A22F0034F27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Core.Services", "BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj", "{AE1AC9B9-2A46-42DE-B043-F4A07C73485F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Services.Database", "BooksReviewApp.Services.Database\BooksReviewApp.Services.Database.csproj", "{95211340-44AA-4147-B008-CEF104C0C132}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,14 @@ Global
 		{6152A76A-9660-44DC-AC91-0A22F0034F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6152A76A-9660-44DC-AC91-0A22F0034F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6152A76A-9660-44DC-AC91-0A22F0034F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95211340-44AA-4147-B008-CEF104C0C132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95211340-44AA-4147-B008-CEF104C0C132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95211340-44AA-4147-B008-CEF104C0C132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95211340-44AA-4147-B008-CEF104C0C132}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +87,9 @@ Global
 		{08153931-47C9-4055-994A-F301AE12A0E8} = {ADADCCF9-BF35-4CC6-82BC-50644397647C}
 		{46C17FE9-2167-445B-B6D5-0A90D7062B35} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
 		{E479B23A-50C2-4A44-9118-9F026A8318E3} = {DD97223E-76CD-4ABF-9B56-06523EC983A4}
+		{6152A76A-9660-44DC-AC91-0A22F0034F27} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
+		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
+		{95211340-44AA-4147-B008-CEF104C0C132} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D289CD00-032E-4498-80CB-A802600E522C}

@@ -9,10 +9,10 @@ namespace BooksReviewApp.Database.Extensions
 {
     public static class DbContextExtensions
     {
-        public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddCustomDbContext(this IServiceCollection services, string? connectionString)
         {
             services.AddDbContext<LibraryDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+                options.UseNpgsql(connectionString,
                 x => x.MigrationsHistoryTable(HistoryRepository.DefaultTableName, SchemaTypes.Dbo)));
 
             return services;

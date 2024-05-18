@@ -16,10 +16,10 @@ namespace BooksReviewApp.Database.Extensions
             return builder;
         }
 
-        public static EntityTypeBuilder<T> IsSoftDetele<T>(this EntityTypeBuilder<T> builder) where T : class, IAuditable
+        public static EntityTypeBuilder<T> HasSoftDelete<T>(this EntityTypeBuilder<T> builder) where T : class, IAuditable
         {
-            builder.Property<bool>("IsDeleted").HasDefaultValue(false);
-            builder.HasQueryFilter(e => !EF.Property<bool>(e, "IsDeleted"));
+            builder.Property(e => e.IsDeleted).HasDefaultValue(false);
+            builder.HasQueryFilter(e => !e.IsDeleted);
 
             return builder;
         }

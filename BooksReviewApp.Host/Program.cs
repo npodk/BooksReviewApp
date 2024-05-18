@@ -1,17 +1,18 @@
-using BooksReviewApp.Infrastructure.Persistance;
-using Microsoft.EntityFrameworkCore;
 using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
-builder.Services.AddCustomDbContext(builder.Configuration);
+builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddCustomSwagger();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseCustomSwagger();
 
 app.UseHttpsRedirection();
 

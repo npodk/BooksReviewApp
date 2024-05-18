@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
+    <ProjectReference Include="..\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

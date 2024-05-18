@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BooksReviewApp.Core.Domain.Interfaces;
 
 namespace BooksReviewApp.Core.Services.Interfaces
 {
+    public interface IService<T> : IService where T : IModel
+    {
+    }
+
     public interface IService
     {
     }

@@ -1,5 +1,7 @@
 ﻿using BooksReviewApp.Core.Domain.Interfaces;
 using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +10,29 @@ using System.Threading.Tasks;
 
 namespace BooksReviewApp.Services.Database
 {
-    public class BaseDbQueryService<T> : IQueryService<T> where T : IModel
+    public class BaseDbQueryService<T> : IQueryService<T> where T : class, IModel
     {
-        public Task<IEnumerable<T>> GetAllAsync()
+        private DbSet<T> _dbSet;
+
+        public BaseDbQueryService(LibraryDbContext context)
         {
-            throw new NotImplementedException();
+            _dbSet = context.Set<T>();
         }
 
-        public Task<T> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Entity with ID {id} was not found.");
+            }
+
+            return entity;
         }
     }
 }

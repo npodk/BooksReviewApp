@@ -1,29 +1,48 @@
 ﻿using BooksReviewApp.Core.Domain.Interfaces;
 using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace BooksReviewApp.Services.Database
 {
-    public class BaseDbCrudService<T> : ICrudService<T> where T : IModel
+    public class BaseDbCrudService<T> : ICrudService<T> where T : class, IModel
     {
-        public Task<T> CreateAsync(T model)
+        private readonly LibraryDbContext _context;
+        private DbSet<T> _dbSet;
+
+        public BaseDbCrudService(LibraryDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _dbSet = context.Set<T>();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<T> CreateAsync(T model)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(model);
+            await _context.SaveChangesAsync();
+            return model;
         }
 
-        public Task<T> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
 
-        public Task<T> UpdateAsync(T model)
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Entity with ID {id} was not found.");
+            }
+            return entity;
+        }
+
+        public async Task<T> UpdateAsync(T model)
+        {
+            _dbSet.Update(model);
+            await _context.SaveChangesAsync();
+            return model;
         }
     }
 }

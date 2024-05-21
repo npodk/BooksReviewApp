@@ -1,6 +1,6 @@
-﻿namespace BooksReviewApp.WebApi.Views
+﻿namespace BooksReviewApp.WebApi.Dtos
 {
-    public class GenreView
+    public class GenreDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

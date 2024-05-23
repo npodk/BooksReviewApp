@@ -8,8 +8,7 @@ namespace BooksReviewApp.Domain.Core.Entities
     {
         public Guid Id { get; set; }
 
-        [Required]
-        public GenreNameEnum Name { get; set; }
+        public string Name { get; set; }
 
         public string? Description { get; set; }
 

@@ -10,3 +10,6 @@
 # Build results
 [Oo]bj/
 [Bb]in/
+
+# SonarQube
+.sonarqube/

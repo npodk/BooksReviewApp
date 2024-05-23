@@ -18,6 +18,8 @@ namespace BooksReviewApp.Database.Configurations
                 .IsRequired()
                 .HasColumnType("varchar(100)");
 
+            builder.HasIndex(g => g.Name).IsUnique();
+
             builder.Property(g => g.Description)
                 .HasMaxLength(500);
 

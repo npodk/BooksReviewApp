@@ -1,21 +1,21 @@
-﻿using BooksReviewApp.Core.Domain.Interfaces;
+﻿using BooksReviewApp.Core.Database;
+using BooksReviewApp.Core.Domain.Interfaces;
 using BooksReviewApp.Core.Services.Interfaces;
-using BooksReviewApp.Infrastructure.Persistance;
+using BooksReviewApp.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BooksReviewApp.Services.Database
 {
-    public class BaseDbQueryService<T> : IQueryService<T> where T : class, IModel
+    public class BaseDbQueryService<T, TContext> : IQueryService<T> 
+        where T : class, IModel
+        where TContext : IDbContext
     {
-        private DbSet<T> _dbSet;
+        protected readonly TContext _context;
+        protected readonly DbSet<T> _dbSet;
 
-        public BaseDbQueryService(LibraryDbContext context)
+        public BaseDbQueryService(TContext context)
         {
+            _context = context;
             _dbSet = context.Set<T>();
         }
 

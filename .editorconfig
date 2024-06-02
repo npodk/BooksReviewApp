@@ -26,6 +26,11 @@ csharp_space_around_binary_operators = before_and_after
 # CS8618: Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 dotnet_diagnostic.CS8618.severity = none
 
+spelling_languages = en-us
+spelling_checkable_types = strings,identifiers,comments
+spelling_exclusion_dictionary = exclusion.dic
+spelling_error_severity = warning
+
 #### Naming styles ####
 
 # Naming rules

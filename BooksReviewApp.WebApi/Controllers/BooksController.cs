@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BooksReviewApp.WebApi.Dtos.Book;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
 {
@@ -21,7 +22,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook()
+        public async Task<IActionResult> CreateBook(BaseBookDto bookDto)
         {
             await Task.CompletedTask;
             return Ok();

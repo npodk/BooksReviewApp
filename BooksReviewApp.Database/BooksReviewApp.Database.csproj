@@ -19,7 +19,15 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<SonarQubeSetting Include="sonar.exclusions">
+			<Value>**/Migrations/**</Value>
+		</SonarQubeSetting>
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\BooksReviewApp.Core.Database\BooksReviewApp.Core.Database.csproj" />
     <ProjectReference Include="..\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 

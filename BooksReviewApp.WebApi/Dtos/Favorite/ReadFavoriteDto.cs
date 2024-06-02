@@ -1,6 +1,6 @@
-﻿namespace BooksReviewApp.WebApi.Dtos
+﻿namespace BooksReviewApp.WebApi.Dtos.Favorite
 {
-    public class FavoriteDto
+    public class ReadFavoriteDto
     {
         public Guid Id { get; set; }
         public DateTime DateAdded { get; set; }

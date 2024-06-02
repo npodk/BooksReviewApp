@@ -32,9 +32,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C627E63-E907-4794-8C92-DD922E083F81}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		exclusion.dic = exclusion.dic
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.EF", "BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj", "{9B18C5F5-DC18-470D-ADED-B86B744DAB65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Core.Database", "BooksReviewApp.Core.Database\BooksReviewApp.Core.Database.csproj", "{CCC0A96E-C677-4DD9-BE66-1C192A98EB19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +85,10 @@ Global
 		{9B18C5F5-DC18-470D-ADED-B86B744DAB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B18C5F5-DC18-470D-ADED-B86B744DAB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B18C5F5-DC18-470D-ADED-B86B744DAB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCC0A96E-C677-4DD9-BE66-1C192A98EB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC0A96E-C677-4DD9-BE66-1C192A98EB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC0A96E-C677-4DD9-BE66-1C192A98EB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC0A96E-C677-4DD9-BE66-1C192A98EB19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +102,7 @@ Global
 		{6152A76A-9660-44DC-AC91-0A22F0034F27} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
 		{AE1AC9B9-2A46-42DE-B043-F4A07C73485F} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
 		{9B18C5F5-DC18-470D-ADED-B86B744DAB65} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
+		{CCC0A96E-C677-4DD9-BE66-1C192A98EB19} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D289CD00-032E-4498-80CB-A802600E522C}

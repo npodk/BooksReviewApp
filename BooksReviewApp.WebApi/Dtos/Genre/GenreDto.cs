@@ -1,4 +1,4 @@
-﻿namespace BooksReviewApp.WebApi.Dtos
+﻿namespace BooksReviewApp.WebApi.Dtos.Genre
 {
     public class GenreDto
     {
@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public string? Description { get; set; }
 
-        public ICollection<string> BookTitles { get; set; } = new List<string>();
+        public string[] BookTitles { get; set; }
     }
 }

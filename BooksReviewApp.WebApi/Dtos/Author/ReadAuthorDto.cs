@@ -1,12 +1,11 @@
-﻿namespace BooksReviewApp.WebApi.Dtos
+﻿namespace BooksReviewApp.WebApi.Dtos.Author
 {
-    public class AuthorDto
+    public class ReadAuthorDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Biography { get; set; }
-
-        public ICollection<string> BookNames { get; set; } = new List<string>();
+        public string[] BookTitles { get; set; }
     }
 }

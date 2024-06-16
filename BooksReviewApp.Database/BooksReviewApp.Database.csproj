@@ -27,7 +27,6 @@
 
 
 	<ItemGroup>
-    <ProjectReference Include="..\BooksReviewApp.Core.Database\BooksReviewApp.Core.Database.csproj" />
     <ProjectReference Include="..\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 

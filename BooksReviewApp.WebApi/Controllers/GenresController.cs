@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using BooksReviewApp.Domain.Core.Entities;
+using BooksReviewApp.Services.EF;
+using BooksReviewApp.Services.EF.Interfaces;
+using BooksReviewApp.WebApi.Dtos.Genre;
+using BooksReviewApp.WebApi.Validators.UserValidators;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
 {
@@ -6,6 +12,9 @@ namespace BooksReviewApp.WebApi.Controllers
     [Route("api/[controller]")]
     public class GenresController : ControllerBase
     {
+        private readonly IGenreDbService _genreDbService;
+        private readonly IMapper _mapper;
+
         [HttpGet]
         public async Task<IActionResult> GetAllGenres()
         {
@@ -21,7 +30,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateGenre()
+        public async Task<IActionResult> CreateGenre([FromBody] CreateGenreDto genreDto)
         {
             await Task.CompletedTask;
             return Ok();
@@ -36,6 +45,13 @@ namespace BooksReviewApp.WebApi.Controllers
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGenre()
+        {
+            await Task.CompletedTask;
+            return Ok();
+        }
+
+        [HttpGet("{id}/books")]
+        public async Task<IActionResult> GetAllBooksByGenre()
         {
             await Task.CompletedTask;
             return Ok();

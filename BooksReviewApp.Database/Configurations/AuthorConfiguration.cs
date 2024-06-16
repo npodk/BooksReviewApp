@@ -16,11 +16,11 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.Property(a => a.Name)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(50);
 
             builder.Property(a => a.Surname)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(50);
 
             builder.Property(a => a.Biography)
                 .HasMaxLength(1000);

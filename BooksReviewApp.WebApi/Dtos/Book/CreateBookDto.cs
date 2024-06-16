@@ -1,6 +1,6 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.Book
 {
-    public class BaseBookDto
+    public class CreateBookDto
     {
         public string Title { get; set; }
         public string Publisher { get; set; }

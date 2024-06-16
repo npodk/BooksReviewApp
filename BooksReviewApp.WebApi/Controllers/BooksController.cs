@@ -22,7 +22,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook(BaseBookDto bookDto)
+        public async Task<IActionResult> CreateBook(CreateBookDto bookDto)
         {
             await Task.CompletedTask;
             return Ok();

@@ -1,6 +1,4 @@
 ﻿using BooksReviewApp.Core.Domain.Interfaces;
-using BooksReviewApp.Domain.Core.Enums;
-using System.ComponentModel.DataAnnotations;
 
 namespace BooksReviewApp.Domain.Core.Entities
 {

@@ -1,11 +1,10 @@
-﻿using BooksReviewApp.Core.Database;
-using BooksReviewApp.Database.Configurations;
+﻿using BooksReviewApp.Database.Configurations;
 using BooksReviewApp.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BooksReviewApp.Database
 {
-    public class LibraryDbContext : DbContext, IDbContext
+    public class LibraryDbContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }

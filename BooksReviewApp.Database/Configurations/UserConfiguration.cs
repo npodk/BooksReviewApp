@@ -19,15 +19,15 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.Property(u => u.Username)
                 .IsRequired()
-                .HasMaxLength(256);
+                .HasMaxLength(50);
 
             builder.Property(u => u.Email)
                 .IsRequired()
-                .HasMaxLength(256);
+                .HasMaxLength(100);
 
             builder.Property(u => u.Password)
                 .IsRequired()
-                .HasMaxLength(256);
+                .HasMaxLength(128);
 
             builder.HasMany(u => u.Favorites)
                 .WithOne(f => f.User)

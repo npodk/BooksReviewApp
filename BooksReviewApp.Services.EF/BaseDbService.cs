@@ -4,16 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BooksReviewApp.Services.Database
 {
-    public class BaseDbService<T> : IService where T : class, IModel
+    public class BaseDbService<T, TContext> : IService
+        where T : class, IModel
+        where TContext : DbContext
     {
-        private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly TContext _dbContext;
+        protected readonly DbSet<T> _dbSet;
 
-        protected internal IQueryable<T> DbSetAsNoTracking { get; set; }
+        protected IQueryable<T> DbSetAsNoTracking { get; set; }
 
-        public BaseDbService(DbContext context)
+        public BaseDbService(TContext context)
         {
-            _context = context;
+            _dbContext = context;
             _dbSet = context.Set<T>();
             DbSetAsNoTracking = _dbSet.AsNoTracking();
         }

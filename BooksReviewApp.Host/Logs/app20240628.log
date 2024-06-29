@@ -1,0 +1,152 @@
+2024-06-28 10:35:21.483 +03:00 [INF] Now listening on: https://localhost:7147
+2024-06-28 10:35:21.554 +03:00 [INF] Now listening on: http://localhost:5046
+2024-06-28 10:35:21.558 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-28 10:35:21.560 +03:00 [INF] Hosting environment: Development
+2024-06-28 10:35:21.561 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-06-28 10:35:23.584 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-06-28 10:35:24.134 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/swagger-ui-bundle.js - null null
+2024-06-28 10:35:24.134 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/swagger-ui-standalone-preset.js - null null
+2024-06-28 10:35:24.134 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-28 10:35:24.150 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 574.2815ms
+2024-06-28 10:35:24.175 +03:00 [INF] The file /swagger-ui-standalone-preset.js was not modified
+2024-06-28 10:35:24.159 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-06-28 10:35:24.134 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/swagger-ui.css - null null
+2024-06-28 10:35:24.175 +03:00 [INF] The file /swagger-ui-bundle.js was not modified
+2024-06-28 10:35:24.183 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 49.3619ms
+2024-06-28 10:35:24.184 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/swagger-ui-standalone-preset.js - 304 null text/javascript 50.4727ms
+2024-06-28 10:35:24.192 +03:00 [INF] The file /swagger-ui.css was not modified
+2024-06-28 10:35:24.194 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/swagger-ui-bundle.js - 304 null text/javascript 60.3736ms
+2024-06-28 10:35:24.218 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/swagger-ui.css - 304 null text/css 84.1704ms
+2024-06-28 10:35:24.271 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 112.9557ms
+2024-06-28 10:35:24.682 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-06-28 10:35:24.727 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/favicon-32x32.png - null null
+2024-06-28 10:35:24.739 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-06-28 10:35:24.743 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/favicon-32x32.png - 200 628 image/png 16.0029ms
+2024-06-28 10:35:24.849 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 167.0267ms
+2024-06-28 10:35:35.593 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users - null null
+2024-06-28 10:35:56.378 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi)'
+2024-06-28 10:35:56.401 +03:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUsers() on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:35:58.284 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:35:58.787 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+2024-06-28 10:35:58.987 +03:00 [INF] Executed action method BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 697.8116ms.
+2024-06-28 10:35:58.997 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BooksReviewApp.WebApi.Dtos.User.ReadUserDto, BooksReviewApp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-28 10:35:59.024 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi) in 2615.3511ms
+2024-06-28 10:35:59.026 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi)'
+2024-06-28 10:36:28.169 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users - 200 null application/json; charset=utf-8 52571.7039ms
+2024-06-28 10:36:49.331 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users/3a557d15-8f8f-47b2-92a2-10e145cff75d - null null
+2024-06-28 10:36:52.558 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:36:52.567 +03:00 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:36:52.664 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:36:52.816 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+WHERE u."Id" = @__id_0
+LIMIT 1
+2024-06-28 10:36:52.827 +03:00 [INF] Executed action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 160.7668ms.
+2024-06-28 10:36:52.830 +03:00 [INF] Executing OkObjectResult, writing value of type 'BooksReviewApp.WebApi.Dtos.User.ReadUserDto'.
+2024-06-28 10:36:52.832 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) in 261.1006ms
+2024-06-28 10:36:52.834 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:36:55.172 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users/3a557d15-8f8f-47b2-92a2-10e145cff75d - 200 null application/json; charset=utf-8 5854.0873ms
+2024-06-28 10:38:39.624 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users/afe5aaf9-c958-4ab2-a7ad-3629db2b6236 - null null
+2024-06-28 10:38:42.523 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:38:42.526 +03:00 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:38:42.558 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:38:42.570 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+WHERE u."Id" = @__id_0
+LIMIT 1
+2024-06-28 10:38:42.587 +03:00 [INF] Executed action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 27.299ms.
+2024-06-28 10:38:42.590 +03:00 [INF] Executing OkObjectResult, writing value of type 'null'.
+2024-06-28 10:38:42.591 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) in 62.2004ms
+2024-06-28 10:38:42.592 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:38:44.163 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users/afe5aaf9-c958-4ab2-a7ad-3629db2b6236 - 204 null null 4538.9943ms
+2024-06-28 10:40:03.155 +03:00 [INF] Now listening on: https://localhost:7147
+2024-06-28 10:40:03.187 +03:00 [INF] Now listening on: http://localhost:5046
+2024-06-28 10:40:03.189 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-28 10:40:03.191 +03:00 [INF] Hosting environment: Development
+2024-06-28 10:40:03.191 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-06-28 10:40:05.713 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-06-28 10:40:06.516 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 812.8111ms
+2024-06-28 10:40:06.531 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-28 10:40:06.553 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 21.3909ms
+2024-06-28 10:40:06.566 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-06-28 10:40:06.706 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 140.5442ms
+2024-06-28 10:40:07.379 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-06-28 10:40:07.608 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 228.8926ms
+2024-06-28 10:40:29.855 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users/afe5aaf9-c958-4ab2-a7ad-3629db2b6236 - null null
+2024-06-28 10:40:42.236 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:40:42.260 +03:00 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:40:43.352 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:40:43.914 +03:00 [INF] Executed DbCommand (76ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+WHERE u."Id" = @__id_0
+LIMIT 1
+2024-06-28 10:41:35.579 +03:00 [INF] Now listening on: https://localhost:7147
+2024-06-28 10:41:35.674 +03:00 [INF] Now listening on: http://localhost:5046
+2024-06-28 10:41:35.678 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-28 10:41:35.679 +03:00 [INF] Hosting environment: Development
+2024-06-28 10:41:35.680 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-06-28 10:41:38.247 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-06-28 10:41:38.786 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 548.9092ms
+2024-06-28 10:41:38.829 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-28 10:41:38.829 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-06-28 10:41:38.847 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 18.2477ms
+2024-06-28 10:41:38.920 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 91.1665ms
+2024-06-28 10:41:39.216 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-06-28 10:41:39.431 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 214.6597ms
+2024-06-28 10:42:05.103 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users/afe5aaf9-c958-4ab2-a7ad-3629db2b6236 - null null
+2024-06-28 10:42:08.529 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:42:08.548 +03:00 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:42:09.666 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:42:10.211 +03:00 [INF] Executed DbCommand (77ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+WHERE u."Id" = @__id_0
+LIMIT 1
+2024-06-28 10:42:10.236 +03:00 [INF] Executed action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 565.5893ms.
+2024-06-28 10:42:10.246 +03:00 [INF] Executing OkObjectResult, writing value of type 'null'.
+2024-06-28 10:42:10.250 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) in 1697.3724ms
+2024-06-28 10:42:10.253 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:42:10.264 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users/afe5aaf9-c958-4ab2-a7ad-3629db2b6236 - 204 null null 5161.7298ms
+2024-06-28 10:44:53.298 +03:00 [INF] Now listening on: https://localhost:7147
+2024-06-28 10:44:53.334 +03:00 [INF] Now listening on: http://localhost:5046
+2024-06-28 10:44:53.346 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-28 10:44:53.361 +03:00 [INF] Hosting environment: Development
+2024-06-28 10:44:53.364 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-06-28 10:44:56.105 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-06-28 10:44:56.694 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 600.3388ms
+2024-06-28 10:44:56.736 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-06-28 10:44:56.736 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-28 10:44:56.779 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 43.066ms
+2024-06-28 10:44:56.934 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 198.3937ms
+2024-06-28 10:44:57.249 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-06-28 10:44:57.460 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 210.5149ms
+2024-06-28 10:45:05.210 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users - null null
+2024-06-28 10:45:08.671 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi)'
+2024-06-28 10:45:08.688 +03:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUsers() on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:45:09.820 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:45:10.235 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+2024-06-28 10:45:10.433 +03:00 [INF] Executed action method BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 606.7656ms.
+2024-06-28 10:45:10.441 +03:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[<>f__AnonymousType0`2[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], BooksReviewApp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-28 10:45:10.470 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi) in 1774.6379ms
+2024-06-28 10:45:10.473 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetAllUsers (BooksReviewApp.WebApi)'
+2024-06-28 10:45:13.052 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users - 400 null application/json; charset=utf-8 7842.2534ms
+2024-06-28 10:45:29.188 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/api/users/3a557d15-8f8f-47b2-92a2-10e145cff75d - null null
+2024-06-28 10:45:43.348 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:45:43.359 +03:00 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-06-28 10:45:43.448 +03:00 [INF] Executing action method BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) - Validation state: "Valid"
+2024-06-28 10:45:43.574 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."Password", u."Username"
+FROM dbo."Users" AS u
+WHERE u."Id" = @__id_0
+LIMIT 1
+2024-06-28 10:46:19.919 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi) in 36556.7358ms
+2024-06-28 10:46:19.921 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.GetUserById (BooksReviewApp.WebApi)'
+2024-06-28 10:46:24.067 +03:00 [ERR] Validation error occurred. Message: Exception of type 'BooksReviewApp.Core.Domain.Exceptions.ValidationFailedException' was thrown., Errors: The length of 'Password' must be at least 10 characters. You entered 7 characters.
+2024-06-28 10:46:27.738 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/api/users/3a557d15-8f8f-47b2-92a2-10e145cff75d - 404 null application/json 58550.8683ms

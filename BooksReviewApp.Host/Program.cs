@@ -2,8 +2,18 @@ using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.EF;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.WebApi.Extensions;
+using BooksReviewApp.WebApi.Middlewares;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.Console()
+    .WriteTo.File("Logs/app.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
@@ -21,6 +31,8 @@ var app = builder.Build();
 app.UseCustomSwagger();
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 

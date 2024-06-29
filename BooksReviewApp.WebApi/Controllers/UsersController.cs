@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using BooksReviewApp.Core.Domain.Exceptions;
 using BooksReviewApp.Domain.Core.Entities;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.WebApi.Dtos.User;
 using BooksReviewApp.WebApi.Validators.UserValidators;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 
 namespace BooksReviewApp.WebApi.Controllers
 {
@@ -53,7 +55,7 @@ namespace BooksReviewApp.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return HandleException(ex, "retrieving all users");
+                throw;
             }
         }
 
@@ -65,21 +67,20 @@ namespace BooksReviewApp.WebApi.Controllers
                 var userEntity = await _userDbService.GetByIdAsync(id);
                 if (userEntity == null)
                 {
-                    return NotFound($"User with ID {id} not found.");
+                    return Ok(null);
                 }
 
                 var userDto = _mapper.Map<ReadUserDto>(userEntity);
-                var (isValid, errors) = await ValidateAsync(userDto, new ReadUserDtoValidator());
-                if (!isValid)
-                {
-                    return BadRequest(new { Message = "Validation failed.", Errors = errors });
-                }
-
+                await ValidateAsync(userDto, new ReadUserDtoValidator());
                 return Ok(userDto);
             }
-            catch (Exception ex)
+            catch (NpgsqlException)
             {
-                return HandleException(ex, $"retrieving the user with ID {id}");
+                throw new DatabaseException();
+            }
+            catch (ValidationException)
+            {
+                throw new ValidationFailedException();
             }
         }
 
@@ -88,58 +89,61 @@ namespace BooksReviewApp.WebApi.Controllers
         {
             try
             {
-                var (isValid, errors) = await ValidateAsync(userDto, new CreateUserDtoValidator());
-                if (!isValid)
-                {
-                    return BadRequest(new { Message = "Validation failed.", Errors = errors });
-                }
+                await ValidateAsync(userDto, new CreateUserDtoValidator());
 
                 var userEntity = _mapper.Map<User>(userDto);
                 var createdUser = await _userDbService.CreateAsync(userEntity);
                 return Ok(createdUser.Id);
             }
-            catch (Exception ex)
+            catch (NpgsqlException)
             {
-                return HandleException(ex, "creating the user");
+                throw new DatabaseException();
+            }
+            catch (ValidationException)
+            {
+                throw new ValidationFailedException();
             }
         }
 
-        // TO-DO: Right now it is throwing an exception, need to fix it
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
             try
             {
+                await ValidateAsync(userDto, new UpdateUserDtoValidator());
+
                 var userEntity = _mapper.Map<User>(userDto);
                 var updatedUser = await _userDbService.UpdateAsync(userEntity);
-                if (updatedUser == null)
-                {
-                    return NotFound($"User with ID {userDto.Id} not found.");
-                }
-                return Ok(updatedUser.Id);
+                return Ok(updatedUser);
             }
-            catch (Exception ex)
+            catch (NpgsqlException)
             {
-                return StatusCode(500, $"An error occurred while updating the user with ID {userDto.Id}: {ex.Message}");
+                throw new DatabaseException();
+            }
+            catch (ValidationException)
+            {
+                throw new ValidationFailedException();
             }
         }
 
         [HttpPatch]
-        public async Task<IActionResult> PatchUser([FromBody] UpdateUserDto userDto)
+        public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
             try
             {
+                await ValidateAsync(userDto, new PatchUserDtoValidator());
+
                 var userEntity = _mapper.Map<User>(userDto);
                 var updatedUser = await _userDbService.PatchAsync(userEntity);
-                if (updatedUser == null)
-                {
-                    return NotFound($"User with ID {userDto.Id} not found.");
-                }
-                return Ok(updatedUser.Id);
+                return Ok(updatedUser);
             }
-            catch (Exception ex)
+            catch (NpgsqlException)
             {
-                return StatusCode(500, $"An error occurred while updating the user with ID {userDto.Id}: {ex.Message}");
+                throw new DatabaseException();
+            }
+            catch (ValidationException)
+            {
+                throw new ValidationFailedException();
             }
         }
 
@@ -191,20 +195,14 @@ namespace BooksReviewApp.WebApi.Controllers
             }
         }
 
-        private async Task<(bool IsValid, IEnumerable<string> Errors)> ValidateAsync<T>(T model, IValidator<T> validator)
+        private async Task ValidateAsync<T>(T model, IValidator<T> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
                 var errors = validationResult.Errors.Select(e => e.ErrorMessage);
-                return (false, errors);
+                throw new ValidationFailedException(errors);
             }
-            return (true, Enumerable.Empty<string>());
-        }
-
-        private IActionResult HandleException(Exception ex, string action)
-        {
-            return StatusCode(500, $"An error occurred while {action}: {ex.Message}");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BooksReviewApp.WebApi.Mappers.UserProfiles
     {
         public UpdateUserMapperProfile()
         {
-            CreateMap<UpdateUserDto, User>();
+            CreateMap<PatchUserDto, User>();
         }
     }
 }

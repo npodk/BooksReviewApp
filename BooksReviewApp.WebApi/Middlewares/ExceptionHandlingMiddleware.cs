@@ -1,19 +1,21 @@
-﻿using BooksReviewApp.Core.Domain.Exceptions;
+﻿using BooksReviewApp.WebApi.Interfaces;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+using System.Net.Mime;
 using System.Text.Json;
 
 namespace BooksReviewApp.WebApi.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private const string DefaultErrorMessage = "An unexpected error occurred.";
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+        private readonly RequestDelegate _next;
+        private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
+
+        public ExceptionHandlingMiddleware(RequestDelegate next, IEnumerable<IExceptionHandler> exceptionHandlers)
         {
             _next = next;
-            _logger = logger;
+            _exceptionHandlers = exceptionHandlers;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -31,30 +33,27 @@ namespace BooksReviewApp.WebApi.Middlewares
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var response = context.Response;
-            response.ContentType = "application/json";
-            response.StatusCode = StatusCodes.Status404NotFound;
+            response.ContentType = MediaTypeNames.Application.Json;
 
-            object responseModel;
-
-            switch (exception)
+            foreach (var handler in _exceptionHandlers)
             {
-                case DatabaseException dbEx:
-                    _logger.LogError("Database error occurred: {Exception}", dbEx.Message);
-                    responseModel = new { Success = false, Message = "Database error occurred." };
-                    break;
-
-                case ValidationFailedException valEx:
-                    string errorMessage = string.Join("; ", valEx.Errors);
-                    _logger.LogError("Validation error occurred. Message: {Exception}, Errors: {Errors}", valEx.Message, errorMessage);
-                    responseModel = new { Success = false, Message = "Validation error occurred." };
-                    break;
-
-                default:
-                    responseModel = new { Success = false, Message = "An error occurred." };
-                    break;
+                if (handler.ExceptionType == exception.GetType())
+                {
+                    var message = handler.HandleException(context, exception);
+                    await WriteResponseAsync(response, message);
+                    return;
+                }
             }
 
+            // Default response if no specific handler is found
+            await WriteResponseAsync(response, DefaultErrorMessage);
+        }
+
+        private async Task WriteResponseAsync(HttpResponse response, string message)
+        {
+            var responseModel = new { Success = false, Message = message };
             var jsonResponse = JsonSerializer.Serialize(responseModel);
+            response.StatusCode = StatusCodes.Status404NotFound;
             await response.WriteAsync(jsonResponse);
         }
     }

@@ -1,7 +1,10 @@
+using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.EF;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.WebApi.Extensions;
+using BooksReviewApp.WebApi.Handlers;
+using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Middlewares;
 using Serilog;
 
@@ -25,6 +28,8 @@ builder.Services.AddCustomSwagger();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserDbService, UserDbService>();
 builder.Services.AddScoped<IGenreDbService, GenreDbService>();
+builder.Services.AddTransient<IExceptionHandler, NpgsqlExceptionHandler>();
+builder.Services.AddTransient<IExceptionHandler, ValidationExceptionHandler>();
 
 var app = builder.Build();
 

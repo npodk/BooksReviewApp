@@ -24,141 +24,70 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            try
+            var userEntities = await _userDbService.GetAllAsync();
+            var users = _mapper.Map<IEnumerable<ReadUserDto>>(userEntities);
+
+            foreach (var user in users)
             {
-                var userEntities = await _userDbService.GetAllAsync();
-                var users = _mapper.Map<IEnumerable<ReadUserDto>>(userEntities);
-
-                var validator = new ReadUserDtoValidator();
-                var validationResults = new List<(Guid UserId, string ErrorMessage)>();
-
-                foreach (var user in users)
-                {
-                    var validationResult = await validator.ValidateAsync(user);
-                    if (!validationResult.IsValid)
-                    {
-                        validationResults.AddRange(validationResult.Errors.Select(e => (user.Id, e.ErrorMessage)));
-                    }
-                }
-
-                if (validationResults.Any())
-                {
-                    var errors = validationResults
-                        .GroupBy(vr => vr.UserId)
-                        .Select(g => new { UserId = g.Key, Errors = g.Select(vr => vr.ErrorMessage).ToList() });
-                    return BadRequest(new { Message = "Validation failed.", Errors = errors });
-                }
-
-                return Ok(users);
+                await ValidateAsync(user, new ReadUserDtoValidator());
             }
-            catch (Exception ex)
-            {
-                return HandleException(ex, "retrieving all users");
-            }
+
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] Guid id)
         {
-            try
+            var userEntity = await _userDbService.GetByIdAsync(id);
+            if (userEntity == null)
             {
-                var userEntity = await _userDbService.GetByIdAsync(id);
-                if (userEntity == null)
-                {
-                    return NotFound($"User with ID {id} not found.");
-                }
-
-                var userDto = _mapper.Map<ReadUserDto>(userEntity);
-                var (isValid, errors) = await ValidateAsync(userDto, new ReadUserDtoValidator());
-                if (!isValid)
-                {
-                    return BadRequest(new { Message = "Validation failed.", Errors = errors });
-                }
-
-                return Ok(userDto);
+                return Ok(null);
             }
-            catch (Exception ex)
-            {
-                return HandleException(ex, $"retrieving the user with ID {id}");
-            }
+
+            var userDto = _mapper.Map<ReadUserDto>(userEntity);
+            await ValidateAsync(userDto, new ReadUserDtoValidator());
+            return Ok(userDto);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto userDto)
         {
-            try
-            {
-                var (isValid, errors) = await ValidateAsync(userDto, new CreateUserDtoValidator());
-                if (!isValid)
-                {
-                    return BadRequest(new { Message = "Validation failed.", Errors = errors });
-                }
+            await ValidateAsync(userDto, new CreateUserDtoValidator());
 
-                var userEntity = _mapper.Map<User>(userDto);
-                var createdUser = await _userDbService.CreateAsync(userEntity);
-                return Ok(createdUser.Id);
-            }
-            catch (Exception ex)
-            {
-                return HandleException(ex, "creating the user");
-            }
+            var userEntity = _mapper.Map<User>(userDto);
+            var createdUser = await _userDbService.CreateAsync(userEntity);
+            return Ok(createdUser.Id);
         }
 
-        // TO-DO: Right now it is throwing an exception, need to fix it
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
-            try
-            {
-                var userEntity = _mapper.Map<User>(userDto);
-                var updatedUser = await _userDbService.UpdateAsync(userEntity);
-                if (updatedUser == null)
-                {
-                    return NotFound($"User with ID {userDto.Id} not found.");
-                }
-                return Ok(updatedUser.Id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred while updating the user with ID {userDto.Id}: {ex.Message}");
-            }
+            await ValidateAsync(userDto, new UpdateUserDtoValidator());
+
+            var userEntity = _mapper.Map<User>(userDto);
+            var updatedUser = await _userDbService.UpdateAsync(userEntity);
+            return Ok(updatedUser);
         }
 
         [HttpPatch]
-        public async Task<IActionResult> PatchUser([FromBody] UpdateUserDto userDto)
+        public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
-            try
-            {
-                var userEntity = _mapper.Map<User>(userDto);
-                var updatedUser = await _userDbService.PatchAsync(userEntity);
-                if (updatedUser == null)
-                {
-                    return NotFound($"User with ID {userDto.Id} not found.");
-                }
-                return Ok(updatedUser.Id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred while updating the user with ID {userDto.Id}: {ex.Message}");
-            }
+            await ValidateAsync(userDto, new PatchUserDtoValidator());
+
+            var userEntity = _mapper.Map<User>(userDto);
+            var updatedUser = await _userDbService.PatchAsync(userEntity);
+            return Ok(updatedUser);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
-            try
+            var result = await _userDbService.DeleteAsync(id);
+            if (!result)
             {
-                var result = await _userDbService.DeleteAsync(id);
-                if (!result)
-                {
-                    return NotFound($"User with ID {id} not found.");
-                }
-                return Ok();
+                return NotFound($"User with ID {id} not found.");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred while deleting the user with ID {id}: {ex.Message}");
-            }
+            return Ok();
         }
 
         // TO-DO: Should be implemented
@@ -191,20 +120,13 @@ namespace BooksReviewApp.WebApi.Controllers
             }
         }
 
-        private async Task<(bool IsValid, IEnumerable<string> Errors)> ValidateAsync<T>(T model, IValidator<T> validator)
+        private async Task ValidateAsync<T>(T model, IValidator<T> validator)
         {
             var validationResult = await validator.ValidateAsync(model);
             if (!validationResult.IsValid)
             {
-                var errors = validationResult.Errors.Select(e => e.ErrorMessage);
-                return (false, errors);
+                throw new ValidationException(validationResult.Errors);
             }
-            return (true, Enumerable.Empty<string>());
-        }
-
-        private IActionResult HandleException(Exception ex, string action)
-        {
-            return StatusCode(500, $"An error occurred while {action}: {ex.Message}");
         }
     }
 }

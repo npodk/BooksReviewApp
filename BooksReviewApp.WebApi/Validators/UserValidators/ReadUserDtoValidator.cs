@@ -10,7 +10,7 @@ namespace BooksReviewApp.WebApi.Validators.UserValidators
             RuleFor(dto => dto.Id).NotEmpty();
             RuleFor(dto => dto.Username).NotEmpty().MaximumLength(Constants.MaxUsernameLength);
             RuleFor(dto => dto.Email).NotEmpty().MaximumLength(Constants.MaxEmailLength).EmailAddress();
-            RuleFor(dto => dto.Password).NotEmpty().MaximumLength(Constants.MaxPasswordLength);
+            RuleFor(dto => dto.Password).NotEmpty().MaximumLength(Constants.MaxPasswordLength).MinimumLength(10);
             RuleFor(dto => dto.FavoriteBooks).NotNull();
             RuleForEach(dto => dto.FavoriteBooks);
             RuleFor(dto => dto.Reviews).NotNull();

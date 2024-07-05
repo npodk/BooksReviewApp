@@ -2,6 +2,7 @@
 using BooksReviewApp.Domain.Core.Entities;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Validators.UserValidators;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace BooksReviewApp.WebApi.Controllers
     {
         private readonly IUserDbService _userDbService;
         private readonly IMapper _mapper;
+        private readonly ILocalizationService _localizationService;
 
-        public UsersController(IUserDbService userDbService, IMapper mapper)
+        public UsersController(IUserDbService userDbService, IMapper mapper, ILocalizationService localizationService)
         {
             _userDbService = userDbService ?? throw new ArgumentNullException(nameof(userDbService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _localizationService = localizationService ?? throw new ArgumentNullException(nameof(localizationService));
         }
 
         [HttpGet]
@@ -52,7 +55,7 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto userDto)
         {
-            await ValidateAsync(userDto, new CreateUserDtoValidator());
+            await ValidateAsync(userDto, new CreateUserDtoValidator(_localizationService));
 
             var userEntity = _mapper.Map<User>(userDto);
             var createdUser = await _userDbService.CreateAsync(userEntity);
@@ -62,7 +65,7 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
-            await ValidateAsync(userDto, new UpdateUserDtoValidator());
+            await ValidateAsync(userDto, new UpdateUserDtoValidator(_localizationService));
 
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.UpdateAsync(userEntity);
@@ -72,7 +75,7 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPatch]
         public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
-            await ValidateAsync(userDto, new PatchUserDtoValidator());
+            await ValidateAsync(userDto, new PatchUserDtoValidator(_localizationService));
 
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.PatchAsync(userEntity);

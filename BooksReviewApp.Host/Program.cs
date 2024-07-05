@@ -6,6 +6,9 @@ using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Handlers;
 using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Middlewares;
+using BooksReviewApp.WebApi.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,20 +27,32 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddCustomSwagger();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserDbService, UserDbService>();
 builder.Services.AddScoped<IGenreDbService, GenreDbService>();
-builder.Services.AddTransient<IExceptionHandler, NpgsqlExceptionHandler>();
-builder.Services.AddTransient<IExceptionHandler, ValidationExceptionHandler>();
+
+builder.Services.AddTransient<ILocalizationService, LocalizationService>();
+
+builder.Services.AddExceptionHandlers();
 
 var app = builder.Build();
+
+//var supportedCultures = new[] { "en", "ru", "de" };
+//var localizationOptions = new RequestLocalizationOptions()
+//    .SetDefaultCulture(supportedCultures[0])
+//    .AddSupportedCultures(supportedCultures)
+//    .AddSupportedUICultures(supportedCultures);
+
+//app.UseRequestLocalization(localizationOptions);
 
 app.UseCustomSwagger();
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+var exceptionHandlers = app.Services.GetRequiredService<Dictionary<Type, IExceptionHandler>>();
+app.UseMiddleware<ExceptionHandlingMiddleware>(exceptionHandlers);
 
 app.UseAuthorization();
 

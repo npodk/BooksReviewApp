@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<!-- German validation messages -->
+	<data name="UsernameMaxLength" xml:space="preserve">
+		<value>Der Benutzername darf maximal {0} Zeichen lang sein.</value>
+	</data>
+	<data name="EmailMaxLength" xml:space="preserve">
+		<value>Die E-Mail darf maximal {0} Zeichen lang sein.</value>
+	</data>
+	<data name="InvalidEmailFormat" xml:space="preserve">
+		<value>Ungültiges E-Mail-Format.</value>
+	</data>
+	<data name="PasswordMinLength" xml:space="preserve">
+		<value>Das Passwort muss mindestens {0} Zeichen lang sein.</value>
+	</data>
+	<data name="PasswordMaxLength" xml:space="preserve">
+		<value>Das Passwort darf maximal {0} Zeichen lang sein.</value>
+	</data>
+	<data name="PasswordComplexity" xml:space="preserve">
+		<value>Das Passwort muss mindestens einen Kleinbuchstaben, einen Großbuchstaben und eine Ziffer enthalten.</value>
+	</data>
+	<data name="UsernameRequired" xml:space="preserve">
+		<value>Benutzername ist erforderlich.</value>
+	</data>
+	<data name="EmailRequired" xml:space="preserve">
+		<value>E-Mail ist erforderlich.</value>
+	</data>
+	<data name="PasswordRequired" xml:space="preserve">
+		<value>Passwort ist erforderlich.</value>
+	</data>
+	<data name="DefaultGuid" xml:space="preserve">
+		<value>Id darf nicht der Standard-Guid sein.</value>
+	</data>
+</root>

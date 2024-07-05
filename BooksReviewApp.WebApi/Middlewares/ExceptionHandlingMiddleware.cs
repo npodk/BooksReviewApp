@@ -2,17 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
 using System.Text.Json;
+using static BooksReviewApp.WebApi.Constants.Constants;
 
 namespace BooksReviewApp.WebApi.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
-        private const string DefaultErrorMessage = "An unexpected error occurred.";
-
         private readonly RequestDelegate _next;
-        private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
+        private readonly IDictionary<Type, IExceptionHandler> _exceptionHandlers;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, IEnumerable<IExceptionHandler> exceptionHandlers)
+        public ExceptionHandlingMiddleware(RequestDelegate next, IDictionary<Type, IExceptionHandler> exceptionHandlers)
         {
             _next = next;
             _exceptionHandlers = exceptionHandlers;
@@ -35,18 +34,15 @@ namespace BooksReviewApp.WebApi.Middlewares
             var response = context.Response;
             response.ContentType = MediaTypeNames.Application.Json;
 
-            foreach (var handler in _exceptionHandlers)
+            if (_exceptionHandlers.TryGetValue(exception.GetType(), out var handler))
             {
-                if (handler.ExceptionType == exception.GetType())
-                {
-                    var message = handler.HandleException(context, exception);
-                    await WriteResponseAsync(response, message);
-                    return;
-                }
+                var message = handler.HandleException(context, exception);
+                await WriteResponseAsync(response, message);
+                return;
             }
 
             // Default response if no specific handler is found
-            await WriteResponseAsync(response, DefaultErrorMessage);
+            await WriteResponseAsync(response, ExceptionHandling.DefaultErrorMessage);
         }
 
         private async Task WriteResponseAsync(HttpResponse response, string message)

@@ -1,8 +1,10 @@
 ﻿using BooksReviewApp.WebApi.Handlers;
 using BooksReviewApp.WebApi.Interfaces;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using System.Reflection;
 
 namespace BooksReviewApp.WebApi.Extensions
 {
@@ -22,6 +24,16 @@ namespace BooksReviewApp.WebApi.Extensions
                 };
                 return handlers;
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddValidators(this IServiceCollection services)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            services.AddFluentValidationAutoValidation()
+                    .AddValidatorsFromAssembly(assembly);
 
             return services;
         }

@@ -48,15 +48,12 @@ namespace BooksReviewApp.WebApi.Controllers
             }
 
             var userDto = _mapper.Map<ReadUserDto>(userEntity);
-            await ValidateAsync(userDto, new ReadUserDtoValidator());
             return Ok(userDto);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto userDto)
         {
-            await ValidateAsync(userDto, new CreateUserDtoValidator(_localizationService));
-
             var userEntity = _mapper.Map<User>(userDto);
             var createdUser = await _userDbService.CreateAsync(userEntity);
             return Ok(createdUser.Id);
@@ -65,8 +62,6 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
-            await ValidateAsync(userDto, new UpdateUserDtoValidator(_localizationService));
-
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.UpdateAsync(userEntity);
             return Ok(updatedUser);
@@ -75,8 +70,6 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPatch]
         public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
-            await ValidateAsync(userDto, new PatchUserDtoValidator(_localizationService));
-
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.PatchAsync(userEntity);
             return Ok(updatedUser);

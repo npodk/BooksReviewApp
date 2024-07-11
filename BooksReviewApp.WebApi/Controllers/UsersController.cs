@@ -27,10 +27,7 @@ namespace BooksReviewApp.WebApi.Controllers
             var userEntities = await _userDbService.GetAllAsync();
             var users = _mapper.Map<IEnumerable<ReadUserDto>>(userEntities);
 
-            foreach (var user in users)
-            {
-                await ValidateAsync(user, new ReadUserDtoValidator());
-            }
+            // TODO: how to automatically validate data from db?
 
             return Ok(users);
         }
@@ -45,15 +42,15 @@ namespace BooksReviewApp.WebApi.Controllers
             }
 
             var userDto = _mapper.Map<ReadUserDto>(userEntity);
-            await ValidateAsync(userDto, new ReadUserDtoValidator());
+
+            // TODO: how to automatically validate data from db?
+
             return Ok(userDto);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto userDto)
         {
-            await ValidateAsync(userDto, new CreateUserDtoValidator());
-
             var userEntity = _mapper.Map<User>(userDto);
             var createdUser = await _userDbService.CreateAsync(userEntity);
             return Ok(createdUser.Id);
@@ -62,8 +59,6 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
-            await ValidateAsync(userDto, new UpdateUserDtoValidator());
-
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.UpdateAsync(userEntity);
             return Ok(updatedUser);
@@ -72,8 +67,6 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPatch]
         public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
-            await ValidateAsync(userDto, new PatchUserDtoValidator());
-
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userDbService.PatchAsync(userEntity);
             return Ok(updatedUser);
@@ -117,15 +110,6 @@ namespace BooksReviewApp.WebApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred while retrieving all reviews for the user: {ex.Message}");
-            }
-        }
-
-        private async Task ValidateAsync<T>(T model, IValidator<T> validator)
-        {
-            var validationResult = await validator.ValidateAsync(model);
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
             }
         }
     }

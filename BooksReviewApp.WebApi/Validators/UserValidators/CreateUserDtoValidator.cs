@@ -1,20 +1,24 @@
 ﻿using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class CreateUserDtoValidator : BaseUserDtoValidator<CreateUserDto>
+    public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
     {
         public CreateUserDtoValidator()
         {
             RuleFor(dto => dto.Username)
-                .NotEmpty().WithMessage("Username is required.");
+                .NotEmpty().WithMessage("Username is required.")
+                .ApplyUsernameRules();
 
             RuleFor(dto => dto.Email)
-                .NotEmpty().WithMessage("Email is required.");
+                .NotEmpty().WithMessage("Email is required.")
+                .ApplyEmailRules();
 
             RuleFor(dto => dto.Password)
-                .NotEmpty().WithMessage("Password is required.");
+                .NotEmpty().WithMessage("Password is required.")
+                .ApplyPasswordRules();
         }
     }
 

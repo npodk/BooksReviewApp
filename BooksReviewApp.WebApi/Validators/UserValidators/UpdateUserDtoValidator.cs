@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class UpdateUserDtoValidator : BaseUserDtoValidator<UpdateUserDto>
+    public class UpdateUserDtoValidator : AbstractValidator<UpdateUserDto>
     {
         public UpdateUserDtoValidator()
         {

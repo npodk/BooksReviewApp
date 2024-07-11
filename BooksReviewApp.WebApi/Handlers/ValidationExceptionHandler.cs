@@ -23,7 +23,7 @@ namespace BooksReviewApp.WebApi.Handlers
             _logger.LogError("Validation error occurred. Message: {Message}, Errors: {Errors}, StackTrace: {StackTrace}, InnerException: {InnerException}",
                 valEx.Message, errorMessage, valEx.StackTrace, valEx.InnerException?.Message);
 
-            return "Validation error occurred.";
+            return errorMessage;
         }
     }
 }

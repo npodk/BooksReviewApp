@@ -1,9 +1,9 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.User
 {
-    public class CreateUserDto : BaseUserDto
+    public class CreateUserDto
     {
-        public new string Username { get; set; } = default!;
-        public new string Email { get; set; } = default!;
-        public new string Password { get; set; } = default!;
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

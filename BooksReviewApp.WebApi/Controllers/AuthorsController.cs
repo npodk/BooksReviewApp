@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using BooksReviewApp.Services.EF.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
 {
@@ -6,6 +8,9 @@ namespace BooksReviewApp.WebApi.Controllers
     [Route("api/[controller]")]
     public class AuthorsController : ControllerBase
     {
+        private readonly IAuthorDbService _authorDbService;
+        private readonly IMapper _mapper;
+
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {

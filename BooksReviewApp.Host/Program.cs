@@ -1,9 +1,13 @@
+using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.Services.EF.Services;
 using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Middlewares;
+using BooksReviewApp.WebApi.Options;
+using BooksReviewApp.WebApi.Services;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +24,16 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddCustomSwagger();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserDbService, UserDbService>();
 builder.Services.AddScoped<IGenreDbService, GenreDbService>();
+
+builder.Services.AddOptions<Localization>().Bind(builder.Configuration.GetSection("Localization")).ValidateDataAnnotations();
+
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
 
 builder.Services.AddExceptionHandlers();
 builder.Services.AddValidators();

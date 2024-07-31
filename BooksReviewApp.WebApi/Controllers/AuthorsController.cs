@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BooksReviewApp.Domain.Core.Entities;
 using BooksReviewApp.Services.EF.Interfaces;
+using BooksReviewApp.WebApi.Dtos.Author;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -11,39 +13,65 @@ namespace BooksReviewApp.WebApi.Controllers
         private readonly IAuthorDbService _authorDbService;
         private readonly IMapper _mapper;
 
+        public AuthorsController(IAuthorDbService authorDbService, IMapper mapper)
+        {
+            _authorDbService = authorDbService ?? throw new ArgumentNullException(nameof(authorDbService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {
-            await Task.CompletedTask;
-            return Ok();
+            var authorEntities = await _authorDbService.GetAllAsync();
+            var authors = _mapper.Map<IEnumerable<ReadAuthorDto>>(authorEntities);
+
+            return Ok(authors);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAuthorById(int id)
+        public async Task<IActionResult> GetAuthorById(Guid id)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var authorEntity = await _authorDbService.GetByIdAsync(id);
+            if (authorEntity == null)
+            {
+                return Ok(null);
+            }
+
+            var authorDto = _mapper.Map<ReadAuthorDto>(authorEntity);
+
+            return Ok(authorDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAuthor()
+        public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorDto authorDto)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var authorEntity = _mapper.Map<Author>(authorDto);
+            var createdAuthor = await _authorDbService.CreateAsync(authorEntity);
+            return Ok(createdAuthor.Id);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAuthor()
+        public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDto authorDto)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var authorEntity = _mapper.Map<Author>(authorDto);
+            var updatedAuthor = await _authorDbService.UpdateAsync(authorEntity);
+            return Ok(updatedAuthor);
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> PatchUser([FromBody] PatchAuthorDto authorDto)
+        {
+            var authorEntity = _mapper.Map<Author>(authorDto);
+            var patchedAuthor = await _authorDbService.PatchAsync(authorEntity);
+            return Ok(patchedAuthor);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthor()
+        public async Task<IActionResult> DeleteAuthor([FromRoute] Guid id)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var result = await _authorDbService.DeleteAsync(id);
+
+            return Ok(result);
         }
 
         [HttpGet("{id}/books")]

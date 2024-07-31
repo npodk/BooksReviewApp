@@ -27,8 +27,6 @@ namespace BooksReviewApp.WebApi.Controllers
             var userEntities = await _userDbService.GetAllAsync();
             var users = _mapper.Map<IEnumerable<ReadUserDto>>(userEntities);
 
-            // TODO: how to automatically validate data from db?
-
             return Ok(users);
         }
 
@@ -42,8 +40,6 @@ namespace BooksReviewApp.WebApi.Controllers
             }
 
             var userDto = _mapper.Map<ReadUserDto>(userEntity);
-
-            // TODO: how to automatically validate data from db?
 
             return Ok(userDto);
         }
@@ -68,19 +64,16 @@ namespace BooksReviewApp.WebApi.Controllers
         public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
         {
             var userEntity = _mapper.Map<User>(userDto);
-            var updatedUser = await _userDbService.PatchAsync(userEntity);
-            return Ok(updatedUser);
+            var patchedUser = await _userDbService.PatchAsync(userEntity);
+            return Ok(patchedUser);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
             var result = await _userDbService.DeleteAsync(id);
-            if (!result)
-            {
-                return NotFound($"User with ID {id} not found.");
-            }
-            return Ok();
+
+            return Ok(result);
         }
 
         // TO-DO: Should be implemented

@@ -11,9 +11,21 @@
             public const string PasswordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$";
         }
 
+        public static class AuthorValidation
+        {
+            public const int MaxNameLength = 50;
+            public const int MaxSurnameLength = 50;
+            public const int MaxBiographyLength = 1000;
+        }
+
         public static class ExceptionHandling
         {
             public const string DefaultErrorMessage = "An unexpected error occurred.";
+        }
+
+        public static class CacheKeys
+        {
+            public const string ValidationMessagesLocalized = "ValidationMessages";
         }
     }
 }

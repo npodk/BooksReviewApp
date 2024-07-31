@@ -2,7 +2,7 @@
 using BooksReviewApp.Domain.Core.Entities;
 using BooksReviewApp.WebApi.Dtos.User;
 
-namespace BooksReviewApp.WebApi.Converters.User
+namespace BooksReviewApp.WebApi.Converters.UserConverters
 {
     public class ReviewsConverter : IValueConverter<IEnumerable<Review>, ReviewDto[]>
     {

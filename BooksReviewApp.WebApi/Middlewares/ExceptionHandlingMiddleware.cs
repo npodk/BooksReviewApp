@@ -36,18 +36,19 @@ namespace BooksReviewApp.WebApi.Middlewares
 
             if (_exceptionHandlers.TryGetValue(exception.GetType(), out var handler))
             {
-                var message = handler.HandleException(context, exception);
-                await WriteResponseAsync(response, message);
+                var messages = handler.HandleException(context, exception);
+                await WriteResponseAsync(response, messages);
                 return;
             }
 
             // Default response if no specific handler is found
-            await WriteResponseAsync(response, ExceptionHandling.DefaultErrorMessage);
+            var defaultMessages = new List<string> { ExceptionHandling.DefaultErrorMessage };
+            await WriteResponseAsync(response, defaultMessages);
         }
 
-        private async Task WriteResponseAsync(HttpResponse response, string message)
+        private async Task WriteResponseAsync(HttpResponse response, List<string> messages)
         {
-            var responseModel = new { Success = false, Message = message };
+            var responseModel = new { Success = false, Message = messages };
             var jsonResponse = JsonSerializer.Serialize(responseModel);
             response.StatusCode = StatusCodes.Status404NotFound;
             await response.WriteAsync(jsonResponse);

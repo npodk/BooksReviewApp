@@ -16,14 +16,16 @@ namespace BooksReviewApp.WebApi.Handlers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public string HandleException(HttpContext context, Exception exception)
+        public List<string> HandleException(HttpContext context, Exception exception)
         {
             var valEx = (ValidationException)exception;
-            string errorMessage = string.Join("; ", valEx.Errors);
-            _logger.LogError("Validation error occurred. Message: {Message}, Errors: {Errors}, StackTrace: {StackTrace}, InnerException: {InnerException}",
-                valEx.Message, errorMessage, valEx.StackTrace, valEx.InnerException?.Message);
 
-            return errorMessage;
+            var errors = valEx.Errors.Select(e => e.ErrorMessage);
+            string errorMessage = string.Join("; ", errors);
+            _logger.LogError(exception, "Validation error occurred. Message: {Message}, Errors: {Errors}, StackTrace: {StackTrace}, InnerException: {InnerException}",
+                valEx.Message, errorMessage, exception.StackTrace, exception.InnerException?.Message);
+
+            return errors.ToList();
         }
     }
 }

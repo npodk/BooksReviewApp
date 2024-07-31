@@ -1,10 +1,14 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.User
 {
-    public class PatchUserDto
+    public class PatchUserDto : BaseUserDto
     {
         public Guid Id { get; set; }
-        public string? Username { get; set; }
-        public string? Email { get; set; }
+
+        public new string? Username { get; set; }
+
+        public new string? Email { get; set; }
+
         public string? Password { get; set; }
     }
+
 }

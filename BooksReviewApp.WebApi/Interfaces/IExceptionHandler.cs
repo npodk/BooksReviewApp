@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace BooksReviewApp.WebApi.Interfaces
 {
@@ -7,6 +6,6 @@ namespace BooksReviewApp.WebApi.Interfaces
     {
         Type ExceptionType { get; }
 
-        string HandleException(HttpContext context, Exception exception);
+        List<string> HandleException(HttpContext context, Exception exception);
     }
 }

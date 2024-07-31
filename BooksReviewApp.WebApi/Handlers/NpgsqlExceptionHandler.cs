@@ -16,12 +16,12 @@ namespace BooksReviewApp.WebApi.Handlers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public string HandleException(HttpContext context, Exception exception)
+        public List<string> HandleException(HttpContext context, Exception exception)
         {
             var dbEx = (NpgsqlException)exception;
             _logger.LogError("Database error occurred: {Message}, StackTrace: {StackTrace}, InnerException: {InnerException}",
                     dbEx.Message, dbEx.StackTrace, dbEx.InnerException?.Message);
-            return "Database error occurred";
+            return new List<string> { "Database error occurred" };
         }
     }
 }

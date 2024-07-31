@@ -1,23 +1,36 @@
 ﻿using BooksReviewApp.WebApi.Dtos.User;
 using BooksReviewApp.WebApi.Extensions;
+using BooksReviewApp.WebApi.Interfaces;
+using BooksReviewApp.WebApi.Services;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class PatchUserDtoValidator : AbstractValidator<PatchUserDto>
+    public class PatchUserDtoValidator : BaseValidator<PatchUserDto>
     {
-        public PatchUserDtoValidator()
+        public PatchUserDtoValidator(ILocalizationService localizationService)
         {
-            RuleFor(dto => dto.Id).NotEqual(Guid.Empty).WithMessage("Id cannot be the default Guid.");
+            RuleFor(dto => dto.Id)
+                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"))
+                .When(dto => dto.Id != null);
 
-            RuleFor(dto => dto.Username)
-                .ApplyUsernameRules();
+            When(dto => dto.Username != null, () =>
+            {
+                RuleFor(dto => dto.Username)
+                    .ApplyUsernameRules(localizationService);
+            });
 
-            RuleFor(dto => dto.Email)
-                .ApplyEmailRules();
+            When(dto => dto.Email != null, () =>
+            {
+                RuleFor(dto => dto.Email)
+                    .ApplyEmailRules(localizationService);
+            });
 
-            RuleFor(dto => dto.Password)
-                .ApplyPasswordRules();
+            When(dto => dto.Password != null, () =>
+            {
+                RuleFor(dto => dto.Password)
+                    .ApplyPasswordRules(localizationService);
+            });
         }
     }
 }

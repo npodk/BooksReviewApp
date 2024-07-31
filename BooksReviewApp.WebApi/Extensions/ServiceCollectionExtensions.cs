@@ -1,5 +1,4 @@
 ﻿using BooksReviewApp.WebApi.Handlers;
-using BooksReviewApp.WebApi.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;

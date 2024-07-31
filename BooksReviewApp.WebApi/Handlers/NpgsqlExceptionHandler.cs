@@ -1,5 +1,4 @@
-﻿using BooksReviewApp.WebApi.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 

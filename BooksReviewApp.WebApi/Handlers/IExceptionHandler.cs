@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace BooksReviewApp.WebApi.Interfaces
+namespace BooksReviewApp.WebApi.Handlers
 {
     public interface IExceptionHandler
     {

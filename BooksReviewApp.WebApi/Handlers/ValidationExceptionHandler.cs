@@ -1,5 +1,4 @@
-﻿using BooksReviewApp.WebApi.Interfaces;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -21,9 +20,8 @@ namespace BooksReviewApp.WebApi.Handlers
             var valEx = (ValidationException)exception;
 
             var errors = valEx.Errors.Select(e => e.ErrorMessage);
-            string errorMessage = string.Join("; ", errors);
-            _logger.LogError(exception, "Validation error occurred. Message: {Message}, Errors: {Errors}, StackTrace: {StackTrace}, InnerException: {InnerException}",
-                valEx.Message, errorMessage, exception.StackTrace, exception.InnerException?.Message);
+            _logger.LogError(exception, "Validation error occurred. Message: {Message}, StackTrace: {StackTrace}",
+                valEx.Message, exception.StackTrace);
 
             return errors.ToList();
         }

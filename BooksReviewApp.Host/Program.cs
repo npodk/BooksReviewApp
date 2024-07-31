@@ -1,13 +1,12 @@
-using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.Services.EF.Services;
+using BooksReviewApp.WebApi.Cache;
 using BooksReviewApp.WebApi.Extensions;
-using BooksReviewApp.WebApi.Interfaces;
+using BooksReviewApp.WebApi.Handlers;
 using BooksReviewApp.WebApi.Middlewares;
 using BooksReviewApp.WebApi.Options;
 using BooksReviewApp.WebApi.Services;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,12 +32,15 @@ builder.Services.AddScoped<IGenreDbService, GenreDbService>();
 builder.Services.AddOptions<Localization>().Bind(builder.Configuration.GetSection("Localization")).ValidateDataAnnotations();
 
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<IValidationMessagesCache, ValidationMessagesCache>();
 builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
 
 builder.Services.AddExceptionHandlers();
 builder.Services.AddValidators();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 app.UseCustomSwagger();
 

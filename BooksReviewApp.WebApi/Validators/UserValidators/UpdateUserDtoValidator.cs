@@ -1,5 +1,4 @@
 ﻿using BooksReviewApp.WebApi.Dtos.User;
-using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Services;
 using FluentValidation;
 

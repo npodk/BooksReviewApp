@@ -1,4 +1,4 @@
-﻿namespace BooksReviewApp.WebApi.Interfaces
+﻿namespace BooksReviewApp.WebApi.Services
 {
     public interface ILocalizationService
     {

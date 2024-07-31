@@ -2,8 +2,6 @@
 using BooksReviewApp.Domain.Core.Entities;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.WebApi.Dtos.User;
-using BooksReviewApp.WebApi.Validators.UserValidators;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers

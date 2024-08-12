@@ -1,10 +1,10 @@
 using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.EF.Interfaces;
 using BooksReviewApp.Services.EF.Services;
-using BooksReviewApp.WebApi.Cache;
 using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Handlers;
 using BooksReviewApp.WebApi.Middlewares;
+using BooksReviewApp.WebApi.Models;
 using BooksReviewApp.WebApi.Options;
 using BooksReviewApp.WebApi.Services;
 using Serilog;
@@ -29,12 +29,18 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserDbService, UserDbService>();
 builder.Services.AddScoped<IGenreDbService, GenreDbService>();
 
-builder.Services.AddOptions<Localization>().Bind(builder.Configuration.GetSection("Localization")).ValidateDataAnnotations();
+var localizationSection = builder.Configuration.GetSection("Localization");
 
-builder.Services.AddMemoryCache();
-builder.Services.AddSingleton<IValidationMessagesCache, ValidationMessagesCache>();
+builder.Services.AddOptions<Localization>()
+    .Bind(localizationSection)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+var validationMessagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, localizationSection.GetValue<string>("ValidationMessagesPath"));
+builder.Configuration.AddJsonFile(validationMessagesPath, optional: false, reloadOnChange: true);
+builder.Services.Configure<ValidationMessages>(builder.Configuration.GetSection("ValidationMessages"));
+
 builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
-
 builder.Services.AddExceptionHandlers();
 builder.Services.AddValidators();
 

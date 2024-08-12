@@ -10,26 +10,19 @@ namespace BooksReviewApp.WebApi.Validators.UserValidators
         public PatchUserDtoValidator(ILocalizationService localizationService)
         {
             RuleFor(dto => dto.Id)
-                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"))
-                .When(dto => dto.Id != null);
+                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
 
-            When(dto => dto.Username != null, () =>
-            {
-                RuleFor(dto => dto.Username)
-                    .ApplyUsernameRules(localizationService);
-            });
+            RuleFor(dto => dto.Username)
+                .NotNull().When(dto => dto.Username != null)
+                .ApplyUsernameRules(localizationService);
 
-            When(dto => dto.Email != null, () =>
-            {
-                RuleFor(dto => dto.Email)
-                    .ApplyEmailRules(localizationService);
-            });
+            RuleFor(dto => dto.Email)
+                .NotNull().When(dto => dto.Email != null)
+                .ApplyEmailRules(localizationService);
 
-            When(dto => dto.Password != null, () =>
-            {
-                RuleFor(dto => dto.Password)
-                    .ApplyPasswordRules(localizationService);
-            });
+            RuleFor(dto => dto.Password)
+                .NotNull().When(dto => dto.Password != null)
+                .ApplyPasswordRules(localizationService);
         }
     }
 }

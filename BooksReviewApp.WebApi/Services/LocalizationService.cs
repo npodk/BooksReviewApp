@@ -1,4 +1,4 @@
-﻿using BooksReviewApp.WebApi.Cache;
+﻿using BooksReviewApp.WebApi.Models;
 using BooksReviewApp.WebApi.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -12,18 +12,18 @@ namespace BooksReviewApp.WebApi.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<LocalizationService> _logger;
         private readonly Localization _options;
-        private readonly IValidationMessagesCache _validationMessagesCache;
+        private readonly IOptionsMonitor<ValidationMessages> _validationMessagesMonitor;
 
         public LocalizationService(
             IHttpContextAccessor httpContextAccessor,
             ILogger<LocalizationService> logger,
             IOptions<Localization> localizationOptions,
-            IValidationMessagesCache validationMessagesCache)
+            IOptionsMonitor<ValidationMessages> validationMessagesMonitor)
         {
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
             _options = localizationOptions.Value;
-            _validationMessagesCache = validationMessagesCache;
+            _validationMessagesMonitor = validationMessagesMonitor;
         }
 
         public string GetValidationMessage(string key, params object[] args)
@@ -33,9 +33,8 @@ namespace BooksReviewApp.WebApi.Services
             if (string.IsNullOrEmpty(culture))
                 culture = _options.DefaultCulture;
 
-            var messages = _validationMessagesCache.GetMessages();
-
-            if (messages.TryGetValue(culture, out var cultureMessages) && cultureMessages.TryGetValue(key, out var message))
+            if (_validationMessagesMonitor.CurrentValue.TryGetValue(culture, out var cultureMessages)
+                && cultureMessages.TryGetValue(key, out var message))
             {
                 return string.Format(CultureInfo.CurrentCulture, message, args);
             }

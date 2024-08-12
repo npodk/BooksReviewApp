@@ -1,7 +1,7 @@
 ﻿using BooksReviewApp.WebApi.Dtos.Author;
+using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Services;
 using FluentValidation;
-using static BooksReviewApp.WebApi.Constants.Constants;
 
 namespace BooksReviewApp.WebApi.Validators.AuthorValidators
 {
@@ -11,18 +11,15 @@ namespace BooksReviewApp.WebApi.Validators.AuthorValidators
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("NameIsRequired"))
-                .MaximumLength(AuthorValidation.MaxNameLength)
-                .WithMessage(localizationService.GetValidationMessage("NameMaxLength", AuthorValidation.MaxNameLength));
+                .ApplyNameRules(localizationService);
 
             RuleFor(x => x.Surname)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("SurnameIsRequired"))
-                .MaximumLength(AuthorValidation.MaxSurnameLength)
-                .WithMessage(localizationService.GetValidationMessage("SurnameMaxLength", AuthorValidation.MaxSurnameLength));
+                .ApplySurnameRules(localizationService);
 
             RuleFor(x => x.Biography)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("BiographyIsRequired"))
-                .MaximumLength(AuthorValidation.MaxBiographyLength)
-                .WithMessage(localizationService.GetValidationMessage("BiographyMaxLength", AuthorValidation.MaxBiographyLength));
+                .ApplyBiographyRules(localizationService);
         }
     }
 }

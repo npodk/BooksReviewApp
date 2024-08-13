@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
+    <ProjectReference Include="..\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
+  </ItemGroup>
+
 </Project>

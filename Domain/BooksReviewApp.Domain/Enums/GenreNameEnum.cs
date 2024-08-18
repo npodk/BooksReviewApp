@@ -1,4 +1,4 @@
-﻿namespace BooksReviewApp.Domain.Core.Enums
+﻿namespace BooksReviewApp.Domain.Enums
 {
     public enum GenreNameEnum
     {

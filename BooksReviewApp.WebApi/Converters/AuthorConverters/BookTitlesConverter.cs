@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BooksReviewApp.Domain.Core.Entities;
+using BooksReviewApp.Domain.Entities;
 
 namespace BooksReviewApp.WebApi.Converters.AuthorConverters
 {

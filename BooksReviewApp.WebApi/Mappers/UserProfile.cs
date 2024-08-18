@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BooksReviewApp.Domain.Core.Entities;
+using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.WebApi.Dtos.User;
 
 namespace BooksReviewApp.WebApi.Mappers

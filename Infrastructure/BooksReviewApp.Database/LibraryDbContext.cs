@@ -1,5 +1,5 @@
 ﻿using BooksReviewApp.Database.Configurations;
-using BooksReviewApp.Domain.Core.Entities;
+using BooksReviewApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BooksReviewApp.Database
@@ -13,6 +13,10 @@ namespace BooksReviewApp.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<BookGenre> BookGenres { get; set; }
+
+        public LibraryDbContext()
+        {
+        }
 
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options)
             : base(options)

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using static BooksReviewApp.Domain.Core.Constants.Constants;
+using static BooksReviewApp.Domain.Constants.Constants;
 
 namespace BooksReviewApp.Database.Extensions
 {

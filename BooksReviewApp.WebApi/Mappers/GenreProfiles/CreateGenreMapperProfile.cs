@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BooksReviewApp.Domain.Core.Entities;
+using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.WebApi.Dtos.Genre;
 
 namespace BooksReviewApp.WebApi.Mappers.GenreProfiles

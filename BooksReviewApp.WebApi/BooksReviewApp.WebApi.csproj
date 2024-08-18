@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
+    <ProjectReference Include="..\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BooksReviewApp.Domain.Core.Entities;
-using BooksReviewApp.Services.EF.Interfaces;
+using BooksReviewApp.Domain.Entities;
+using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Author;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,19 +10,19 @@ namespace BooksReviewApp.WebApi.Controllers
     [Route("api/[controller]")]
     public class AuthorsController : ControllerBase
     {
-        private readonly IAuthorDbService _authorDbService;
+        private readonly IAuthorService _authorService;
         private readonly IMapper _mapper;
 
-        public AuthorsController(IAuthorDbService authorDbService, IMapper mapper)
+        public AuthorsController(IAuthorService authorService, IMapper mapper)
         {
-            _authorDbService = authorDbService ?? throw new ArgumentNullException(nameof(authorDbService));
+            _authorService = authorService ?? throw new ArgumentNullException(nameof(authorService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {
-            var authorEntities = await _authorDbService.GetAllAsync();
+            var authorEntities = await _authorService.GetAllAsync();
             var authors = _mapper.Map<IEnumerable<ReadAuthorDto>>(authorEntities);
 
             return Ok(authors);
@@ -31,7 +31,7 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuthorById(Guid id)
         {
-            var authorEntity = await _authorDbService.GetByIdAsync(id);
+            var authorEntity = await _authorService.GetByIdAsync(id);
             if (authorEntity == null)
             {
                 return Ok(null);
@@ -46,7 +46,7 @@ namespace BooksReviewApp.WebApi.Controllers
         public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
-            var createdAuthor = await _authorDbService.CreateAsync(authorEntity);
+            var createdAuthor = await _authorService.CreateAsync(authorEntity);
             return Ok(createdAuthor.Id);
         }
 
@@ -54,7 +54,7 @@ namespace BooksReviewApp.WebApi.Controllers
         public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
-            var updatedAuthor = await _authorDbService.UpdateAsync(authorEntity);
+            var updatedAuthor = await _authorService.UpdateAsync(authorEntity);
             return Ok(updatedAuthor);
         }
 
@@ -62,14 +62,14 @@ namespace BooksReviewApp.WebApi.Controllers
         public async Task<IActionResult> PatchUser([FromBody] PatchAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
-            var patchedAuthor = await _authorDbService.PatchAsync(authorEntity);
+            var patchedAuthor = await _authorService.PatchAsync(authorEntity);
             return Ok(patchedAuthor);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor([FromRoute] Guid id)
         {
-            var result = await _authorDbService.DeleteAsync(id);
+            var result = await _authorService.DeleteAsync(id);
 
             return Ok(result);
         }

@@ -20,7 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
-    <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
+    <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.Localization\BooksReviewApp.Services.Localization.csproj" />
+    <ProjectReference Include="..\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />
   </ItemGroup>
 
 </Project>

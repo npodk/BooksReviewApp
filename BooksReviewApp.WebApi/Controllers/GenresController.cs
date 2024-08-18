@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using BooksReviewApp.Domain.Core.Entities;
-using BooksReviewApp.Services.EF;
-using BooksReviewApp.Services.EF.Interfaces;
-using BooksReviewApp.WebApi.Dtos.Genre;
-using BooksReviewApp.WebApi.Validators.UserValidators;
+﻿using BooksReviewApp.WebApi.Dtos.Genre;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -12,9 +7,6 @@ namespace BooksReviewApp.WebApi.Controllers
     [Route("api/[controller]")]
     public class GenresController : ControllerBase
     {
-        private readonly IGenreDbService _genreDbService;
-        private readonly IMapper _mapper;
-
         [HttpGet]
         public async Task<IActionResult> GetAllGenres()
         {

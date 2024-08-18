@@ -1,6 +1,6 @@
 ﻿using BooksReviewApp.Core.Domain.Interfaces;
 
-namespace BooksReviewApp.Domain.Core.Entities
+namespace BooksReviewApp.Domain.Entities
 {
     public class Favorite : IModel
     {

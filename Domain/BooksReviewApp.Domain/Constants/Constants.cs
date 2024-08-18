@@ -1,6 +1,6 @@
-﻿using BooksReviewApp.Domain.Core.Entities;
+﻿using BooksReviewApp.Domain.Entities;
 
-namespace BooksReviewApp.Domain.Core.Constants
+namespace BooksReviewApp.Domain.Constants
 {
     public static class Constants
     {

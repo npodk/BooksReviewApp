@@ -1,5 +1,5 @@
-﻿using BooksReviewApp.WebApi.Dtos.User;
-using BooksReviewApp.WebApi.Services;
+﻿using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.WebApi.Dtos.User;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators

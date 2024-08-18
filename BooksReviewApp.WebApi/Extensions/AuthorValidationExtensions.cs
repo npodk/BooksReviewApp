@@ -1,4 +1,4 @@
-﻿using BooksReviewApp.WebApi.Services;
+﻿using BooksReviewApp.Core.Services.Interfaces;
 using FluentValidation;
 using static BooksReviewApp.WebApi.Constants.Constants;
 

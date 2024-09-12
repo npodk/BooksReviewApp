@@ -27,9 +27,9 @@ namespace BooksReviewApp.WebApi.Tests.Controllers
             // Arrange
             var authorDto = new CreateAuthorDto
             {
-                Name = BooksReviewApp.Tests.Common.Constants.DefaultAuthor.Name,
-                Surname = BooksReviewApp.Tests.Common.Constants.DefaultAuthor.Surname,
-                Biography = BooksReviewApp.Tests.Common.Constants.DefaultAuthor.Biography,
+                Name = "John",
+                Surname = "Doe",
+                Biography = "Author's biography"
             };
 
             var authorEntity = new Author

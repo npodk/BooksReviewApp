@@ -1,7 +1,9 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.Book
 {
-    public class UpdateBookDto : CreateBookDto
+    public class FavoriteDto
     {
         public Guid Id { get; set; }
+
+        public Guid UserId { get; set; }
     }
 }

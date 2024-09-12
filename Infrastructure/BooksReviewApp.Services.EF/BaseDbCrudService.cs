@@ -10,6 +10,7 @@ namespace BooksReviewApp.Services.EF
     {
         public BaseDbCrudService(TContext context) : base(context)
         {
+            var a = new int();
         }
 
         public async Task<T> CreateAsync(T model)

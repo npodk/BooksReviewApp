@@ -3,9 +3,9 @@ using BooksReviewApp.WebApi.Dtos.Author;
 
 namespace BooksReviewApp.WebApi.Validators.AuthorValidators
 {
-    public class CreateAuthorDtoValidator : BaseAuthorDtoValidator<CreateAuthorDto>
+    public class CreateBookDtoValidator : BaseAuthorDtoValidator<CreateAuthorDto>
     {
-        public CreateAuthorDtoValidator(ILocalizationService localizationService) : base(localizationService)
+        public CreateBookDtoValidator(ILocalizationService localizationService) : base(localizationService)
         {
         }
     }

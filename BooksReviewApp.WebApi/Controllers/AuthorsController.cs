@@ -29,7 +29,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAuthorById(Guid id)
+        public async Task<IActionResult> GetAuthorById([FromRoute] Guid id)
         {
             var authorEntity = await _authorService.GetByIdAsync(id);
             if (authorEntity == null)
@@ -59,7 +59,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> PatchUser([FromBody] PatchAuthorDto authorDto)
+        public async Task<IActionResult> PatchAuthor([FromBody] PatchAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
             var patchedAuthor = await _authorService.PatchAsync(authorEntity);

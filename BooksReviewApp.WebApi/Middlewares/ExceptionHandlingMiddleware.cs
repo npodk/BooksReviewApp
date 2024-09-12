@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
 using System.Text.Json;
-using static BooksReviewApp.WebApi.Constants.Constants;
+using static BooksReviewApp.WebApi.Constants;
 
 namespace BooksReviewApp.WebApi.Middlewares
 {

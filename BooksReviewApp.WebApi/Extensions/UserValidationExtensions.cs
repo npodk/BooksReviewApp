@@ -1,6 +1,6 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
 using FluentValidation;
-using static BooksReviewApp.WebApi.Constants.Constants;
+using static BooksReviewApp.WebApi.Constants;
 
 namespace BooksReviewApp.WebApi.Extensions
 {

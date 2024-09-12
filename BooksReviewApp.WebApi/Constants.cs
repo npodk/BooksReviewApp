@@ -1,4 +1,4 @@
-﻿namespace BooksReviewApp.WebApi.Constants
+﻿namespace BooksReviewApp.WebApi
 {
     public static class Constants
     {
@@ -16,6 +16,16 @@
             public const int MaxNameLength = 50;
             public const int MaxSurnameLength = 50;
             public const int MaxBiographyLength = 1000;
+        }
+
+        public static class BookValidation
+        {
+            public const int MaxTitleLength = 100;
+            public const int MaxPublisherLength = 100;
+            public const int MaxDescriptionLength = 500;
+            public const int MinPublishingYear = 1000;
+            public const int MinWritingYear = 1000;
+            public const string ISBNPattern = @"^\d{13}$";
         }
 
         public static class ExceptionHandling

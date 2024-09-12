@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
-    <ProjectReference Include="..\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
+    <ProjectReference Include="..\..\Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
-﻿using BooksReviewApp.Database;
-using BooksReviewApp.Domain.Entities;
-using BooksReviewApp.Infrastructure.Tests.Models;
+﻿using BooksReviewApp.Infrastructure.Tests.Models;
 using BooksReviewApp.Services.EF;
 using BooksReviewApp.Tests.Common;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace BooksReviewApp.Infrastructure.Tests.EF

@@ -19,9 +19,9 @@ namespace BooksReviewApp.Services.Tests
             // Arrange
             var author = new Author
             {
-                Name = Constants.DefaultAuthor.Name,
-                Surname = Constants.DefaultAuthor.Surname,
-                Biography = Constants.DefaultAuthor.Biography,
+                Name = "John",
+                Surname = "Doe",
+                Biography = "Author's biography"
             };
 
             _mockDbSet.Setup(m => m.Add(It.IsAny<Author>())).Verifiable();

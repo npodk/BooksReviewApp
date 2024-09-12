@@ -11,7 +11,7 @@ namespace BooksReviewApp.Services.Localization.Application
         public static IServiceCollection AddCustomLocalization(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions<LocalizationOptions>()
-                .Bind(configuration.GetSection("Localization"))
+                .Bind(configuration.GetSection(LocalizationOptions.SectionName))
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
 
@@ -24,7 +24,7 @@ namespace BooksReviewApp.Services.Localization.Application
 
         public static IConfigurationBuilder AddLocalizationConfiguration(this IConfigurationBuilder builder, IConfiguration configuration)
         {
-            var localizationSection = configuration.GetSection("Localization");
+            var localizationSection = configuration.GetSection(LocalizationOptions.SectionName);
 
             var validationMessagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, localizationSection.GetValue<string>("ValidationMessagesPath"));
 

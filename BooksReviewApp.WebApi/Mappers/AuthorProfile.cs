@@ -13,6 +13,10 @@ namespace BooksReviewApp.WebApi.Mappers
             CreateMap<UpdateAuthorDto, Author>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+            CreateMap<PatchAuthorDto, Author>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
             CreateMap<Author, ReadAuthorDto>()
                 .ForMember(dest => dest.BookTitles, opt => opt.MapFrom(src => src.Books));
         }

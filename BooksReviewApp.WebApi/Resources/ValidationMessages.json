@@ -16,7 +16,22 @@
       "SurnameIsRequired": "Surname is required.",
       "SurnameMaxLength": "Surname must not exceed {0} characters.",
       "BiographyIsRequired": "Biography is required.",
-      "BiographyMaxLength": "Biography must not exceed {0} characters."
+      "BiographyMaxLength": "Biography must not exceed {0} characters.",
+      "TitleIsRequired": "Title is required.",
+      "TitleMaxLength": "Title must not exceed {0} characters.",
+      "PublisherIsRequired": "Publisher is required.",
+      "PublisherMaxLength": "Publisher must not exceed {0} characters.",
+      "ISBNIsRequired": "ISBN is required.",
+      "ISBNInvalidFormat": "Invalid ISBN format.",
+      "DescriptionIsRequired": "Description is required.",
+      "DescriptionMaxLength": "Description must not exceed {0} characters.",
+      "PublishingYearIsRequired": "Publishing Year is required.",
+      "PublishingYearOutOfRange": "Publishing Year must be between {0} and {1}.",
+      "WritingYearIsRequired": "Writing Year is required.",
+      "WritingYearOutOfRange": "Writing Year must be between {0} and {1}.",
+      "AuthorIdIsRequired": "Author ID is required.",
+      "GenreIdsIsRequired": "At least one genre ID is required.",
+      "AtLeastOneGenreRequired": "At least one genre must be specified."
     },
     "de-DE": {
       "UsernameIsRequired": "Benutzername ist erforderlich.",
@@ -34,7 +49,22 @@
       "SurnameIsRequired": "Nachname ist erforderlich.",
       "SurnameMaxLength": "Nachname darf {0} Zeichen nicht überschreiten.",
       "BiographyIsRequired": "Biografie ist erforderlich.",
-      "BiographyMaxLength": "Biografie darf {0} Zeichen nicht überschreiten."
+      "BiographyMaxLength": "Biografie darf {0} Zeichen nicht überschreiten.",
+      "TitleIsRequired": "Titel ist erforderlich.",
+      "TitleMaxLength": "Der Titel darf {0} Zeichen nicht überschreiten.",
+      "PublisherIsRequired": "Verlag ist erforderlich.",
+      "PublisherMaxLength": "Der Verlag darf {0} Zeichen nicht überschreiten.",
+      "ISBNIsRequired": "ISBN ist erforderlich.",
+      "ISBNInvalidFormat": "Ungültiges ISBN-Format.",
+      "DescriptionIsRequired": "Beschreibung ist erforderlich.",
+      "DescriptionMaxLength": "Die Beschreibung darf {0} Zeichen nicht überschreiten.",
+      "PublishingYearIsRequired": "Erscheinungsjahr ist erforderlich.",
+      "PublishingYearOutOfRange": "Das Erscheinungsjahr muss zwischen {0} und {1} liegen.",
+      "WritingYearIsRequired": "Schreibjahr ist erforderlich.",
+      "WritingYearOutOfRange": "Das Schreibjahr muss zwischen {0} und {1} liegen.",
+      "AuthorIdIsRequired": "Autor-ID ist erforderlich.",
+      "GenreIdsIsRequired": "Mindestens eine Genre-ID ist erforderlich.",
+      "AtLeastOneGenreRequired": "Es muss mindestens ein Genre angegeben werden."
     },
     "ru-RU": {
       "UsernameIsRequired": "Имя пользователя обязательно.",
@@ -52,7 +82,22 @@
       "SurnameIsRequired": "Фамилия обязательна.",
       "SurnameMaxLength": "Фамилия не должна превышать {0} символов.",
       "BiographyIsRequired": "Биография обязательна.",
-      "BiographyMaxLength": "Биография не должна превышать {0} символов."
+      "BiographyMaxLength": "Биография не должна превышать {0} символов.",
+      "TitleIsRequired": "Название обязательно.",
+      "TitleMaxLength": "Название не должно превышать {0} символов.",
+      "PublisherIsRequired": "Издатель обязателен.",
+      "PublisherMaxLength": "Издатель не должен превышать {0} символов.",
+      "ISBNIsRequired": "ISBN обязателен.",
+      "ISBNInvalidFormat": "Неверный формат ISBN.",
+      "DescriptionIsRequired": "Описание обязательно.",
+      "DescriptionMaxLength": "Описание не должно превышать {0} символов.",
+      "PublishingYearIsRequired": "Год публикации обязателен.",
+      "PublishingYearOutOfRange": "Год публикации должен быть в диапазоне от {0} до {1}.",
+      "WritingYearIsRequired": "Год написания обязателен.",
+      "WritingYearOutOfRange": "Год написания должен быть в диапазоне от {0} до {1}.",
+      "AuthorIdIsRequired": "ID автора обязателен.",
+      "GenreIdsIsRequired": "Необходимо указать хотя бы один жанр.",
+      "AtLeastOneGenreRequired": "Необходимо указать хотя бы один жанр."
     }
   }
 }

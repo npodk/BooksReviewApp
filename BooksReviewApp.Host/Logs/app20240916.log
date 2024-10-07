@@ -1,0 +1,249 @@
+2024-09-16 16:47:17.445 +03:00 [INF] Executed DbCommand (68ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 16:47:17.516 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM dbo."__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-09-16 16:47:17.587 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 16:47:17.650 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 16:47:17.651 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM dbo."__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-09-16 16:47:17.679 +03:00 [INF] Applying migration '20240916134643_CreateIdentity'.
+2024-09-16 16:47:17.832 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM dbo."Users"
+WHERE "Id" = '3a557d15-8f8f-47b2-92a2-10e145cff75d';
+2024-09-16 16:47:17.845 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" DROP COLUMN "Password";
+2024-09-16 16:47:17.846 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" RENAME COLUMN "Username" TO "UserName";
+2024-09-16 16:47:17.854 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ALTER COLUMN "UserName" TYPE character varying(256);
+ALTER TABLE dbo."Users" ALTER COLUMN "UserName" DROP NOT NULL;
+2024-09-16 16:47:17.866 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "AccessFailedCount" integer NOT NULL DEFAULT 0;
+2024-09-16 16:47:17.872 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "ConcurrencyStamp" text;
+2024-09-16 16:47:17.873 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "EmailConfirmed" boolean NOT NULL DEFAULT FALSE;
+2024-09-16 16:47:17.874 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "LockoutEnabled" boolean NOT NULL DEFAULT FALSE;
+2024-09-16 16:47:17.874 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "LockoutEnd" timestamp with time zone;
+2024-09-16 16:47:17.875 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "NormalizedEmail" character varying(256);
+2024-09-16 16:47:17.875 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "NormalizedUserName" character varying(256);
+2024-09-16 16:47:17.880 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "PasswordHash" character varying(256) NOT NULL DEFAULT '';
+2024-09-16 16:47:17.882 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "PhoneNumber" text;
+2024-09-16 16:47:17.886 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "PhoneNumberConfirmed" boolean NOT NULL DEFAULT FALSE;
+2024-09-16 16:47:17.888 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "SecurityStamp" text;
+2024-09-16 16:47:17.890 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Users" ADD "TwoFactorEnabled" boolean NOT NULL DEFAULT FALSE;
+2024-09-16 16:47:17.917 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoles" (
+    "Id" uuid NOT NULL,
+    "Name" character varying(256),
+    "NormalizedName" character varying(256),
+    "ConcurrencyStamp" text,
+    CONSTRAINT "PK_AspNetRoles" PRIMARY KEY ("Id")
+);
+2024-09-16 16:47:17.935 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserClaims" (
+    "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+    "UserId" uuid NOT NULL,
+    "ClaimType" text,
+    "ClaimValue" text,
+    CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_AspNetUserClaims_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE
+);
+2024-09-16 16:47:17.942 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserLogins" (
+    "LoginProvider" text NOT NULL,
+    "ProviderKey" text NOT NULL,
+    "ProviderDisplayName" text,
+    "UserId" uuid NOT NULL,
+    CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey"),
+    CONSTRAINT "FK_AspNetUserLogins_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE
+);
+2024-09-16 16:47:18.141 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserTokens" (
+    "UserId" uuid NOT NULL,
+    "LoginProvider" text NOT NULL,
+    "Name" text NOT NULL,
+    "Value" text,
+    CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name"),
+    CONSTRAINT "FK_AspNetUserTokens_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE
+);
+2024-09-16 16:47:18.150 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoleClaims" (
+    "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+    "RoleId" uuid NOT NULL,
+    "ClaimType" text,
+    "ClaimValue" text,
+    CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE
+);
+2024-09-16 16:47:18.156 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserRoles" (
+    "UserId" uuid NOT NULL,
+    "RoleId" uuid NOT NULL,
+    CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_AspNetUserRoles_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE
+);
+2024-09-16 16:47:18.159 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."Users" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES ('44781e13-69b6-4161-b776-f7d6acecccf3', 0, '75658814-7025-4d6d-a18e-f9b374348977', 'admin@test.com', FALSE, FALSE, NULL, NULL, NULL, 'Pass123', NULL, FALSE, NULL, FALSE, 'admin');
+2024-09-16 16:47:18.164 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "EmailIndex" ON dbo."Users" ("NormalizedEmail");
+2024-09-16 16:47:18.168 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "UserNameIndex" ON dbo."Users" ("NormalizedUserName");
+2024-09-16 16:47:18.171 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON "AspNetRoleClaims" ("RoleId");
+2024-09-16 16:47:18.173 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "RoleNameIndex" ON "AspNetRoles" ("NormalizedName");
+2024-09-16 16:47:18.176 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserClaims_UserId" ON "AspNetUserClaims" ("UserId");
+2024-09-16 16:47:18.179 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserLogins_UserId" ON "AspNetUserLogins" ("UserId");
+2024-09-16 16:47:18.182 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserRoles_RoleId" ON "AspNetUserRoles" ("RoleId");
+2024-09-16 16:47:18.183 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20240916134643_CreateIdentity', '8.0.8');
+2024-09-16 18:03:42.442 +03:00 [INF] Executed DbCommand (184ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 18:03:42.642 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM dbo."__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-09-16 18:03:42.816 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 18:03:42.964 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='dbo' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-09-16 18:03:42.967 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM dbo."__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-09-16 18:03:43.006 +03:00 [INF] Applying migration '20240916150311_ChangeIdentityTablesSchema'.
+2024-09-16 18:03:43.233 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetRoleClaims" DROP CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId";
+2024-09-16 18:03:43.237 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserClaims" DROP CONSTRAINT "FK_AspNetUserClaims_Users_UserId";
+2024-09-16 18:03:43.239 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserLogins" DROP CONSTRAINT "FK_AspNetUserLogins_Users_UserId";
+2024-09-16 18:03:43.241 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserRoles" DROP CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId";
+2024-09-16 18:03:43.243 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserRoles" DROP CONSTRAINT "FK_AspNetUserRoles_Users_UserId";
+2024-09-16 18:03:43.244 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserTokens" DROP CONSTRAINT "FK_AspNetUserTokens_Users_UserId";
+2024-09-16 18:03:43.247 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserTokens" DROP CONSTRAINT "PK_AspNetUserTokens";
+2024-09-16 18:03:43.248 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserRoles" DROP CONSTRAINT "PK_AspNetUserRoles";
+2024-09-16 18:03:43.250 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserLogins" DROP CONSTRAINT "PK_AspNetUserLogins";
+2024-09-16 18:03:43.252 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserClaims" DROP CONSTRAINT "PK_AspNetUserClaims";
+2024-09-16 18:03:43.253 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetRoles" DROP CONSTRAINT "PK_AspNetRoles";
+2024-09-16 18:03:43.255 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetRoleClaims" DROP CONSTRAINT "PK_AspNetRoleClaims";
+2024-09-16 18:03:43.269 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM dbo."Users"
+WHERE "Id" = '44781e13-69b6-4161-b776-f7d6acecccf3';
+2024-09-16 18:03:43.282 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserTokens" RENAME TO "UserTokens";
+ALTER TABLE "UserTokens" SET SCHEMA dbo;
+2024-09-16 18:03:43.284 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserRoles" RENAME TO "UserRoles";
+ALTER TABLE "UserRoles" SET SCHEMA dbo;
+2024-09-16 18:03:43.287 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserLogins" RENAME TO "UserLogins";
+ALTER TABLE "UserLogins" SET SCHEMA dbo;
+2024-09-16 18:03:43.292 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUserClaims" RENAME TO "UserClaims";
+ALTER TABLE "UserClaims" SET SCHEMA dbo;
+2024-09-16 18:03:43.295 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetRoles" RENAME TO "Roles";
+ALTER TABLE "Roles" SET SCHEMA dbo;
+2024-09-16 18:03:43.297 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetRoleClaims" RENAME TO "RoleClaims";
+ALTER TABLE "RoleClaims" SET SCHEMA dbo;
+2024-09-16 18:03:43.298 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER INDEX dbo."IX_AspNetUserRoles_RoleId" RENAME TO "IX_UserRoles_RoleId";
+2024-09-16 18:03:43.299 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER INDEX dbo."IX_AspNetUserLogins_UserId" RENAME TO "IX_UserLogins_UserId";
+2024-09-16 18:03:43.300 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER INDEX dbo."IX_AspNetUserClaims_UserId" RENAME TO "IX_UserClaims_UserId";
+2024-09-16 18:03:43.301 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER INDEX dbo."IX_AspNetRoleClaims_RoleId" RENAME TO "IX_RoleClaims_RoleId";
+2024-09-16 18:03:43.315 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserTokens" ADD CONSTRAINT "PK_UserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name");
+2024-09-16 18:03:43.320 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserRoles" ADD CONSTRAINT "PK_UserRoles" PRIMARY KEY ("UserId", "RoleId");
+2024-09-16 18:03:43.327 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserLogins" ADD CONSTRAINT "PK_UserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey");
+2024-09-16 18:03:43.333 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserClaims" ADD CONSTRAINT "PK_UserClaims" PRIMARY KEY ("Id");
+2024-09-16 18:03:43.339 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."Roles" ADD CONSTRAINT "PK_Roles" PRIMARY KEY ("Id");
+2024-09-16 18:03:43.344 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."RoleClaims" ADD CONSTRAINT "PK_RoleClaims" PRIMARY KEY ("Id");
+2024-09-16 18:03:43.347 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."Users" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES ('b416ce2a-d53b-4f15-a1d4-99956c7e86db', 0, 'e5c82dab-c52f-40d5-aba1-7393db2bf0ef', 'admin@test.com', FALSE, FALSE, NULL, NULL, NULL, 'Pass123', NULL, FALSE, NULL, FALSE, 'admin');
+2024-09-16 18:03:44.436 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."RoleClaims" ADD CONSTRAINT "FK_RoleClaims_Roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES dbo."Roles" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.446 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserClaims" ADD CONSTRAINT "FK_UserClaims_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.455 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserLogins" ADD CONSTRAINT "FK_UserLogins_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.464 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserRoles" ADD CONSTRAINT "FK_UserRoles_Roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES dbo."Roles" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.468 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserRoles" ADD CONSTRAINT "FK_UserRoles_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.476 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE dbo."UserTokens" ADD CONSTRAINT "FK_UserTokens_Users_UserId" FOREIGN KEY ("UserId") REFERENCES dbo."Users" ("Id") ON DELETE CASCADE;
+2024-09-16 18:03:44.477 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20240916150311_ChangeIdentityTablesSchema', '8.0.8');

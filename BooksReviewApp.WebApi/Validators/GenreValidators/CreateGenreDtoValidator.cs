@@ -1,18 +1,22 @@
-﻿using BooksReviewApp.WebApi.Dtos.Genre;
+﻿using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.WebApi.Dtos.Genre;
+using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.GenreValidators
 {
-    public class CreateGenreDtoValidator : AbstractValidator<CreateGenreDto>
+    public class CreateGenreDtoValidator : BaseValidator<CreateGenreDto>
     {
-        public CreateGenreDtoValidator()
+        public CreateGenreDtoValidator(ILocalizationService localizationService)
         {
-            RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Name is required.")
-                .MaximumLength(100).WithMessage("Name cannot be longer than 100 characters.");
+            RuleFor(dto => dto.Name)
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("GenreNameIsRequired"))
+                .ApplyGenreNameRules(localizationService);
 
-            RuleFor(x => x.Description)
-                .MaximumLength(500).WithMessage("Description cannot be longer than 500 characters.");
+            RuleFor(dto => dto.Description)
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("GenreDescriptionIsRequired"))
+                .ApplyGenreDescriptionRules(localizationService);
         }
     }
+
 }

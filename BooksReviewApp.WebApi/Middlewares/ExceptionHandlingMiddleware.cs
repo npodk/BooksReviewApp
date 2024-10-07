@@ -1,18 +1,17 @@
-﻿using BooksReviewApp.WebApi.Interfaces;
+﻿using BooksReviewApp.WebApi.Handlers;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
 using System.Text.Json;
+using static BooksReviewApp.WebApi.Constants;
 
 namespace BooksReviewApp.WebApi.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
-        private const string DefaultErrorMessage = "An unexpected error occurred.";
-
         private readonly RequestDelegate _next;
-        private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
+        private readonly IDictionary<Type, IExceptionHandler> _exceptionHandlers;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, IEnumerable<IExceptionHandler> exceptionHandlers)
+        public ExceptionHandlingMiddleware(RequestDelegate next, IDictionary<Type, IExceptionHandler> exceptionHandlers)
         {
             _next = next;
             _exceptionHandlers = exceptionHandlers;
@@ -35,23 +34,21 @@ namespace BooksReviewApp.WebApi.Middlewares
             var response = context.Response;
             response.ContentType = MediaTypeNames.Application.Json;
 
-            foreach (var handler in _exceptionHandlers)
+            if (_exceptionHandlers.TryGetValue(exception.GetType(), out var handler))
             {
-                if (handler.ExceptionType == exception.GetType())
-                {
-                    var message = handler.HandleException(context, exception);
-                    await WriteResponseAsync(response, message);
-                    return;
-                }
+                var messages = handler.HandleException(context, exception);
+                await WriteResponseAsync(response, messages);
+                return;
             }
 
             // Default response if no specific handler is found
-            await WriteResponseAsync(response, DefaultErrorMessage);
+            var defaultMessages = new List<string> { ExceptionHandling.DefaultErrorMessage };
+            await WriteResponseAsync(response, defaultMessages);
         }
 
-        private async Task WriteResponseAsync(HttpResponse response, string message)
+        private async Task WriteResponseAsync(HttpResponse response, List<string> messages)
         {
-            var responseModel = new { Success = false, Message = message };
+            var responseModel = new { Success = false, Message = messages };
             var jsonResponse = JsonSerializer.Serialize(responseModel);
             response.StatusCode = StatusCodes.Status404NotFound;
             await response.WriteAsync(jsonResponse);

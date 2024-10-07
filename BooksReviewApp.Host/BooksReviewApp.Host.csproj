@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -19,8 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
     <ProjectReference Include="..\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
+    <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.Localization\BooksReviewApp.Services.Localization.csproj" />
+    <ProjectReference Include="..\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />
   </ItemGroup>
 
 </Project>

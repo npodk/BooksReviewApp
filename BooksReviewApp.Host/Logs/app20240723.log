@@ -1,0 +1,92 @@
+2024-07-23 10:14:14.521 +03:00 [INF] Now listening on: https://localhost:7147
+2024-07-23 10:14:14.597 +03:00 [INF] Now listening on: http://localhost:5046
+2024-07-23 10:14:14.601 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-23 10:14:14.603 +03:00 [INF] Hosting environment: Development
+2024-07-23 10:14:14.604 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-07-23 10:16:14.835 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-07-23 10:16:15.811 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 985.8842ms
+2024-07-23 10:16:15.920 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-23 10:16:15.920 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-07-23 10:16:15.954 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 33.957ms
+2024-07-23 10:16:16.137 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 216.5144ms
+2024-07-23 10:16:16.770 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-07-23 10:16:17.050 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 280.6508ms
+2024-07-23 10:19:35.990 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7147/api/users - application/json 50
+2024-07-23 10:19:36.048 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi)'
+2024-07-23 10:19:36.144 +03:00 [INF] Route matched with {action = "CreateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateUser(BooksReviewApp.WebApi.Dtos.User.CreateUserDto) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-07-23 10:20:25.358 +03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2024-07-23 10:20:25.444 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi) in 49269.3972ms
+2024-07-23 10:20:25.447 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi)'
+2024-07-23 10:20:25.457 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7147/api/users - 400 null application/problem+json; charset=utf-8 49467.0184ms
+2024-07-23 10:26:42.010 +03:00 [INF] Now listening on: https://localhost:7147
+2024-07-23 10:26:42.108 +03:00 [INF] Now listening on: http://localhost:5046
+2024-07-23 10:26:42.114 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-23 10:26:42.116 +03:00 [INF] Hosting environment: Development
+2024-07-23 10:26:42.118 +03:00 [INF] Content root path: D:\Labs\BooksReviewApp\BooksReviewApp.Host
+2024-07-23 10:27:00.315 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/index.html - null null
+2024-07-23 10:27:01.300 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/index.html - 200 null text/html;charset=utf-8 997.1498ms
+2024-07-23 10:27:01.371 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_vs/browserLink - null null
+2024-07-23 10:27:01.371 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-23 10:27:01.431 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_framework/aspnetcore-browser-refresh.js - 200 13774 application/javascript; charset=utf-8 60.3238ms
+2024-07-23 10:27:01.539 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/_vs/browserLink - 200 null text/javascript; charset=UTF-8 168.67ms
+2024-07-23 10:27:02.744 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - null null
+2024-07-23 10:27:03.054 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7147/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 310.3068ms
+2024-07-23 10:29:47.356 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7147/api/users?culture=de-DE - application/json 53
+2024-07-23 10:29:47.408 +03:00 [INF] Executing endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi)'
+2024-07-23 10:29:47.540 +03:00 [INF] Route matched with {action = "CreateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateUser(BooksReviewApp.WebApi.Dtos.User.CreateUserDto) on controller BooksReviewApp.WebApi.Controllers.UsersController (BooksReviewApp.WebApi).
+2024-07-23 10:30:15.344 +03:00 [INF] Executed action BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi) in 27773.1526ms
+2024-07-23 10:30:15.401 +03:00 [INF] Executed endpoint 'BooksReviewApp.WebApi.Controllers.UsersController.CreateUser (BooksReviewApp.WebApi)'
+2024-07-23 10:30:17.708 +03:00 [ERR] Validation error occurred. Message: Validation failed: 
+ -- Email: E-Mail ist erforderlich. Severity: Error
+ -- Password: Das Passwort muss mindestens 8 Zeichen lang sein. Severity: Error
+ -- Password: Das Passwort muss mindestens einen Kleinbuchstaben, einen Großbuchstaben und eine Ziffer enthalten. Severity: Error, Errors: E-Mail ist erforderlich.; Das Passwort muss mindestens 8 Zeichen lang sein.; Das Passwort muss mindestens einen Kleinbuchstaben, einen Großbuchstaben und eine Ziffer enthalten., StackTrace:    at BooksReviewApp.WebApi.Validators.BaseValidator`1.Validate(ValidationContext`1 context) in D:\Labs\BooksReviewApp\BooksReviewApp.WebApi\Validators\BaseValidator.cs:line 15
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in /_/src/FluentValidation/AbstractValidator.cs:line 153
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in /_/src/FluentValidation.AspNetCore/FluentValidationModelValidatorProvider.cs:line 146
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 45
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 63
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 47
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at BooksReviewApp.WebApi.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Labs\BooksReviewApp\BooksReviewApp.WebApi\Middlewares\ExceptionHandlingMiddleware.cs:line 24, InnerException: null
+FluentValidation.ValidationException: Validation failed: 
+ -- Email: E-Mail ist erforderlich. Severity: Error
+ -- Password: Das Passwort muss mindestens 8 Zeichen lang sein. Severity: Error
+ -- Password: Das Passwort muss mindestens einen Kleinbuchstaben, einen Großbuchstaben und eine Ziffer enthalten. Severity: Error
+   at BooksReviewApp.WebApi.Validators.BaseValidator`1.Validate(ValidationContext`1 context) in D:\Labs\BooksReviewApp\BooksReviewApp.WebApi\Validators\BaseValidator.cs:line 15
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in /_/src/FluentValidation/AbstractValidator.cs:line 153
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in /_/src/FluentValidation.AspNetCore/FluentValidationModelValidatorProvider.cs:line 146
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 45
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 63
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in /_/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 47
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at BooksReviewApp.WebApi.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Labs\BooksReviewApp\BooksReviewApp.WebApi\Middlewares\ExceptionHandlingMiddleware.cs:line 24
+2024-07-23 10:30:17.867 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7147/api/users?culture=de-DE - 404 null application/json 30512.198ms

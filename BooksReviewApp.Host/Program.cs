@@ -1,10 +1,8 @@
-using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Database.Extensions;
-using BooksReviewApp.Services.EF;
-using BooksReviewApp.Services.EF.Interfaces;
+using BooksReviewApp.Services.Implementation.Application;
+using BooksReviewApp.Services.Localization.Application;
 using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Handlers;
-using BooksReviewApp.WebApi.Interfaces;
 using BooksReviewApp.WebApi.Middlewares;
 using Serilog;
 
@@ -18,26 +16,32 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-// Add services to the container.
-
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddCustomSwagger();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddBusinessServices();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IUserDbService, UserDbService>();
-builder.Services.AddScoped<IGenreDbService, GenreDbService>();
-builder.Services.AddTransient<IExceptionHandler, NpgsqlExceptionHandler>();
-builder.Services.AddTransient<IExceptionHandler, ValidationExceptionHandler>();
+
+builder.Configuration.AddLocalizationConfiguration(builder.Configuration);
+builder.Services.AddCustomLocalization(builder.Configuration);
+
+builder.Services.AddExceptionHandlers();
+builder.Services.AddValidators();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 app.UseCustomSwagger();
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+var exceptionHandlers = app.Services.GetRequiredService<Dictionary<Type, IExceptionHandler>>();
+app.UseMiddleware<ExceptionHandlingMiddleware>(exceptionHandlers);
 
 app.UseAuthorization();
 

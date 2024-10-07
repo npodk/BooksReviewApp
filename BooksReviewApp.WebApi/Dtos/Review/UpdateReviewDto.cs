@@ -1,6 +1,6 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.Review
 {
-    public class UpdateReviewDto : BaseReviewDto
+    public class UpdateReviewDto : CreateReviewDto
     {
         public Guid Id { get; set; }
     }

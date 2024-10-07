@@ -1,16 +1,17 @@
-﻿using BooksReviewApp.WebApi.Dtos.User;
+﻿using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.WebApi.Dtos.User;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class UpdateUserDtoValidator : BaseUserDtoValidator<UpdateUserDto>
+    public class UpdateUserDtoValidator : BaseValidator<UpdateUserDto>
     {
-        public UpdateUserDtoValidator()
+        public UpdateUserDtoValidator(ILocalizationService localizationService)
         {
             RuleFor(dto => dto.Id)
-                .NotEqual(Guid.Empty).WithMessage("Id cannot be the default Guid.");
+                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
 
-            Include(new CreateUserDtoValidator());
+            Include(new CreateUserDtoValidator(localizationService));
         }
     }
 }

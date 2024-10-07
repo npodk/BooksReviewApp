@@ -1,9 +1,7 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.Genre
 {
-    public class UpdateGenreDto
+    public class UpdateGenreDto : CreateGenreDto
     {
         public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
     }
 }

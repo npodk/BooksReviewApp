@@ -1,21 +1,25 @@
-﻿using BooksReviewApp.WebApi.Dtos.User;
+﻿using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class CreateUserDtoValidator : BaseUserDtoValidator<CreateUserDto>
+    public class CreateUserDtoValidator : BaseValidator<CreateUserDto>
     {
-        public CreateUserDtoValidator()
+        public CreateUserDtoValidator(ILocalizationService localizationService)
         {
             RuleFor(dto => dto.Username)
-                .NotEmpty().WithMessage("Username is required.");
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("UsernameIsRequired"))
+                .ApplyUsernameRules(localizationService);
 
             RuleFor(dto => dto.Email)
-                .NotEmpty().WithMessage("Email is required.");
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("EmailIsRequired"))
+                .ApplyEmailRules(localizationService);
 
             RuleFor(dto => dto.Password)
-                .NotEmpty().WithMessage("Password is required.");
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("PasswordIsRequired"))
+                .ApplyPasswordRules(localizationService);
         }
     }
-
 }

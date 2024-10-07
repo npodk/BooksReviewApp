@@ -1,21 +1,21 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.Book
 {
-    public class PatchBookDto
+    public class PatchBookDto : BaseBookDto
     {
         public Guid Id { get; set; }
 
-        public string? Title { get; set; }
+        public new string? Title { get; set; }
 
-        public string? Publisher { get; set; }
+        public new string? Publisher { get; set; }
 
-        public int? PublishingYear { get; set; }
+        public new int? PublishingYear { get; set; }
 
-        public int? WritingYear { get; set; }
+        public new int? WritingYear { get; set; }
 
-        public string? ISBN { get; set; }
+        public new string? ISBN { get; set; }
 
-        public string? Description { get; set; }
+        public new string? Description { get; set; }
 
-        public Guid? AuthorId { get; set; }
+        public new Guid? AuthorId { get; set; }
     }
 }

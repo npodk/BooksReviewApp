@@ -24,8 +24,8 @@ namespace BooksReviewApp.WebApi.Mappers
                 .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres));
 
             CreateMap<Author, AuthorDto>()
-            .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.AuthorSurname, opt => opt.MapFrom(src => src.Surname));
+                .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.AuthorSurname, opt => opt.MapFrom(src => src.Surname));
 
             CreateMap<Review, ReviewDto>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));

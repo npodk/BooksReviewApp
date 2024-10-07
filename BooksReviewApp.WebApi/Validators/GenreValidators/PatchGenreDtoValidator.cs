@@ -5,18 +5,20 @@ using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.GenreValidators
 {
-    public class CreateGenreDtoValidator : BaseValidator<CreateGenreDto>
+    public class PatchGenreDtoValidator : BaseValidator<PatchGenreDto>
     {
-        public CreateGenreDtoValidator(ILocalizationService localizationService)
+        public PatchGenreDtoValidator(ILocalizationService localizationService)
         {
+            RuleFor(dto => dto.Id)
+                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
+
             RuleFor(dto => dto.Name)
-                .NotEmpty().WithMessage(localizationService.GetValidationMessage("GenreNameIsRequired"))
+                .NotNull().When(dto => dto.Name != null)
                 .ApplyGenreNameRules(localizationService);
 
             RuleFor(dto => dto.Description)
-                .NotEmpty().WithMessage(localizationService.GetValidationMessage("GenreDescriptionIsRequired"))
+                .NotNull().When(dto => dto.Description != null)
                 .ApplyGenreDescriptionRules(localizationService);
         }
     }
-
 }

@@ -1,6 +1,6 @@
 ﻿namespace BooksReviewApp.WebApi.Dtos.User
 {
-    public class BaseUserDto
+    public abstract class BaseUserDto
     {
         public string Username { get; set; }
 

@@ -31,7 +31,17 @@
       "WritingYearOutOfRange": "Writing Year must be between {0} and {1}.",
       "AuthorIdIsRequired": "Author ID is required.",
       "GenreIdsIsRequired": "At least one genre ID is required.",
-      "AtLeastOneGenreRequired": "At least one genre must be specified."
+      "AtLeastOneGenreRequired": "At least one genre must be specified.",
+      "GenreNameIsRequired": "Genre Name is required.",
+      "GenreDescriptionIsRequired": "Genre Description is required.",
+      "GenreNameMaxLength": "Genre Name must not exceed {0} characters.",
+      "GenreDescriptionMaxLength": "Genre Description must not exceed {0} characters.",
+      "ReviewTextIsRequired": "Review text is required.",
+      "ReviewTextMaxLength": "Review text must not exceed {0} characters.",
+      "ReviewRatingOutOfRange": "Rating must be between {0} and {1}.",
+      "ReviewRatingIsRequired": "Review rating is required.",
+      "BookIdIsRequired": "Book ID is required.",
+      "UserIdIsRequired": "User ID is required."
     },
     "de-DE": {
       "UsernameIsRequired": "Benutzername ist erforderlich.",
@@ -64,7 +74,17 @@
       "WritingYearOutOfRange": "Das Schreibjahr muss zwischen {0} und {1} liegen.",
       "AuthorIdIsRequired": "Autor-ID ist erforderlich.",
       "GenreIdsIsRequired": "Mindestens eine Genre-ID ist erforderlich.",
-      "AtLeastOneGenreRequired": "Es muss mindestens ein Genre angegeben werden."
+      "AtLeastOneGenreRequired": "Es muss mindestens ein Genre angegeben werden.",
+      "GenreNameIsRequired": "Genre-Name ist erforderlich.",
+      "GenreDescriptionIsRequired": "Genre-Beschreibung ist erforderlich.",
+      "GenreNameMaxLength": "Genre-Name darf {0} Zeichen nicht überschreiten.",
+      "GenreDescriptionMaxLength": "Genre-Beschreibung darf {0} Zeichen nicht überschreiten.",
+      "ReviewTextIsRequired": "Rezensionstext ist erforderlich.",
+      "ReviewTextMaxLength": "Der Rezensionstext darf {0} Zeichen nicht überschreiten.",
+      "ReviewRatingOutOfRange": "Die Bewertung muss zwischen {0} und {1} liegen.",
+      "ReviewRatingIsRequired": "Bewertung ist erforderlich.",
+      "BookIdIsRequired": "Buch-ID ist erforderlich.",
+      "UserIdIsRequired": "Benutzer-ID ist erforderlich."
     },
     "ru-RU": {
       "UsernameIsRequired": "Имя пользователя обязательно.",
@@ -97,7 +117,17 @@
       "WritingYearOutOfRange": "Год написания должен быть в диапазоне от {0} до {1}.",
       "AuthorIdIsRequired": "ID автора обязателен.",
       "GenreIdsIsRequired": "Необходимо указать хотя бы один жанр.",
-      "AtLeastOneGenreRequired": "Необходимо указать хотя бы один жанр."
+      "AtLeastOneGenreRequired": "Необходимо указать хотя бы один жанр.",
+      "GenreNameIsRequired": "Название жанра обязательно.",
+      "GenreDescriptionIsRequired": "Описание жанра обязательно.",
+      "GenreNameMaxLength": "Название жанра не должно превышать {0} символов.",
+      "GenreDescriptionMaxLength": "Описание жанра не должно превышать {0} символов.",
+      "ReviewTextIsRequired": "Текст отзыва обязателен.",
+      "ReviewTextMaxLength": "Текст отзыва не должен превышать {0} символов.",
+      "ReviewRatingOutOfRange": "Рейтинг должен быть между {0} и {1}.",
+      "ReviewRatingIsRequired": "Рейтинг обязателен.",
+      "BookIdIsRequired": "ID книги обязательна.",
+      "UserIdIsRequired": "ID пользователя обязательна."
     }
   }
 }

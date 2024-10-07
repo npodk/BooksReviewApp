@@ -28,6 +28,19 @@
             public const string ISBNPattern = @"^\d{13}$";
         }
 
+        public static class GenreValidation
+        {
+            public const int MaxNameLength = 75;
+            public const int MaxDescriptionLength = 500;
+        }
+
+        public static class ReviewValidation
+        {
+            public const int MaxTextLength = 1000;
+            public const int MinRating = 1;
+            public const int MaxRating = 10;
+        }
+
         public static class ExceptionHandling
         {
             public const string DefaultErrorMessage = "An unexpected error occurred.";

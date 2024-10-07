@@ -4,7 +4,7 @@ using static BooksReviewApp.WebApi.Constants;
 
 namespace BooksReviewApp.WebApi.Extensions
 {
-    public static class BookValidationExtension
+    public static class BookValidationExtensions
     {
         public static IRuleBuilder<T, string> ApplyTitleRules<T>(this IRuleBuilder<T, string?> ruleBuilder, ILocalizationService localizationService)
         {

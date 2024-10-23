@@ -8,10 +8,9 @@ namespace BooksReviewApp.Domain.Constants
         {
             public static readonly User DefaultUser = new User
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("18ba8366-df77-441f-9154-1c897892c449"),
                 Username = "admin",
-                Email = "admin@test.com",
-                Password = "Pass123"
+                Email = "admin@example.com"
             };
         }
 
@@ -29,6 +28,7 @@ namespace BooksReviewApp.Domain.Constants
         public static class SchemaTypes
         {
             public const string Dbo = "dbo";
+            public const string Identity = "identity";
         }
     }
 }

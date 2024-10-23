@@ -1,4 +1,5 @@
 using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.Services.AspNet.Identity.Extensions;
 using BooksReviewApp.Services.Implementation.Application;
 using BooksReviewApp.Services.Localization.Application;
 using BooksReviewApp.WebApi.Extensions;
@@ -18,7 +19,17 @@ builder.Host.UseSerilog();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
+
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddIdentityDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+builder.Services.AddCustomIdentity();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdministratorRole", policy =>
+        policy.RequireRole("Administrator"));
+});
+
 builder.Services.AddCustomSwagger();
 builder.Services.AddHttpContextAccessor();
 
@@ -40,10 +51,11 @@ app.UseCustomSwagger();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 var exceptionHandlers = app.Services.GetRequiredService<Dictionary<Type, IExceptionHandler>>();
 app.UseMiddleware<ExceptionHandlingMiddleware>(exceptionHandlers);
-
-app.UseAuthorization();
 
 app.MapControllers();
 

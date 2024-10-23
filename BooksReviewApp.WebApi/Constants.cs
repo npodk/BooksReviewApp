@@ -25,7 +25,7 @@
             public const int MaxDescriptionLength = 500;
             public const int MinPublishingYear = 1000;
             public const int MinWritingYear = 1000;
-            public const string ISBNPattern = @"^\d{13}$";
+            public const string ISBNPattern = @"^(97(8|9))?\d{9}(\d|X)$|^(97(8|9))?\d{1,5}[\s-]?\d{1,7}[\s-]?\d{1,7}[\s-]?\d{1}[\s-]?(\d|X)$";
         }
 
         public static class GenreValidation

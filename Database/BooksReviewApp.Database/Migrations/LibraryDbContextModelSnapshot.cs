@@ -17,12 +17,12 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Author", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.ToTable("Authors", "dbo");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Book", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.ToTable("Books", "dbo");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.BookGenre", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.BookGenre", b =>
                 {
                     b.Property<Guid>("BookId")
                         .HasColumnType("uuid");
@@ -107,7 +107,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.ToTable("BookGenres", "dbo");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Favorite", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Favorite", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,7 +131,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.ToTable("Favorites", "dbo");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Genre", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Genre", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,7 +154,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.ToTable("Genres", "dbo");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Review", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Review", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -186,7 +186,7 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.User", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,11 +196,6 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -217,16 +212,15 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3a557d15-8f8f-47b2-92a2-10e145cff75d"),
-                            Email = "admin@test.com",
-                            Password = "Pass123",
+                            Id = new Guid("18ba8366-df77-441f-9154-1c897892c449"),
+                            Email = "admin@example.com",
                             Username = "admin"
                         });
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Book", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Book", b =>
                 {
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.Author", "Author")
+                    b.HasOne("BooksReviewApp.Domain.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -235,15 +229,15 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.BookGenre", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.BookGenre", b =>
                 {
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.Book", "Book")
+                    b.HasOne("BooksReviewApp.Domain.Entities.Book", "Book")
                         .WithMany("BookGenres")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.Genre", "Genre")
+                    b.HasOne("BooksReviewApp.Domain.Entities.Genre", "Genre")
                         .WithMany("BookGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -254,15 +248,15 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Favorite", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Favorite", b =>
                 {
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.Book", "Book")
+                    b.HasOne("BooksReviewApp.Domain.Entities.Book", "Book")
                         .WithMany("Favorites")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.User", "User")
+                    b.HasOne("BooksReviewApp.Domain.Entities.User", "User")
                         .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -273,15 +267,15 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Review", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Review", b =>
                 {
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.Book", "Book")
+                    b.HasOne("BooksReviewApp.Domain.Entities.Book", "Book")
                         .WithMany("Reviews")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BooksReviewApp.Domain.Core.Entities.User", "User")
+                    b.HasOne("BooksReviewApp.Domain.Entities.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -292,12 +286,12 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Author", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Book", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Book", b =>
                 {
                     b.Navigation("BookGenres");
 
@@ -306,12 +300,12 @@ namespace BooksReviewApp.Infrastructure.Persistance.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.Genre", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.Genre", b =>
                 {
                     b.Navigation("BookGenres");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Domain.Core.Entities.User", b =>
+            modelBuilder.Entity("BooksReviewApp.Domain.Entities.User", b =>
                 {
                     b.Navigation("Favorites");
 

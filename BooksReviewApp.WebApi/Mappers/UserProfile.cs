@@ -8,8 +8,6 @@ namespace BooksReviewApp.WebApi.Mappers
     {
         public UserProfile()
         {
-            CreateMap<CreateUserDto, User>();
-
             CreateMap<UpdateUserDto, User>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 

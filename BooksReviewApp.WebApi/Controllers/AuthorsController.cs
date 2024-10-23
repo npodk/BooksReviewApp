@@ -2,10 +2,12 @@
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Author;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AuthorsController : ControllerBase

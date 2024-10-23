@@ -10,6 +10,8 @@ namespace BooksReviewApp.Services.Implementation.Application
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IAccountService, AccountService>();
             // Add other services here
         }
     }

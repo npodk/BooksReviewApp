@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
+    <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.AspNet.Identity\BooksReviewApp.Services.AspNet.Identity.csproj" />
     <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.Localization\BooksReviewApp.Services.Localization.csproj" />
     <ProjectReference Include="..\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace BooksReviewApp.WebApi.Extensions
         public static IRuleBuilder<T, string> ApplyISBNRules<T>(this IRuleBuilder<T, string?> ruleBuilder, ILocalizationService localizationService)
         {
             return ruleBuilder
-                .Matches(BookValidation.ISBNPattern)
+                .Matches(@"^(97(8|9))?\d{9}(\d|X)$|^(97(8|9))?\d{1,5}[-\s]?\d{1,7}[-\s]?\d{1,7}[-\s]?\d{1}[-\s]?(\d|X)$")
                 .WithMessage(localizationService.GetValidationMessage("ISBNInvalidFormat"));
         }
 

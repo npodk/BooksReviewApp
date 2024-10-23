@@ -26,8 +26,8 @@ namespace BooksReviewApp.WebApi.Validators.BookValidators
                 .ApplyWritingYearRules(localizationService);
 
             RuleFor(x => x.ISBN)
-                .NotEmpty().WithMessage(localizationService.GetValidationMessage("ISBNIsRequired"))
-                .ApplyISBNRules(localizationService);
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("ISBNIsRequired"));
+                // .ApplyISBNRules(localizationService);
 
             RuleFor(x => x.Description)
                 .ApplyDescriptionRules(localizationService);

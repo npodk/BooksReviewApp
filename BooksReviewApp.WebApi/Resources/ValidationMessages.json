@@ -41,7 +41,9 @@
       "ReviewRatingOutOfRange": "Rating must be between {0} and {1}.",
       "ReviewRatingIsRequired": "Review rating is required.",
       "BookIdIsRequired": "Book ID is required.",
-      "UserIdIsRequired": "User ID is required."
+      "UserIdIsRequired": "User ID is required.",
+      "ConfirmPasswordIsRequired": "Confirm Password is required.",
+      "PasswordsDoNotMatch": "Passwords do not match."
     },
     "de-DE": {
       "UsernameIsRequired": "Benutzername ist erforderlich.",
@@ -84,7 +86,9 @@
       "ReviewRatingOutOfRange": "Die Bewertung muss zwischen {0} und {1} liegen.",
       "ReviewRatingIsRequired": "Bewertung ist erforderlich.",
       "BookIdIsRequired": "Buch-ID ist erforderlich.",
-      "UserIdIsRequired": "Benutzer-ID ist erforderlich."
+      "UserIdIsRequired": "Benutzer-ID ist erforderlich.",
+      "ConfirmPasswordIsRequired": "Bestätigungs-Passwort ist erforderlich.",
+      "PasswordsDoNotMatch": "Die Passwörter stimmen nicht überein."
     },
     "ru-RU": {
       "UsernameIsRequired": "Имя пользователя обязательно.",
@@ -127,7 +131,9 @@
       "ReviewRatingOutOfRange": "Рейтинг должен быть между {0} и {1}.",
       "ReviewRatingIsRequired": "Рейтинг обязателен.",
       "BookIdIsRequired": "ID книги обязательна.",
-      "UserIdIsRequired": "ID пользователя обязательна."
+      "UserIdIsRequired": "ID пользователя обязательна.",
+      "ConfirmPasswordIsRequired": "Подтверждение пароля обязательно.",
+      "PasswordsDoNotMatch": "Пароли не совпадают."
     }
   }
 }

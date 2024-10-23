@@ -1,6 +1,8 @@
-﻿namespace BooksReviewApp.WebApi.Dtos.User
+﻿using BooksReviewApp.Core.Domain.Interfaces;
+
+namespace BooksReviewApp.WebApi.Dtos.User
 {
-    public class UpdateUserDto : CreateUserDto
+    public class UpdateUserDto : BaseUserDto, IModel
     {
         public Guid Id { get; set; }
     }

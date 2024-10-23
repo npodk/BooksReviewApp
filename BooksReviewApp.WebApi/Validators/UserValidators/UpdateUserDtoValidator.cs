@@ -1,5 +1,6 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
 
 namespace BooksReviewApp.WebApi.Validators.UserValidators
@@ -10,8 +11,14 @@ namespace BooksReviewApp.WebApi.Validators.UserValidators
         {
             RuleFor(dto => dto.Id)
                 .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
+            
+            RuleFor(dto => dto.Username)
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("UsernameIsRequired"))
+                .ApplyUsernameRules(localizationService);
 
-            Include(new CreateUserDtoValidator(localizationService));
+            RuleFor(dto => dto.Email)
+                .NotEmpty().WithMessage(localizationService.GetValidationMessage("EmailIsRequired"))
+                .ApplyEmailRules(localizationService);
         }
     }
 }

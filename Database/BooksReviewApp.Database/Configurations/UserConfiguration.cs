@@ -24,10 +24,6 @@ namespace BooksReviewApp.Database.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(u => u.Password)
-                .IsRequired()
-                .HasMaxLength(128);
-
             builder.HasMany(u => u.Favorites)
                 .WithOne(f => f.User)
                 .HasForeignKey(f => f.UserId)

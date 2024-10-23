@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{53
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Database", "Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj", "{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Services.AspNet.Identity", "Infrastructure\BooksReviewApp.Services.AspNet.Identity\BooksReviewApp.Services.AspNet.Identity.csproj", "{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,6 +141,7 @@ Global
 		{2DC4F0AD-639E-4870-B5A7-7F41178028A9} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
 		{826C1B69-E7AB-48B9-8AC9-D6D2673F76FF} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
 		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1} = {53B76F5C-6A9E-4710-A919-80DAAA9A0155}
+		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D289CD00-032E-4498-80CB-A802600E522C}

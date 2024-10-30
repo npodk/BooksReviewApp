@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
+using BooksReviewApp.Services.Contracts.Interfaces.Identity;
 using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +25,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
+        [Permission("Users.Get")]
         public async Task<IActionResult> GetAllUsers()
         {
             var userEntities = await _userService.GetAllAsync();

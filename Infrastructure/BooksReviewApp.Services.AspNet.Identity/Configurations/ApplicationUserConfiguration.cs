@@ -1,4 +1,4 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

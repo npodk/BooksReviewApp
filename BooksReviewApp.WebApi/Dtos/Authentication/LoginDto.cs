@@ -1,4 +1,4 @@
-﻿namespace BooksReviewApp.WebApi.Dtos.Account
+﻿namespace BooksReviewApp.WebApi.Dtos.Authentication
 {
     public class LoginDto
     {

@@ -51,7 +51,7 @@ namespace BooksReviewApp.WebApi.Controllers
             return Ok(createdReview.Id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewDto reviewDto)
         {
             var reviewEntity = _mapper.Map<Review>(reviewDto);

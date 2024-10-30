@@ -1,4 +1,4 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -20,7 +20,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Extensions
 
         public static IServiceCollection AddCustomIdentity(this IServiceCollection services)
         {
-            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+            services.AddIdentity<ApplicationUser, Role>(options =>
             {
                 // Password settings
                 options.Password.RequireDigit = true;

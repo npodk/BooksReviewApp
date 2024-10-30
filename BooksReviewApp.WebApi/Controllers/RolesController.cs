@@ -1,6 +1,7 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
-using BooksReviewApp.WebApi.Dtos.Account;
-using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using BooksReviewApp.Services.AspNet.Identity.Entities;
+using BooksReviewApp.Services.Contracts.Interfaces.Identity;
+using BooksReviewApp.WebApi.Dtos.Role;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,33 +13,36 @@ namespace BooksReviewApp.WebApi.Controllers
     [Route("api/[controller]")]
     public class RolesController : ControllerBase
     {
-        private readonly RoleManager<IdentityRole<Guid>> _roleManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMapper _mapper;
+        private readonly IRoleService _roleService;
 
-        public RolesController(RoleManager<IdentityRole<Guid>> roleManager, UserManager<ApplicationUser> userManager)
+        public RolesController(
+            RoleManager<Role> roleManager,
+            UserManager<ApplicationUser> userManager,
+            IMapper mapper,
+            IRoleService roleService)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _mapper = mapper;
+            _roleService = roleService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateRole([FromBody] string roleName)
+        public async Task<IActionResult> CreateRole([FromBody] RoleDto roleDto)
         {
-            if (string.IsNullOrWhiteSpace(roleName))
-            {
-                return BadRequest("Role name cannot be empty.");
-            }
-
-            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+            var roleExist = await _roleManager.RoleExistsAsync(roleDto.RoleName);
             if (roleExist)
             {
                 return BadRequest("Role already exists.");
             }
 
-            var result = await _roleManager.CreateAsync(new IdentityRole<Guid>(roleName));
+            var result = await _roleManager.CreateAsync(new Role(roleDto.RoleName));
             if (result.Succeeded)
             {
-                return Ok(new { Role = roleName });
+                return Ok(new { Role = roleDto.RoleName });
             }
 
             return BadRequest(result.Errors);
@@ -47,7 +51,9 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRoles()
         {
-            var roles = await _roleManager.Roles.ToListAsync();
+            var roleEntities = await _roleService.GetRolesWithPermissionsAsync();
+            var roles = _mapper.Map<IEnumerable<ReadRoleDto>>(roleEntities);
+
             return Ok(roles);
         }
 

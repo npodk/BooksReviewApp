@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace BooksReviewApp.Services.Contracts.Interfaces
+namespace BooksReviewApp.Services.Contracts.Interfaces.Identity
 {
     public interface IAccountService
     {

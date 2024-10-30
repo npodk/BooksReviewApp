@@ -1,4 +1,4 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace BooksReviewApp.Services.AspNet.Identity
@@ -17,6 +17,7 @@ namespace BooksReviewApp.Services.AspNet.Identity
                 Email = "admin@example.com",
                 NormalizedEmail = "ADMIN@EXAMPLE.COM",
                 EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             public static readonly IdentityRole<Guid> DefaultRole = new IdentityRole<Guid>
@@ -42,6 +43,8 @@ namespace BooksReviewApp.Services.AspNet.Identity
             public const string UserLogin = "AspNetUserLogins";
             public const string RoleClaim = "AspNetRoleClaims";
             public const string UserToken = "AspNetUserTokens";
+            public const string Permission = "Permissions";
+            public const string RolePermission = "RolePermissions";
         }
     }
 }

@@ -52,7 +52,7 @@ namespace BooksReviewApp.WebApi.Controllers
             return Ok(createdBook.Id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDto bookDto)
         {
             var bookEntity = _mapper.Map<Book>(bookDto);

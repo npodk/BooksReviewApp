@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using static BooksReviewApp.Domain.Constants.Constants;
@@ -6,11 +6,15 @@ using static BooksReviewApp.Services.AspNet.Identity.Constants;
 
 namespace BooksReviewApp.Services.AspNet.Identity.Configurations
 {
-    public class IdentityRoleConfiguration : IEntityTypeConfiguration<IdentityRole<Guid>>
+    public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole<Guid>> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.ToTable(IdentityTableNames.Role, SchemaTypes.Identity);
+
+            builder.HasMany(r => r.RolePermissions)
+               .WithOne(rp => rp.Role)
+               .HasForeignKey(rp => rp.RoleId);
 
             builder.HasData(Account.DefaultRole);
         }

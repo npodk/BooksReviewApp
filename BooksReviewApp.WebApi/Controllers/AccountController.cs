@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BooksReviewApp.Domain.Entities;
-using BooksReviewApp.Services.AspNet.Identity.Models;
+using BooksReviewApp.Services.AspNet.Identity.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Account;
 using Microsoft.AspNetCore.Authorization;

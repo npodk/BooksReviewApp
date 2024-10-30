@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BooksReviewApp.Services.AspNet.Identity.Models;
+using BooksReviewApp.Services.AspNet.Identity.Entities;
 using BooksReviewApp.WebApi.Dtos.Account;
 
 namespace BooksReviewApp.WebApi.Mappers

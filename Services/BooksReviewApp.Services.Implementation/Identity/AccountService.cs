@@ -1,8 +1,8 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
-using BooksReviewApp.Services.Contracts.Interfaces;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
+using BooksReviewApp.Services.Contracts.Interfaces.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace BooksReviewApp.Services.Implementation
+namespace BooksReviewApp.Services.Implementation.Identity
 {
     public class AccountService : IAccountService
     {
@@ -37,6 +37,6 @@ namespace BooksReviewApp.Services.Implementation
 
             return await _userManager.DeleteAsync(user);
         }
-        
+
     }
 }

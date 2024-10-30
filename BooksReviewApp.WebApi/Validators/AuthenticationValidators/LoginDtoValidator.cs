@@ -1,9 +1,9 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
-using BooksReviewApp.WebApi.Dtos.Account;
+using BooksReviewApp.WebApi.Dtos.Authentication;
 using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
 
-namespace BooksReviewApp.WebApi.Validators.AccountValidators
+namespace BooksReviewApp.WebApi.Validators.AuthenticationValidators
 {
     public class LoginDtoValidator : BaseValidator<LoginDto>
     {

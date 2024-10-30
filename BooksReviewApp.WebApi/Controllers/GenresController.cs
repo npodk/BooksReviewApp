@@ -50,7 +50,7 @@ namespace BooksReviewApp.WebApi.Controllers
             return Ok(createdGenre.Id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateGenre([FromBody] UpdateGenreDto genreDto)
         {
             var genreEntity = _mapper.Map<Genre>(genreDto);

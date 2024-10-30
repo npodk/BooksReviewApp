@@ -1,5 +1,5 @@
-﻿using BooksReviewApp.Services.AspNet.Identity.Models;
-using BooksReviewApp.WebApi.Dtos.Account;
+﻿using BooksReviewApp.Services.AspNet.Identity.Entities;
+using BooksReviewApp.WebApi.Dtos.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +36,13 @@ namespace BooksReviewApp.WebApi.Controllers
             }
 
             return Unauthorized("Invalid login attempt.");
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok("User logged out successfully.");
         }
     }
 }

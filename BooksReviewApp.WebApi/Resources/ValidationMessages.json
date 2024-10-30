@@ -43,7 +43,11 @@
       "BookIdIsRequired": "Book ID is required.",
       "UserIdIsRequired": "User ID is required.",
       "ConfirmPasswordIsRequired": "Confirm Password is required.",
-      "PasswordsDoNotMatch": "Passwords do not match."
+      "PasswordsDoNotMatch": "Passwords do not match.",
+      "RoleNameIsRequired": "Role Name is required.",
+      "RoleNameMaxLength": "Role Name must not exceed {0} characters.",
+      "PermissionNameIsRequired": "Permission name is required.",
+      "PermissionNameTooLong": "Permission name must not exceed {0} characters."
     },
     "de-DE": {
       "UsernameIsRequired": "Benutzername ist erforderlich.",
@@ -88,7 +92,11 @@
       "BookIdIsRequired": "Buch-ID ist erforderlich.",
       "UserIdIsRequired": "Benutzer-ID ist erforderlich.",
       "ConfirmPasswordIsRequired": "Bestätigungs-Passwort ist erforderlich.",
-      "PasswordsDoNotMatch": "Die Passwörter stimmen nicht überein."
+      "PasswordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
+      "RoleNameIsRequired": "Rollenname ist erforderlich.",
+      "RoleNameMaxLength": "Rollenname darf {0} Zeichen nicht überschreiten.",
+      "PermissionNameIsRequired": "Der Berechtigungsname ist erforderlich.",
+      "PermissionNameTooLong": "Der Berechtigungsname darf {0} Zeichen nicht überschreiten."
     },
     "ru-RU": {
       "UsernameIsRequired": "Имя пользователя обязательно.",
@@ -133,7 +141,11 @@
       "BookIdIsRequired": "ID книги обязательна.",
       "UserIdIsRequired": "ID пользователя обязательна.",
       "ConfirmPasswordIsRequired": "Подтверждение пароля обязательно.",
-      "PasswordsDoNotMatch": "Пароли не совпадают."
+      "PasswordsDoNotMatch": "Пароли не совпадают.",
+      "RoleNameIsRequired": "Имя роли обязательно.",
+      "RoleNameMaxLength": "Имя роли не должно превышать {0} символов.",
+      "PermissionNameIsRequired": "Название разрешения обязательно.",
+      "PermissionNameTooLong": "Название разрешения не должно превышать {0} символов."
     }
   }
 }

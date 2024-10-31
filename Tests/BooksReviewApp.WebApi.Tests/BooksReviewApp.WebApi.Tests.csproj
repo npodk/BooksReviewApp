@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
     <ProjectReference Include="..\BooksReviewApp.Services.Tests\BooksReviewApp.Services.Tests.csproj" />
   </ItemGroup>

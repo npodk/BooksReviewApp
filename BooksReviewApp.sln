@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DD97223E-76CD-4ABF-9B56-06523EC983A4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{903FC424-C406-45D2-9020-8E17D1CDF3C1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{ADADCCF9-BF35-4CC6-82BC-50644397647C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.WebApi", "BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj", "{26B52EC3-2AAE-4623-8D1F-45FC5CCA4713}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Host", "BooksReviewApp.Host\BooksReviewApp.Host.csproj", "{B0AA9492-1083-4BC5-AB41-C728C2100DA6}"
 EndProject
@@ -25,15 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Core.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Core.Services", "Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj", "{B1824EAB-D505-424B-92B6-A3C6D2CDC8DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Domain", "Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj", "{261F3040-2291-46C9-BED3-37382574B0DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Domain", "Modules\Platform\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj", "{261F3040-2291-46C9-BED3-37382574B0DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Domain.Contracts", "Domain\BooksReviewApp.Domain.Contracts\BooksReviewApp.Domain.Contracts.csproj", "{76A0A978-8FB2-4103-BADE-8BD8E367D72D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Domain.Contracts", "Modules\Platform\Domain\BooksReviewApp.Domain.Contracts\BooksReviewApp.Domain.Contracts.csproj", "{76A0A978-8FB2-4103-BADE-8BD8E367D72D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.EF", "Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj", "{918C7BDA-F3BE-433F-8AA1-AAD35EA50A9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.Implementation", "Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj", "{9AAA776E-B2B5-4575-A8C8-BC372EC9BD0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.Implementation", "Modules\Platform\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj", "{9AAA776E-B2B5-4575-A8C8-BC372EC9BD0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.Contracts", "Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj", "{7920379E-3917-4591-B17D-FDA2DA31167F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.Contracts", "Modules\Platform\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj", "{7920379E-3917-4591-B17D-FDA2DA31167F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.Localization", "Infrastructure\BooksReviewApp.Services.Localization\BooksReviewApp.Services.Localization.csproj", "{72753792-FE1A-4A5B-85AB-95D35673304C}"
 EndProject
@@ -47,11 +41,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Tests.Common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.WebApi.Tests", "Tests\BooksReviewApp.WebApi.Tests\BooksReviewApp.WebApi.Tests.csproj", "{826C1B69-E7AB-48B9-8AC9-D6D2673F76FF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{53B76F5C-6A9E-4710-A919-80DAAA9A0155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Database", "Modules\Platform\Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj", "{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Database", "Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj", "{ACFF05F6-4768-4E29-B44A-7BBC82B039C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.Services.AspNet.Identity", "Infrastructure\BooksReviewApp.Services.AspNet.Identity\BooksReviewApp.Services.AspNet.Identity.csproj", "{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksReviewApp.Services.AspNet.Identity", "Infrastructure\BooksReviewApp.Services.AspNet.Identity\BooksReviewApp.Services.AspNet.Identity.csproj", "{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{107F4B02-B26D-47DF-A505-3DFD8AE6767B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{B6D9E18B-472F-4CE1-9861-075F6F76D853}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9456FA78-FB45-4E1A-9A20-0761D40A7A32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{BFE52494-A028-4347-9AEB-C68BD16C4D59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FC68C876-711B-435B-980F-729B87AA3AE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksReviewApp.WebApi", "Modules\Platform\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj", "{9BDA7B39-A616-4DDE-AAFC-15AF5885E546}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +63,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26B52EC3-2AAE-4623-8D1F-45FC5CCA4713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26B52EC3-2AAE-4623-8D1F-45FC5CCA4713}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26B52EC3-2AAE-4623-8D1F-45FC5CCA4713}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26B52EC3-2AAE-4623-8D1F-45FC5CCA4713}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0AA9492-1083-4BC5-AB41-C728C2100DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0AA9492-1083-4BC5-AB41-C728C2100DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0AA9492-1083-4BC5-AB41-C728C2100DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,6 +123,10 @@ Global
 		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDA7B39-A616-4DDE-AAFC-15AF5885E546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDA7B39-A616-4DDE-AAFC-15AF5885E546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDA7B39-A616-4DDE-AAFC-15AF5885E546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDA7B39-A616-4DDE-AAFC-15AF5885E546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,18 +134,23 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4453BB92-5699-49C5-AB67-A51519C40C15} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
 		{B1824EAB-D505-424B-92B6-A3C6D2CDC8DE} = {1EE3A8BE-D84E-49AF-A205-0159F8BB7B32}
-		{261F3040-2291-46C9-BED3-37382574B0DB} = {DD97223E-76CD-4ABF-9B56-06523EC983A4}
-		{76A0A978-8FB2-4103-BADE-8BD8E367D72D} = {DD97223E-76CD-4ABF-9B56-06523EC983A4}
+		{261F3040-2291-46C9-BED3-37382574B0DB} = {9456FA78-FB45-4E1A-9A20-0761D40A7A32}
+		{76A0A978-8FB2-4103-BADE-8BD8E367D72D} = {9456FA78-FB45-4E1A-9A20-0761D40A7A32}
 		{918C7BDA-F3BE-433F-8AA1-AAD35EA50A9D} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
-		{9AAA776E-B2B5-4575-A8C8-BC372EC9BD0E} = {ADADCCF9-BF35-4CC6-82BC-50644397647C}
-		{7920379E-3917-4591-B17D-FDA2DA31167F} = {ADADCCF9-BF35-4CC6-82BC-50644397647C}
+		{9AAA776E-B2B5-4575-A8C8-BC372EC9BD0E} = {FC68C876-711B-435B-980F-729B87AA3AE8}
+		{7920379E-3917-4591-B17D-FDA2DA31167F} = {FC68C876-711B-435B-980F-729B87AA3AE8}
 		{72753792-FE1A-4A5B-85AB-95D35673304C} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
 		{AA430C4F-2F43-4C2A-B18C-7D649D27C6A2} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
 		{045F450C-BF46-4453-90FB-382B10CE7403} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
 		{2DC4F0AD-639E-4870-B5A7-7F41178028A9} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
 		{826C1B69-E7AB-48B9-8AC9-D6D2673F76FF} = {76E34A54-FFDD-4A20-841B-7DC269B129D5}
-		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1} = {53B76F5C-6A9E-4710-A919-80DAAA9A0155}
+		{ACFF05F6-4768-4E29-B44A-7BBC82B039C1} = {BFE52494-A028-4347-9AEB-C68BD16C4D59}
 		{C33EE731-05A2-4E21-AB90-D0AE6C3B72B3} = {903FC424-C406-45D2-9020-8E17D1CDF3C1}
+		{B6D9E18B-472F-4CE1-9861-075F6F76D853} = {107F4B02-B26D-47DF-A505-3DFD8AE6767B}
+		{9456FA78-FB45-4E1A-9A20-0761D40A7A32} = {B6D9E18B-472F-4CE1-9861-075F6F76D853}
+		{BFE52494-A028-4347-9AEB-C68BD16C4D59} = {B6D9E18B-472F-4CE1-9861-075F6F76D853}
+		{FC68C876-711B-435B-980F-729B87AA3AE8} = {B6D9E18B-472F-4CE1-9861-075F6F76D853}
+		{9BDA7B39-A616-4DDE-AAFC-15AF5885E546} = {B6D9E18B-472F-4CE1-9861-075F6F76D853}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D289CD00-032E-4498-80CB-A802600E522C}

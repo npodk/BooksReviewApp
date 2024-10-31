@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

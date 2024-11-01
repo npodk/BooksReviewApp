@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
-using BooksReviewApp.Services.Contracts.Interfaces.Identity;
 using BooksReviewApp.WebApi.Dtos.User;
-using BooksReviewApp.WebApi.Filters;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -14,18 +11,16 @@ namespace BooksReviewApp.WebApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService, IAccountService accountService, IMapper mapper)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
-            _accountService = accountService ?? throw new ArgumentNullException(nameof(accountService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
-        [Permission("Users.Get")]
+        //[Permission("Users.Get")]
         public async Task<IActionResult> GetAllUsers()
         {
             var userEntities = await _userService.GetAllAsync();
@@ -51,11 +46,11 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
         {
-            var identityResult = await _accountService.UpdateAccountAsync(userDto.Id, userDto.Username, userDto.Email);
-            if (!identityResult.Succeeded)
-            {
-                return BadRequest(identityResult.Errors);
-            }
+            //var identityResult = await _accountService.UpdateAccountAsync(userDto.Id, userDto.Username, userDto.Email);
+            //if (!identityResult.Succeeded)
+            //{
+            //    return BadRequest(identityResult.Errors);
+            //}
 
             var userEntity = _mapper.Map<User>(userDto);
             var updatedUser = await _userService.UpdateAsync(userEntity);
@@ -75,11 +70,11 @@ namespace BooksReviewApp.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
-            var identityResult = await _accountService.DeleteAccountAsync(id);
-            if (!identityResult.Succeeded)
-            {
-                return BadRequest(identityResult.Errors);
-            }
+            //var identityResult = await _accountService.DeleteAccountAsync(id);
+            //if (!identityResult.Succeeded)
+            //{
+            //    return BadRequest(identityResult.Errors);
+            //}
 
             var result = await _userService.DeleteAsync(id);
             return Ok(result);

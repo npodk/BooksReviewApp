@@ -1,11 +1,14 @@
 using BooksReviewApp.Database.Extensions;
-using BooksReviewApp.Services.AspNet.Identity.Extensions;
+using BooksReviewApp.Services.AspNet.Identity;
 using BooksReviewApp.Services.Implementation.Application;
 using BooksReviewApp.Services.Localization.Application;
 using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Handlers;
 using BooksReviewApp.WebApi.Middlewares;
+using Identity.Domain.Entities;
+using Identity.Database.Extensions;
 using Serilog;
+using BooksReviewApp.Services.Identity.AspNet.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +26,7 @@ builder.Services.AddControllers();
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddIdentityDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
-builder.Services.AddCustomIdentity();
+builder.Services.AddCustomIdentity<ApplicationUser, Role, AspIdentityDbContext>();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdministratorRole", policy =>

@@ -1,6 +1,4 @@
 ﻿using BooksReviewApp.Services.Contracts.Interfaces;
-using BooksReviewApp.Services.Contracts.Interfaces.Identity;
-using BooksReviewApp.Services.Implementation.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BooksReviewApp.Services.Implementation.Application
@@ -13,10 +11,6 @@ namespace BooksReviewApp.Services.Implementation.Application
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IBookService, BookService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IPermissionService, PermissionService>();
-            services.AddScoped<IGuardService, GuardService>();
             // Add other services here
         }
     }

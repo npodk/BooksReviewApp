@@ -1,4 +1,5 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
+using BooksReviewApp.Core.Services.Models;
 using BooksReviewApp.WebApi.Dtos.User;
 using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
@@ -19,10 +20,6 @@ namespace BooksReviewApp.WebApi.Validators.UserValidators
             RuleFor(dto => dto.Email)
                 .NotNull().When(dto => dto.Email != null)
                 .ApplyEmailRules(localizationService);
-
-            RuleFor(dto => dto.Password)
-                .NotNull().When(dto => dto.Password != null)
-                .ApplyPasswordRules(localizationService);
         }
     }
 }

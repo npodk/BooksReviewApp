@@ -1,7 +1,7 @@
 ﻿using BooksReviewApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static BooksReviewApp.Domain.Constants.Constants;
+using static BooksReviewApp.Domain.Constants;
 
 namespace BooksReviewApp.Database.Configurations
 {

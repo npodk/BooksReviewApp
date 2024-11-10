@@ -8,7 +8,8 @@ namespace BooksReviewApp.Domain
         {
             public static readonly User DefaultUser = new User
             {
-                Id = new Guid("18ba8366-df77-441f-9154-1c897892c449"),
+                Id = Guid.NewGuid(),
+                ApplicationUserId = new Guid("18ba8366-df77-441f-9154-1c897892c449"),
                 Username = "admin",
                 Email = "admin@example.com"
             };

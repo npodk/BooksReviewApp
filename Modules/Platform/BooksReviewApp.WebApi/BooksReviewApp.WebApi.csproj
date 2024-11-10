@@ -10,11 +10,13 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
+    <ProjectReference Include="..\..\Identity\Identity.WebApi\Identity.WebApi.csproj" />
     <ProjectReference Include="..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
     <ProjectReference Include="..\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
   </ItemGroup>

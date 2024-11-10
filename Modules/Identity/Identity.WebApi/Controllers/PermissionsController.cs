@@ -53,17 +53,17 @@ namespace Identity.WebApi.Controllers
         }
 
         [HttpPost("assign")]
-        public async Task<IActionResult> AssignPermissionToRole([FromBody] RolePermissionDto assignPermissionDto)
+        public async Task<IActionResult> AssignPermissionsToRole([FromBody] AssignRolePermissionsDto assignPermissionDto)
         {
-            var result = await _permissionService.AssignPermissionToRoleAsync(assignPermissionDto.RoleId, assignPermissionDto.PermissionId);
+            var result = await _permissionService.AssignPermissionsToRoleAsync(assignPermissionDto.RoleId, assignPermissionDto.PermissionIds);
 
             return result ? Ok() : NotFound();
         }
 
         [HttpDelete("remove")]
-        public async Task<IActionResult> RemovePermissionFromRole([FromBody] RolePermissionDto removePermissionDto)
+        public async Task<IActionResult> RemovePermissionFromRole([FromBody] DeleteRolePermissionDto deletePermissionDto)
         {
-            var result = await _permissionService.RemovePermissionFromRoleAsync(removePermissionDto.RoleId, removePermissionDto.PermissionId);
+            var result = await _permissionService.RemovePermissionFromRoleAsync(deletePermissionDto.RoleId, deletePermissionDto.PermissionId);
 
             return result ? Ok() : NotFound();
         }

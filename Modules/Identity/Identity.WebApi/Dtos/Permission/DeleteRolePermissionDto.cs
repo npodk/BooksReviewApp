@@ -1,6 +1,6 @@
 ﻿namespace Identity.WebApi.Dtos.Permission
 {
-    public class RolePermissionDto
+    public class DeleteRolePermissionDto
     {
         public Guid RoleId { get; set; }
 

@@ -2,6 +2,7 @@
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.User;
+using Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -20,7 +21,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
-        //[Permission("Users.Get")]
+        [Permission("Users.Get")]
         public async Task<IActionResult> GetAllUsers()
         {
             var userEntities = await _userService.GetAllAsync();
@@ -29,59 +30,19 @@ namespace BooksReviewApp.WebApi.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserById([FromRoute] Guid id)
-        {
-            var userEntity = await _userService.GetByIdAsync(id);
-            if (userEntity == null)
-            {
-                return Ok(null);
-            }
+        [HttpGet("by-id/{id}")]
+        [Permission("Users.Get")]
+        public Task<IActionResult> GetUserById([FromRoute] Guid id) =>
+            GetUserByIdAsync(_userService.GetByIdAsync, id);
 
-            var userDto = _mapper.Map<ReadUserDto>(userEntity);
-
-            return Ok(userDto);
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto userDto)
-        {
-            //var identityResult = await _accountService.UpdateAccountAsync(userDto.Id, userDto.Username, userDto.Email);
-            //if (!identityResult.Succeeded)
-            //{
-            //    return BadRequest(identityResult.Errors);
-            //}
-
-            var userEntity = _mapper.Map<User>(userDto);
-            var updatedUser = await _userService.UpdateAsync(userEntity);
-            return Ok(updatedUser);
-        }
-
-        /*
-        [HttpPatch]
-        public async Task<IActionResult> PatchUser([FromBody] PatchUserDto userDto)
-        {
-            var userEntity = _mapper.Map<User>(userDto);
-            var patchedUser = await _userService.PatchAsync(userEntity);
-            return Ok(patchedUser);
-        }
-        */
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
-        {
-            //var identityResult = await _accountService.DeleteAccountAsync(id);
-            //if (!identityResult.Succeeded)
-            //{
-            //    return BadRequest(identityResult.Errors);
-            //}
-
-            var result = await _userService.DeleteAsync(id);
-            return Ok(result);
-        }
+        [HttpGet("by-application-id/{id}")]
+        [Permission("Users.Get")]
+        public Task<IActionResult> GetUserByApplicationId([FromRoute] Guid id) =>
+            GetUserByIdAsync(_userService.GetByApplicationUserIdAsync, id);
 
         // TO-DO: Should be implemented
         [HttpGet("{id}/favorites")]
+        [Permission("Favorites.Get")]
         public async Task<IActionResult> GetAllFavoritesByUser()
         {
             try
@@ -97,6 +58,7 @@ namespace BooksReviewApp.WebApi.Controllers
 
         // TO-DO: Should be implemented
         [HttpGet("{id}/reviews")]
+        [Permission("Reviews.Get")]
         public async Task<IActionResult> GetAllReviewsByUser()
         {
             try
@@ -108,6 +70,19 @@ namespace BooksReviewApp.WebApi.Controllers
             {
                 return StatusCode(500, $"An error occurred while retrieving all reviews for the user: {ex.Message}");
             }
+        }
+
+        private async Task<IActionResult> GetUserByIdAsync(Func<Guid, Task<User?>> userServiceMethod, Guid id)
+        {
+            var userEntity = await userServiceMethod(id);
+
+            if (userEntity == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            var userDto = _mapper.Map<ReadUserDto>(userEntity);
+            return Ok(userDto);
         }
     }
 }

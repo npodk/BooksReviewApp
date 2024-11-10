@@ -8,6 +8,8 @@ namespace Identity.WebApi.Mappers
     {
         public PermissionProfile()
         {
+            CreateMap<BasePermissionDto, Permission>();
+
             CreateMap<PermissionDto, Permission>();
 
             CreateMap<Permission, PermissionDto>();

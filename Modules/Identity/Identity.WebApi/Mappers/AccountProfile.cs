@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Identity.Domain.Entities;
+using Identity.Domain.Models;
 using Identity.WebApi.Dtos.Account;
 
 namespace Identity.WebApi.Mappers
@@ -8,8 +9,13 @@ namespace Identity.WebApi.Mappers
     {
         public AccountProfile()
         {
-            CreateMap<RegisterDto, ApplicationUser>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<RegisterDto, ApplicationUser>();
+
+            CreateMap<UpdateAccountDto, UpdateAccountModel>();
+
+            CreateMap<ChangePasswordDto, ChangePasswordModel>();
+
+            CreateMap<PatchAccountDto,  PatchAccountModel>();
         }
     }
 }

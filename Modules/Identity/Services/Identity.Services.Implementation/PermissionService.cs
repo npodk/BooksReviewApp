@@ -15,29 +15,30 @@ namespace BooksReviewApp.Services.Implementation.Identity
             _context = context;
         }
 
-        public async Task<bool> AssignPermissionToRoleAsync(Guid roleId, Guid permissionId)
+        public async Task<bool> AssignPermissionsToRoleAsync(Guid roleId, List<Guid> permissionIds)
         {
-            if (await RolePermissionExistsAsync(roleId, permissionId))
-            {
-                return true;
-            }
-
             var role = await _context.Roles.FindAsync(roleId);
-            var permission = await _context.Permissions.FindAsync(permissionId);
-
-            if (role == null || permission == null)
+            if (role == null)
             {
                 return false;
             }
 
-            var rolePermission = new RolePermission
+            var existingPermissions = await _context.RolePermissions
+                .Where(rp => rp.RoleId == roleId && permissionIds.Contains(rp.PermissionId))
+                .Select(rp => rp.PermissionId)
+                .ToListAsync();
+
+            var newPermissions = permissionIds.Except(existingPermissions);
+
+            var rolePermissions = newPermissions.Select(permissionId => new RolePermission
             {
                 RoleId = roleId,
                 PermissionId = permissionId
-            };
+            }).ToList();
 
-            _context.RolePermissions.Add(rolePermission);
+            _context.RolePermissions.AddRange(rolePermissions);
             await _context.SaveChangesAsync();
+
             return true;
         }
 
@@ -52,11 +53,6 @@ namespace BooksReviewApp.Services.Implementation.Identity
             _context.RolePermissions.Remove(rolePermission);
             await _context.SaveChangesAsync();
             return true;
-        }
-
-        private async Task<bool> RolePermissionExistsAsync(Guid roleId, Guid permissionId)
-        {
-            return await _context.RolePermissions.AnyAsync(rp => rp.RoleId == roleId && rp.PermissionId == permissionId);
         }
 
         private async Task<RolePermission?> GetRolePermissionAsync(Guid roleId, Guid permissionId)

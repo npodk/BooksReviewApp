@@ -1,14 +1,14 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Core.Services.Models;
-using BooksReviewApp.WebApi.Dtos.User;
-using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
+using Identity.WebApi.Dtos.Account;
+using Identity.WebApi.Extensions;
 
-namespace BooksReviewApp.WebApi.Validators.UserValidators
+namespace Identity.WebApi.Validators.AccountValidators
 {
-    public class PatchUserDtoValidator : BaseValidator<PatchUserDto>
+    public class PatchAccountDtoValidator : BaseValidator<PatchAccountDto>
     {
-        public PatchUserDtoValidator(ILocalizationService localizationService)
+        public PatchAccountDtoValidator(ILocalizationService localizationService)
         {
             RuleFor(dto => dto.Id)
                 .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));

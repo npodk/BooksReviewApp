@@ -9,6 +9,7 @@ using Identity.Domain.Entities;
 using Identity.Database.Extensions;
 using Serilog;
 using BooksReviewApp.Services.Identity.AspNet.Extensions;
+using Identity.Services.Implementation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddControllers();
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddIdentityDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
+builder.Services.AddIdentityServices();
 builder.Services.AddCustomIdentity<ApplicationUser, Role, AspIdentityDbContext>();
 builder.Services.AddAuthorization(options =>
 {

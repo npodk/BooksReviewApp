@@ -2,6 +2,7 @@
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Book;
+using Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
+        [Permission("Books.Get")]
         public async Task<IActionResult> GetAllBooks()
         {
             var bookEntities = await _bookService.GetAllAsync();
@@ -31,6 +33,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Permission("Books.Get")]
         public async Task<IActionResult> GetBookById([FromRoute] Guid id)
         {
             var bookEntity = await _bookService.GetByIdAsync(id);
@@ -45,6 +48,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
+        [Permission("Books.Post")]
         public async Task<IActionResult> CreateBook([FromBody] CreateBookDto bookDto)
         {
             var bookEntity = _mapper.Map<Book>(bookDto);
@@ -53,6 +57,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPut]
+        [Permission("Books.Put")]
         public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDto bookDto)
         {
             var bookEntity = _mapper.Map<Book>(bookDto);
@@ -61,6 +66,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPatch]
+        [Permission("Books.Patch")]
         public async Task<IActionResult> PatchBook([FromBody] PatchBookDto bookDto)
         {
             var bookEntity = _mapper.Map<Book>(bookDto);
@@ -69,6 +75,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Permission("Books.Delete")]
         public async Task<IActionResult> DeleteBook([FromRoute] Guid id)
         {
             var result = await _bookService.DeleteAsync(id);
@@ -77,6 +84,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}/reviews")]
+        [Permission("Reviews.Get")]
         public async Task<IActionResult> GetAllReviewsByBook()
         {
             await Task.CompletedTask;
@@ -84,6 +92,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}/genres")]
+        [Permission("Genres.Get")]
         public async Task<IActionResult> GetAllGenresByBook()
         {
             await Task.CompletedTask;

@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BooksReviewApp.Services.AspNet.Identity.Migrations
+namespace Identity.Database.Migrations
 {
     [DbContext(typeof(AspIdentityDbContext))]
-    [Migration("20241023171302_AddIdentity")]
-    partial class AddIdentity
+    [Migration("20241110153734_AddAspIdentity")]
+    partial class AddAspIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,27 +87,28 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", "identity");
+                    b.ToTable("Users", "identity");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("18ba8366-df77-441f-9154-1c897892c449"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ae7eab38-d437-4775-be6c-a10efd4c2719",
+                            ConcurrencyStamp = "036ff30a-2e32-4bae-a398-5dbbb057ed36",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFIo2mlWB5MA3Ow5cf1pzQrdHCI4RFeE0F0fsfRhoivSuN9N8CGbOhS2EohkBHZbDA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBwc0D9KrqRkGC+odV1hteJh4CScOrii577Ikj25aHr0vtgQ+N/Ec/3PGn7/zg197g==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "f95d22f8-c6c5-4dc6-852d-ebfd266ec680",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.Permission", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Permission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,187 +121,190 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Permissions", "identity");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a84a2483-2359-4f81-94fd-c8b1803190e1"),
+                            Id = new Guid("4ba76686-1e76-438a-97ab-0404fd9a3418"),
                             Name = "Authors.Get"
                         },
                         new
                         {
-                            Id = new Guid("a8ff26a0-dd03-41c4-acc5-48fcc4fe6615"),
-                            Name = "Authors.Create"
+                            Id = new Guid("058cd99e-567d-44d7-be35-5873dc3e2350"),
+                            Name = "Authors.Post"
                         },
                         new
                         {
-                            Id = new Guid("93222dbf-28e8-4979-a2e6-fd9698195e3f"),
-                            Name = "Authors.Update"
+                            Id = new Guid("f4b7cde5-6907-4e99-b1ef-d0832ed78deb"),
+                            Name = "Authors.Put"
                         },
                         new
                         {
-                            Id = new Guid("b7f21859-e59c-41de-9ad3-6e918bae7565"),
+                            Id = new Guid("ad5b2993-b60f-428e-8165-5fe5cff7ea82"),
                             Name = "Authors.Patch"
                         },
                         new
                         {
-                            Id = new Guid("554573c9-ca90-45c8-a0e2-cab8d5943964"),
+                            Id = new Guid("1eb3c49c-2216-47eb-a787-8886ef63f24b"),
                             Name = "Authors.Delete"
                         },
                         new
                         {
-                            Id = new Guid("c5c7a85d-a34f-4f84-857a-fe5a8dbc24ff"),
+                            Id = new Guid("c3d04ac2-0984-4982-b225-ef519377b8f6"),
                             Name = "Books.Get"
                         },
                         new
                         {
-                            Id = new Guid("9b3a2a17-4701-452d-b396-73b8734310ba"),
-                            Name = "Books.Create"
+                            Id = new Guid("35578c7a-5379-4fb7-beb7-b155ae67fab5"),
+                            Name = "Books.Post"
                         },
                         new
                         {
-                            Id = new Guid("65532f22-11a2-40cb-8db1-4b0618b5dce3"),
-                            Name = "Books.Update"
+                            Id = new Guid("a453268d-fa8d-46d6-b99e-0267f90a11f6"),
+                            Name = "Books.Put"
                         },
                         new
                         {
-                            Id = new Guid("1c56d3d8-2b1d-445a-b3fc-24a19523e936"),
+                            Id = new Guid("a8cb9cd2-b8f5-46b6-88b8-14ee1a6c715b"),
                             Name = "Books.Patch"
                         },
                         new
                         {
-                            Id = new Guid("a9371e4f-c1c2-4d03-af1e-39c0a7142434"),
+                            Id = new Guid("e3daa6b2-78c9-4862-9e24-cd36964410f5"),
                             Name = "Books.Delete"
                         },
                         new
                         {
-                            Id = new Guid("45aa88a0-be42-43ee-aa23-af538042ab3f"),
+                            Id = new Guid("97f1c91f-dbf0-4775-9dc8-5b61c6b3fdbc"),
                             Name = "Favorites.Get"
                         },
                         new
                         {
-                            Id = new Guid("58760ef0-6751-4e9c-b827-dd014298f786"),
-                            Name = "Favorites.Create"
+                            Id = new Guid("c3d471d5-08c5-4129-a2e6-635293f264ea"),
+                            Name = "Favorites.Post"
                         },
                         new
                         {
-                            Id = new Guid("6556bb1e-6560-481d-b73e-d571db1ae43b"),
-                            Name = "Favorites.Update"
+                            Id = new Guid("af9839ee-09ee-4de3-a329-9072d1ecaab3"),
+                            Name = "Favorites.Put"
                         },
                         new
                         {
-                            Id = new Guid("1cb21d11-a540-4e64-8f06-1c22f06d7b68"),
+                            Id = new Guid("ff9b4aa0-60e4-486f-afef-74a9edf68491"),
                             Name = "Favorites.Patch"
                         },
                         new
                         {
-                            Id = new Guid("ffef47e7-3610-46b7-aa01-5b875c776727"),
+                            Id = new Guid("9bebba54-95c3-4378-9382-30c3905746df"),
                             Name = "Favorites.Delete"
                         },
                         new
                         {
-                            Id = new Guid("11ba0a82-3139-4794-a5a5-51fb3ad66a0e"),
+                            Id = new Guid("eae384bb-d1d3-4a26-b43e-db07753d5273"),
                             Name = "Genres.Get"
                         },
                         new
                         {
-                            Id = new Guid("d62d4bf4-b28a-4cb0-aead-159c91c92e88"),
-                            Name = "Genres.Create"
+                            Id = new Guid("2457aead-e1fc-481d-a936-50fd8950267d"),
+                            Name = "Genres.Post"
                         },
                         new
                         {
-                            Id = new Guid("b38cee8f-1ef5-472b-8f96-ba1fc0973700"),
-                            Name = "Genres.Update"
+                            Id = new Guid("8680c769-6b47-4dcc-8648-e24c54f01089"),
+                            Name = "Genres.Put"
                         },
                         new
                         {
-                            Id = new Guid("6536b465-b4af-4960-a8a2-06a5c67adcca"),
+                            Id = new Guid("0a552f88-9576-4b8e-aa7b-772ac58de122"),
                             Name = "Genres.Patch"
                         },
                         new
                         {
-                            Id = new Guid("959496b3-c78b-4017-97d3-7945ded029b5"),
+                            Id = new Guid("cf94afe7-45f8-44ee-9033-7964072bbca7"),
                             Name = "Genres.Delete"
                         },
                         new
                         {
-                            Id = new Guid("4f4252aa-561d-40dc-a9ef-036fe70b2656"),
+                            Id = new Guid("bfddb695-bf36-47f4-8cfb-04898d2c027c"),
                             Name = "Reviews.Get"
                         },
                         new
                         {
-                            Id = new Guid("f3f85d3b-4eb6-41f1-b127-0c658b7335fc"),
-                            Name = "Reviews.Create"
+                            Id = new Guid("42a5f8cb-d5d2-4818-ae8b-049e4100a032"),
+                            Name = "Reviews.Post"
                         },
                         new
                         {
-                            Id = new Guid("e7d86a4c-4c6d-4edc-aea0-4758993370fe"),
-                            Name = "Reviews.Update"
+                            Id = new Guid("ff9513df-859a-4b62-823f-7bde983d78db"),
+                            Name = "Reviews.Put"
                         },
                         new
                         {
-                            Id = new Guid("892e56cc-3278-4edd-b1a5-d5c1dec99f77"),
+                            Id = new Guid("f1ab4323-38ac-49ae-848e-16cc02f47274"),
                             Name = "Reviews.Patch"
                         },
                         new
                         {
-                            Id = new Guid("8196071f-e1d5-4051-a12f-39235a9efb7c"),
+                            Id = new Guid("9284189f-ab1a-404b-ba29-9923b4d5dc57"),
                             Name = "Reviews.Delete"
                         },
                         new
                         {
-                            Id = new Guid("4515481c-c9fe-41d8-a778-4e9cdb0c35e1"),
+                            Id = new Guid("9618e262-27bd-407f-b7a8-d4e0f577bfdf"),
                             Name = "Roles.Get"
                         },
                         new
                         {
-                            Id = new Guid("dfef951c-c93d-4e4c-b160-3ca793831d63"),
-                            Name = "Roles.Create"
+                            Id = new Guid("80e4e45b-bef8-440d-a004-ebd5da0d9668"),
+                            Name = "Roles.Post"
                         },
                         new
                         {
-                            Id = new Guid("310fa979-81ea-4fce-b9a0-b6b27b6cc738"),
-                            Name = "Roles.Update"
+                            Id = new Guid("37066186-d622-4735-9685-b89da53879a5"),
+                            Name = "Roles.Put"
                         },
                         new
                         {
-                            Id = new Guid("1c4d832f-6f3a-4286-b1cd-9bb4e0c235e2"),
+                            Id = new Guid("6eafc07a-0f3f-4072-b09b-4a24aa0a9861"),
                             Name = "Roles.Patch"
                         },
                         new
                         {
-                            Id = new Guid("07a1f42c-cbb5-4286-8fbc-aa4d61caba40"),
+                            Id = new Guid("e3ebeab6-fd06-447b-a61f-255dbcaba3be"),
                             Name = "Roles.Delete"
                         },
                         new
                         {
-                            Id = new Guid("7a877756-dc3f-4858-b531-27ccb09f804a"),
+                            Id = new Guid("254e2588-081f-4528-8f1c-6a18a94dbe82"),
                             Name = "Users.Get"
                         },
                         new
                         {
-                            Id = new Guid("e603110e-790c-4770-b547-34b108016761"),
-                            Name = "Users.Create"
+                            Id = new Guid("6ce73608-bf33-4709-af9c-d10169c8c26b"),
+                            Name = "Users.Post"
                         },
                         new
                         {
-                            Id = new Guid("78570082-e155-4d0e-b4b8-df900c76a439"),
-                            Name = "Users.Update"
+                            Id = new Guid("ea1c1da9-ddff-40f8-8e78-14e1466213c9"),
+                            Name = "Users.Put"
                         },
                         new
                         {
-                            Id = new Guid("fb166784-c775-480f-8621-3aa26d33c755"),
+                            Id = new Guid("3d30b401-e64e-4cd7-9425-4ae561a8aee0"),
                             Name = "Users.Patch"
                         },
                         new
                         {
-                            Id = new Guid("6f0aee01-6a62-4a9d-8387-41088f34a719"),
+                            Id = new Guid("6a9d8629-0730-48ce-b991-1031f3dc8c0e"),
                             Name = "Users.Delete"
                         });
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.Role", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,7 +328,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", "identity");
+                    b.ToTable("Roles", "identity");
 
                     b.HasData(
                         new
@@ -335,7 +339,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.RolePermission", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.RolePermission", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
@@ -460,15 +464,15 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
                     b.ToTable("AspNetUserTokens", "identity");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.RolePermission", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.RolePermission", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.Permission", "Permission")
+                    b.HasOne("Identity.Domain.Entities.Permission", "Permission")
                         .WithMany("RolePermissions")
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.Role", "Role")
+                    b.HasOne("Identity.Domain.Entities.Role", "Role")
                         .WithMany("RolePermissions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -481,7 +485,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.Role", null)
+                    b.HasOne("Identity.Domain.Entities.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -490,7 +494,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.ApplicationUser", null)
+                    b.HasOne("Identity.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -499,7 +503,7 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.ApplicationUser", null)
+                    b.HasOne("Identity.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -508,13 +512,13 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.Role", null)
+                    b.HasOne("Identity.Domain.Entities.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.ApplicationUser", null)
+                    b.HasOne("Identity.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -523,19 +527,19 @@ namespace BooksReviewApp.Services.AspNet.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("BooksReviewApp.Services.AspNet.Identity.Entities.ApplicationUser", null)
+                    b.HasOne("Identity.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.Permission", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
                 });
 
-            modelBuilder.Entity("BooksReviewApp.Services.AspNet.Identity.Entities.Role", b =>
+            modelBuilder.Entity("Identity.Domain.Entities.Role", b =>
                 {
                     b.Navigation("RolePermissions");
                 });

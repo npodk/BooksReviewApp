@@ -3,6 +3,7 @@ using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Genre;
 using BooksReviewApp.WebApi.Dtos.Review;
+using Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -21,6 +22,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
+        [Permission("Reviews.Get")]
         public async Task<IActionResult> GetAllReviews()
         {
             var reviewEntities = await _reviewService.GetAllAsync();
@@ -30,6 +32,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Permission("Reviews.Get")]
         public async Task<IActionResult> GetReviewById([FromRoute] Guid id)
         {
             var reviewEntity = await _reviewService.GetByIdAsync(id);
@@ -44,6 +47,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
+        [Permission("Reviews.Post")]
         public async Task<IActionResult> CreateReview([FromBody] CreateReviewDto reviewDto)
         {
             var reviewEntity = _mapper.Map<Review>(reviewDto);
@@ -52,6 +56,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPut]
+        [Permission("Reviews.Put")]
         public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewDto reviewDto)
         {
             var reviewEntity = _mapper.Map<Review>(reviewDto);
@@ -60,6 +65,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPatch]
+        [Permission("Reviews.Patch")]
         public async Task<IActionResult> PatchGenre([FromBody] PatchReviewDto reviewDto)
         {
             var reviewEntity = _mapper.Map<Review>(reviewDto);
@@ -68,6 +74,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Permission("Reviews.Delete")]
         public async Task<IActionResult> DeleteReview([FromRoute] Guid id)
         {
             var result = await _reviewService.DeleteAsync(id);

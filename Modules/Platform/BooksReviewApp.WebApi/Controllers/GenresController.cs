@@ -2,6 +2,7 @@
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Genre;
+using Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -20,6 +21,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
+        [Permission("Genres.Get")]
         public async Task<IActionResult> GetAllGenres()
         {
             var genreEntities = await _genreService.GetAllAsync();
@@ -29,6 +31,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Permission("Genres.Get")]
         public async Task<IActionResult> GetGenreById([FromRoute] Guid id)
         {
             var genreEntity = await _genreService.GetByIdAsync(id);
@@ -43,6 +46,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
+        [Permission("Genres.Post")]
         public async Task<IActionResult> CreateGenre([FromBody] CreateGenreDto genreDto)
         {
             var genreEntity = _mapper.Map<Genre>(genreDto);
@@ -51,6 +55,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPut]
+        [Permission("Genres.Put")]
         public async Task<IActionResult> UpdateGenre([FromBody] UpdateGenreDto genreDto)
         {
             var genreEntity = _mapper.Map<Genre>(genreDto);
@@ -59,6 +64,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPatch]
+        [Permission("Genres.Patch")]
         public async Task<IActionResult> PatchGenre([FromBody] PatchGenreDto genreDto)
         {
             var genreEntity = _mapper.Map<Genre>(genreDto);
@@ -67,6 +73,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Permission("Genres.Delete")]
         public async Task<IActionResult> DeleteGenre([FromRoute] Guid id)
         {
             var result = await _genreService.DeleteAsync(id);
@@ -75,6 +82,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}/books")]
+        [Permission("Books.Get")]
         public async Task<IActionResult> GetAllBooksByGenre()
         {
             await Task.CompletedTask;

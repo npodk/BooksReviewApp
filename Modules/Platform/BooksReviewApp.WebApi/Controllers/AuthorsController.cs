@@ -2,7 +2,7 @@
 using BooksReviewApp.Domain.Entities;
 using BooksReviewApp.Services.Contracts.Interfaces;
 using BooksReviewApp.WebApi.Dtos.Author;
-using Microsoft.AspNetCore.Authorization;
+using Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksReviewApp.WebApi.Controllers
@@ -22,6 +22,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet]
+        [Permission("Authors.Get")]
         public async Task<IActionResult> GetAllAuthors()
         {
             var authorEntities = await _authorService.GetAllAsync();
@@ -31,6 +32,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Permission("Authors.Get")]
         public async Task<IActionResult> GetAuthorById([FromRoute] Guid id)
         {
             var authorEntity = await _authorService.GetByIdAsync(id);
@@ -45,6 +47,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
+        [Permission("Authors.Post")]
         public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
@@ -53,6 +56,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPut]
+        [Permission("Authors.Put")]
         public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
@@ -61,6 +65,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPatch]
+        [Permission("Authors.Patch")]
         public async Task<IActionResult> PatchAuthor([FromBody] PatchAuthorDto authorDto)
         {
             var authorEntity = _mapper.Map<Author>(authorDto);
@@ -69,6 +74,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Permission("Authors.Delete")]
         public async Task<IActionResult> DeleteAuthor([FromRoute] Guid id)
         {
             var result = await _authorService.DeleteAsync(id);
@@ -77,6 +83,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}/books")]
+        [Permission("Books.Get")]
         public async Task<IActionResult> GetBooksByAuthor(int authorId)
         {
             await Task.CompletedTask;

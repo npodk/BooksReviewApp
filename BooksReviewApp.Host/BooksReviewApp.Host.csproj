@@ -23,6 +23,8 @@
     <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.Identity.AspNet\BooksReviewApp.Services.Identity.AspNet.csproj" />
     <ProjectReference Include="..\Infrastructure\BooksReviewApp.Services.Localization\BooksReviewApp.Services.Localization.csproj" />
     <ProjectReference Include="..\Modules\Identity\Database\Identity.Database\Identity.Database.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Identity.WebApi\Identity.WebApi.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Services\Identity.Services.Implementation\Identity.Services.Implementation.csproj" />
     <ProjectReference Include="..\Modules\Platform\BooksReviewApp.WebApi\BooksReviewApp.WebApi.csproj" />
     <ProjectReference Include="..\Modules\Platform\Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
     <ProjectReference Include="..\Modules\Platform\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />

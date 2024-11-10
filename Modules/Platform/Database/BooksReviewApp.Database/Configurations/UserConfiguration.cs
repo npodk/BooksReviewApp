@@ -14,6 +14,9 @@ namespace BooksReviewApp.Database.Configurations
 
             builder.HasIdKey();
 
+            builder.Property(u => u.ApplicationUserId)
+                .IsRequired();
+
             builder.HasIndex(u => u.Email).IsUnique();
 
             builder.Property(u => u.Username)

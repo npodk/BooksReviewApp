@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
+    <ProjectReference Include="..\..\..\Platform\Services\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Database\Identity.Database\Identity.Database.csproj" />
     <ProjectReference Include="..\..\Domain\Identity.Domain\Identity.Domain.csproj" />
     <ProjectReference Include="..\Identity.Services.Contracts\Identity.Services.Contracts.csproj" />

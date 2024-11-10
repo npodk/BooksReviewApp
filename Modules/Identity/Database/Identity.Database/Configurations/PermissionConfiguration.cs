@@ -18,6 +18,9 @@ namespace BooksReviewApp.Services.AspNet.Identity.Configurations
                 .IsRequired()
                 .HasMaxLength(256);
 
+            builder.HasIndex(p => p.Name)
+                .IsUnique();
+
             builder.HasMany(p => p.RolePermissions)
                 .WithOne(rp => rp.Permission)
                 .HasForeignKey(rp => rp.PermissionId);

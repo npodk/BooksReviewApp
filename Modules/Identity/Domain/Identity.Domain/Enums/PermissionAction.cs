@@ -3,8 +3,8 @@
     public enum PermissionAction
     {
         Get,
-        Create,
-        Update,
+        Post,
+        Put,
         Patch,
         Delete
     }

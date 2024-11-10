@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\BooksReviewApp.Services.AspNet.Identity\BooksReviewApp.Services.Identity.AspNet.csproj" />
+    <ProjectReference Include="..\..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

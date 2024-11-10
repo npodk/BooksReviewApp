@@ -36,8 +36,8 @@ namespace BooksReviewApp.Services.AspNet.Identity
 
         public static class IdentityTableNames
         {
-            public const string ApplicationUser = "AspNetUsers";
-            public const string Role = "AspNetRoles";
+            public const string ApplicationUser = "Users";
+            public const string Role = "Roles";
             public const string UserClaim = "AspNetUserClaims";
             public const string UserRole = "AspNetUserRoles";
             public const string UserLogin = "AspNetUserLogins";

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
+    <ProjectReference Include="..\..\..\Identity\Identity.WebApi.Integration\Identity.WebApi.Integration.csproj" />
     <ProjectReference Include="..\..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 

@@ -10,6 +10,7 @@ using Identity.Database.Extensions;
 using Serilog;
 using BooksReviewApp.Services.Identity.AspNet.Extensions;
 using Identity.Services.Implementation.Extensions;
+using Identity.WebApi.Integration.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddIdentityDbContext(builder.Configuration.GetConnectionString(
 
 builder.Services.AddIdentityServices();
 builder.Services.AddCustomIdentity<ApplicationUser, Role, AspIdentityDbContext>();
+builder.Services.AddIdentityIntegrationServices();
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdministratorRole", policy =>
@@ -36,6 +39,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddCustomSwagger();
+builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddBusinessServices();

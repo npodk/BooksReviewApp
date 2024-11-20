@@ -9,7 +9,7 @@ namespace Identity.Services.Implementation.Extensions
     {
         public static void AddIdentityServices(this IServiceCollection services)
         {
-            services.AddScoped<IIntegrationService, IntegrationService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IGuardService, GuardService>();

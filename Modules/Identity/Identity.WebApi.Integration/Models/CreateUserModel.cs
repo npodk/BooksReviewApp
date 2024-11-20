@@ -1,6 +1,6 @@
-﻿namespace Identity.WebApi.Dtos.Account
+﻿namespace Identity.WebApi.Integration.Models
 {
-    public class RegisterDto
+    public class CreateUserModel
     {
         public string UserName { get; set; }
 

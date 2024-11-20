@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Identity.Domain.Entities;
-using Identity.Domain.Models;
 using Identity.Services.Contracts;
 using Identity.WebApi.Dtos.Account;
 using Microsoft.AspNetCore.Authorization;
@@ -13,14 +12,14 @@ namespace Identity.WebApi.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IIntegrationService _integrationService;
+        private readonly IAccountService _accountService;
 
         public AccountController(
             IMapper mapper,
-            IIntegrationService integrationService)
+            IAccountService accountService)
         {
             _mapper = mapper;
-            _integrationService = integrationService;
+            _accountService = accountService;
         }
 
         [HttpPost("register")]
@@ -28,75 +27,53 @@ namespace Identity.WebApi.Controllers
         {
             var applicationUser = _mapper.Map<ApplicationUser>(registerDto);
 
-            var result = await _integrationService.RegisterAsync(applicationUser, registerDto.Password);
+            var result = await _accountService.RegisterAsync(applicationUser, registerDto.Password);
+            if (!result.IsSucceeded) return BadRequest(result.Message);
 
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
+            return Ok(result.Value);
+        }
 
-            return Ok(new { userId = applicationUser.Id });
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> UpdateAccount([FromBody] UpdateAccountDto updateAccountDto)
+        {
+            var updateAccount = _mapper.Map<ApplicationUser>(updateAccountDto);
+
+            var result = await _accountService.UpdateAccountAsync(updateAccount);
+            if (!result.IsSucceeded) return BadRequest(result.Message);
+
+            return Ok(true);
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> PatchAccount(Guid id, [FromBody] PatchAccountDto patchAccountDto)
+        {
+            var patchAccount = _mapper.Map<ApplicationUser>(patchAccountDto);
+
+            var result = await _accountService.PatchAccountAsync(id, patchAccount);
+            if (!result.IsSucceeded) return BadRequest(result.Message);
+
+            return Ok(true);
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAccount([FromRoute] Guid id)
+        {
+            var result = await _accountService.DeleteAccountAsync(id);
+            if (!result.IsSucceeded) return BadRequest(result.Message);
+
+            return Ok(true);
         }
 
         [Authorize]
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto changePasswordDto)
         {
-            var changePasswordModel = _mapper.Map<ChangePasswordModel>(changePasswordDto);
+            var result = await _accountService.ChangePasswordAsync(changePasswordDto.UserId, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
+            if (!result.IsSucceeded) return BadRequest(result.Message);
 
-            var result = await _integrationService.ChangePasswordAsync(changePasswordModel);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return Ok("Password changed successfully.");
-        }
-
-        [Authorize]
-        [HttpPut("update-account")]
-        public async Task<IActionResult> UpdateAccount([FromBody] UpdateAccountDto updateAccountDto)
-        {
-            var updateAccount = _mapper.Map<UpdateAccountModel>(updateAccountDto);
-
-            var result = await _integrationService.UpdateAccountAsync(updateAccount);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return Ok("Account updated successfully.");
-        }
-
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchAccount(Guid id, [FromBody] PatchAccountDto patchAccountDto)
-        {
-            var patchAccountModel = _mapper.Map<PatchAccountModel>(patchAccountDto);
-
-            var result = await _integrationService.PatchAccountAsync(patchAccountModel);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return Ok("Account updated successfully.");
-        }
-
-        [Authorize]
-        [HttpDelete("delete-account")]
-        public async Task<IActionResult> DeleteAccount(Guid userId)
-        {
-            var result = await _integrationService.DeleteAccountAsync(userId);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return Ok("Account deleted successfully.");
+            return Ok(true);
         }
     }
 }

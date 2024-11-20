@@ -11,7 +11,9 @@ namespace Identity.WebApi.Mappers
         {
             CreateMap<RegisterDto, ApplicationUser>();
 
-            CreateMap<UpdateAccountDto, UpdateAccountModel>();
+            CreateMap<UpdateAccountDto, ApplicationUser>();
+
+            CreateMap<PatchAccountDto, ApplicationUser>();
 
             CreateMap<ChangePasswordDto, ChangePasswordModel>();
 

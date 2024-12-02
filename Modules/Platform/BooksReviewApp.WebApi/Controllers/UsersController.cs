@@ -32,6 +32,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Permission("Users.Get")]
         public async Task<IActionResult> GetUserById([FromRoute] Guid id)
         {
             var userEntity = await _userApplicationService.GetUserById(id);
@@ -46,6 +47,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPost]
+        [Permission("Users.Post")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto userDto)
         {
             var userModel = _mapper.Map<CreateUserModel>(userDto);
@@ -56,6 +58,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Permission("Users.Put")]
         public async Task<IActionResult> UpdateUser([FromRoute] Guid id, [FromBody] UpdateUserDto userDto)
         {
             var updatedUser = _mapper.Map<User>(userDto);
@@ -66,6 +69,7 @@ namespace BooksReviewApp.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Permission("Users.Delete")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
             var result = await _userApplicationService.DeleteUserAsync(id);

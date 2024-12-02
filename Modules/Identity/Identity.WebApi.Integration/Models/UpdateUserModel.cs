@@ -1,6 +1,6 @@
-﻿namespace Identity.WebApi.Dtos.Account
+﻿namespace Identity.WebApi.Integration.Models
 {
-    public class UpdateAccountDto
+    public class UpdateUserModel
     {
         public Guid Id { get; set; }
 

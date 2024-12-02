@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
     <ProjectReference Include="..\Database\Identity.Database\Identity.Database.csproj" />
     <ProjectReference Include="..\Domain\Identity.Domain\Identity.Domain.csproj" />
     <ProjectReference Include="..\Services\Identity.Services.Contracts\Identity.Services.Contracts.csproj" />

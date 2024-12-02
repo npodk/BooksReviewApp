@@ -21,10 +21,6 @@ namespace Identity.WebApi.Validators.AccountValidators
             RuleFor(dto => dto.Password)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("PasswordIsRequired"))
                 .ApplyPasswordRules(localizationService);
-
-            RuleFor(dto => dto.ConfirmPassword)
-                .NotEmpty().WithMessage(localizationService.GetValidationMessage("ConfirmPasswordIsRequired"))
-                .Equal(dto => dto.Password).WithMessage(localizationService.GetValidationMessage("PasswordsDoNotMatch"));
         }
     }
 }

@@ -13,8 +13,8 @@ namespace Identity.WebApi.Validators.AccountValidators
             RuleFor(dto => dto.Id)
                 .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
 
-            RuleFor(dto => dto.Username)
-                .NotNull().When(dto => dto.Username != null)
+            RuleFor(dto => dto.UserName)
+                .NotNull().When(dto => dto.UserName != null)
                 .ApplyUsernameRules(localizationService);
 
             RuleFor(dto => dto.Email)

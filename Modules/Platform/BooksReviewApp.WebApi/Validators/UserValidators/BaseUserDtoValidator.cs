@@ -1,25 +1,22 @@
 ﻿using BooksReviewApp.Core.Services.Interfaces;
 using BooksReviewApp.Core.Services.Models;
+using BooksReviewApp.WebApi.Dtos.User;
+using BooksReviewApp.WebApi.Extensions;
 using FluentValidation;
-using Identity.WebApi.Dtos.Account;
-using Identity.WebApi.Extensions;
 
-namespace Identity.WebApi.Validators.AccountValidators
+namespace BooksReviewApp.WebApi.Validators.UserValidators
 {
-    public class UpdateAccountDtoValidator : BaseValidator<UpdateAccountDto>
+    public class BaseUserDtoValidator<T> : BaseValidator<T> where T : BaseUserDto
     {
-        public UpdateAccountDtoValidator(ILocalizationService localizationService)
+        public BaseUserDtoValidator(ILocalizationService localizationService)
         {
-            RuleFor(dto => dto.Id)
-                .NotEqual(Guid.Empty).WithMessage(localizationService.GetValidationMessage("IdNotDefault"));
-
-            RuleFor(dto => dto.UserName)
+            RuleFor(dto => dto.Username)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("UsernameIsRequired"))
                 .ApplyUsernameRules(localizationService);
 
             RuleFor(dto => dto.Email)
                 .NotEmpty().WithMessage(localizationService.GetValidationMessage("EmailIsRequired"))
                 .ApplyEmailRules(localizationService);
-        }   
+        }
     }
 }

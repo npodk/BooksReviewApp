@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\Platform\Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
-    <ProjectReference Include="..\..\Modules\Platform\Services\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\BooksReviewApp.Services.Implementation\BooksReviewApp.Services.Implementation.csproj" />
     <ProjectReference Include="..\BooksReviewApp.Tests.Common\BooksReviewApp.Tests.Common.csproj" />
   </ItemGroup>
 

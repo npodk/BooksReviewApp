@@ -1,6 +1,4 @@
-using BooksReviewApp.Database.Extensions;
 using BooksReviewApp.Services.AspNet.Identity;
-using BooksReviewApp.Services.Implementation.Application;
 using BooksReviewApp.Services.Localization.Application;
 using BooksReviewApp.WebApi.Extensions;
 using BooksReviewApp.WebApi.Handlers;
@@ -13,6 +11,8 @@ using Identity.Services.Implementation.Extensions;
 using Identity.WebApi.Integration.Extensions;
 using BooksReviewApp.Services.Identity.AspNet.Models;
 using Identity.WebApi.Integration.Models;
+using BooksReviewApp.Database.Extensions;
+using BooksReviewApp.Services.Implementation.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 

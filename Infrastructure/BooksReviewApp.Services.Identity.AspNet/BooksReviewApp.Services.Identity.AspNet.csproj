@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Identity\Domain\Identity.Domain\Identity.Domain.csproj" />
-    <ProjectReference Include="..\..\Modules\Platform\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

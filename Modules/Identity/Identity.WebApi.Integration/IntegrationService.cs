@@ -1,5 +1,5 @@
 ﻿using Identity.WebApi.Integration.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Net.Http.Json;
 
 namespace Identity.WebApi.Integration
@@ -12,17 +12,21 @@ namespace Identity.WebApi.Integration
         private const string AuthenticationControllerLoginEndpoint = "authentication/login";
 
         private readonly HttpClient _httpClient;
-        private readonly string _login;
-        private readonly string _password;
+        private readonly ApiSettings _apiSettings;
 
-        public IntegrationService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public IntegrationService(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> options)
         {
-            var baseUrl = configuration["ApiSettings:IdentityApiBaseUrl"] ?? throw new ArgumentException("Identity API base URL is not configured in the appsettings.");
-            _login = configuration["ApiSettings:Login"] ?? throw new ArgumentException("Identity API Login is not configured in the appsettings.");
-            _password = configuration["ApiSettings:Password"] ?? throw new ArgumentException("Identity API Password is not configured in the appsettings.");
+            _apiSettings = options.Value ?? throw new ArgumentNullException(nameof(options));
+
+            if (string.IsNullOrEmpty(_apiSettings.IdentityApiBaseUrl))
+                throw new ArgumentException("Identity API base URL is not configured.");
+            if (string.IsNullOrEmpty(_apiSettings.Login))
+                throw new ArgumentException("Identity API login is not configured.");
+            if (string.IsNullOrEmpty(_apiSettings.Password))
+                throw new ArgumentException("Identity API password is not configured.");
 
             _httpClient = httpClientFactory.CreateClient("IdentityApi");
-            _httpClient.BaseAddress = new Uri(baseUrl);
+            _httpClient.BaseAddress = new Uri(_apiSettings.IdentityApiBaseUrl);
         }
 
         public async Task<Guid> CreateUserAsync(CreateUserModel createUser)
@@ -63,7 +67,7 @@ namespace Identity.WebApi.Integration
 
         private async Task AuthenticateUserAsync()
         {
-            var loginPayload = new { UserName = _login, Password = _password };
+            var loginPayload = new { UserName = _apiSettings.Login, _apiSettings.Password };
             await _httpClient.PostAsJsonAsync(AuthenticationControllerLoginEndpoint, loginPayload);
         }
     }

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BooksReviewApp.Services.Identity.AspNet.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace BooksReviewApp.Services.Identity.AspNet.Extensions
 {
@@ -13,21 +15,24 @@ namespace BooksReviewApp.Services.Identity.AspNet.Extensions
         {
             services.AddIdentity<TUser, TRole>(options =>
             {
+                var provider = services.BuildServiceProvider();
+                var settings = provider.GetRequiredService<IOptions<IdentitySettings>>().Value;
+
                 // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireDigit = settings.Password.RequireDigit;
+                options.Password.RequireLowercase = settings.Password.RequireLowercase;
+                options.Password.RequireNonAlphanumeric = settings.Password.RequireNonAlphanumeric;
+                options.Password.RequireUppercase = settings.Password.RequireUppercase;
+                options.Password.RequiredLength = settings.Password.RequiredLength;
+                options.Password.RequiredUniqueChars = settings.Password.RequiredUniqueChars;
 
                 // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(settings.Lockout.DefaultLockoutTimeSpanInMinutes);
+                options.Lockout.MaxFailedAccessAttempts = settings.Lockout.MaxFailedAccessAttempts;
+                options.Lockout.AllowedForNewUsers = settings.Lockout.AllowedForNewUsers;
 
                 // User settings
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = settings.User.RequireUniqueEmail;
             })
             .AddEntityFrameworkStores<TContext>()
             .AddDefaultTokenProviders();

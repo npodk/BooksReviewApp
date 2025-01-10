@@ -11,6 +11,8 @@ using Serilog;
 using BooksReviewApp.Services.Identity.AspNet.Extensions;
 using Identity.Services.Implementation.Extensions;
 using Identity.WebApi.Integration.Extensions;
+using BooksReviewApp.Services.Identity.AspNet.Models;
+using Identity.WebApi.Integration.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddCustomDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddIdentityDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.Configure<IdentitySettings>(builder.Configuration.GetSection("IdentityOptions"));
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 
 builder.Services.AddIdentityServices();
 builder.Services.AddCustomIdentity<ApplicationUser, Role, AspIdentityDbContext>();

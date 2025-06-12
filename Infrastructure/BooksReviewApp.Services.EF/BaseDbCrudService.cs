@@ -15,14 +15,14 @@ namespace BooksReviewApp.Services.EF
         public async Task<T> CreateAsync(T model)
         {
             model.Id = Guid.NewGuid();
-            _dbSet.Add(model);
+            await _dbSet.AddAsync(model);
             await _dbContext.SaveChangesAsync();
             return model;
         }
 
         public async Task<T> CreateWithoutIdAsync(T model)
         {
-            _dbSet.Add(model);
+            await _dbSet.AddAsync(model);
             await _dbContext.SaveChangesAsync();
             return model;
         }

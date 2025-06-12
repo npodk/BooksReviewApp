@@ -28,7 +28,10 @@ namespace Identity.WebApi.Controllers
             var applicationUser = _mapper.Map<ApplicationUser>(registerDto);
 
             var result = await _accountService.RegisterAsync(applicationUser, registerDto.Password);
-            if (!result.IsSucceeded) return BadRequest(result.Message);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
             return Ok(result.Value);
         }
@@ -40,7 +43,10 @@ namespace Identity.WebApi.Controllers
             var updateAccount = _mapper.Map<ApplicationUser>(updateAccountDto);
 
             var result = await _accountService.UpdateAccountAsync(updateAccount);
-            if (!result.IsSucceeded) return BadRequest(result.Message);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
             return Ok(true);
         }
@@ -51,7 +57,10 @@ namespace Identity.WebApi.Controllers
             var patchAccount = _mapper.Map<ApplicationUser>(patchAccountDto);
 
             var result = await _accountService.PatchAccountAsync(id, patchAccount);
-            if (!result.IsSucceeded) return BadRequest(result.Message);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
             return Ok(true);
         }
@@ -61,17 +70,23 @@ namespace Identity.WebApi.Controllers
         public async Task<IActionResult> DeleteAccount([FromRoute] Guid id)
         {
             var result = await _accountService.DeleteAccountAsync(id);
-            if (!result.IsSucceeded) return BadRequest(result.Message);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
             return Ok(true);
         }
 
         [Authorize]
-        [HttpPost("change-password")]
+        [HttpPost("password/change")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto changePasswordDto)
         {
             var result = await _accountService.ChangePasswordAsync(changePasswordDto.UserId, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
-            if (!result.IsSucceeded) return BadRequest(result.Message);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
             return Ok(true);
         }

@@ -4,7 +4,7 @@ using BooksReviewApp.Services.EF;
 using Identity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BooksReviewApp.Services.Implementation.Identity
+namespace Identity.Services.Implementation
 {
     public class PermissionService : BaseDbCrudService<Permission, AspIdentityDbContext>, IPermissionService
     {

@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
-    <ProjectReference Include="..\..\Database\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
-    <ProjectReference Include="..\..\Domain\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\BooksReviewApp.Core.Services\BooksReviewApp.Core.Services.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\BooksReviewApp.Services.EF\BooksReviewApp.Services.EF.csproj" />
+    <ProjectReference Include="..\BooksReviewApp.Database\BooksReviewApp.Database.csproj" />
+    <ProjectReference Include="..\BooksReviewApp.Domain\BooksReviewApp.Domain.csproj" />
     <ProjectReference Include="..\BooksReviewApp.Services.Contracts\BooksReviewApp.Services.Contracts.csproj" />
   </ItemGroup>
 

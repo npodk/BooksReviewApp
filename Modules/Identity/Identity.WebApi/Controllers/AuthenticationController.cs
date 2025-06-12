@@ -32,7 +32,7 @@ namespace Identity.WebApi.Controllers
 
             if (result.IsLockedOut)
             {
-                return Forbid("User is locked out.");
+                return Forbid("Login failed; Invalid userName or password or user is locked out.");
             }
 
             return Unauthorized("Invalid login attempt.");
